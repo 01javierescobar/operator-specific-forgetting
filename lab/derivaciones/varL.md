@@ -112,3 +112,25 @@ parcial entre terminos crecientes y decrecientes en c.
   momentos condicionales; (ii) derivar el coeficiente -0.95/n desde los
   terminos recirculantes beta_ji beta_ij* (antigravity) + valores
   compartidos; (iii) ensamblar g(c) y validar contra secciones 2a+2b.
+
+
+## 9. Sesion grind 1: reduccion rank-one y anclas
+
+Reduccion exacta: x_j = (g/D) a_j^T V (a_j = vector alphas excluyendo j,
+V = matriz de valores n x D sin v_j). Con CLT sobre D, a_j ~ CN aprox:
+u = a^T V se escribe u = V^T p + i V^T q, p,q iid N(0,I_n).
+
+- E[Y_j] = |g|^2 (n-1)/(D-2): clava MC al 0.1% (0.07503 vs 0.07495).
+  La version con D-2 (inverse-chi2 del denominador) es la correcta.
+- Ancla: CV(Y_j) = 0.33 a D=64,n=20,d=0.5.
+- MURO detectado: Var(Z) via 'coordenadas gaussianas independientes'
+  da 14x menos que MC. Causa: u = V^T p + i V^T q comparte V entre los
+  dos terminos => E[u^4] tiene termino cruzado 2*(2(n-1)D)^2-ish por la
+  norma compartida SumS. La cuenta correcta: E[||u||^4] con u = V^T p +
+  i V^T q, p,q,V conjuntos:
+    E[||u||^2] = 2(n-1)D (sin v_j)
+    E[||u||^4] = 4 E[||V'||_F^4] + 2(2(n-1)D)^2-ish + terminos de exclusion
+  con ||V'||_F^4 = (SumS)^2, E = (n-1)^2D^2 + 2(n-1)D.
+- Pendiente cerrar: ensamblar Var(Z) exacta, dividir por D^4, multiplicar
+  por |g|^4, validar contra sd(Y_j)=0.02483 medido; luego el coeficiente
+  -0.95/n de Cov (mismo mecanismo de norma compartida entre items).
