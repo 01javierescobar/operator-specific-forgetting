@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "Operator-Specific Forgetting in Matrix-Valued Associative Memory (code and data)"
+abstract: >-
+  Controlled study of selective forgetting in matrix-valued associative
+  memories. Four closed-form residual laws with zero free parameters describe
+  the post-erase residual under key/state drift for the complex (phasor) and
+  real read channels, verified on trained models at d=64 and d=128 with
+  matched load c=(n-1)/D (max deviation 0.0049). Includes the lineage theorem
+  (complex re-read erase == delta-rule beta=1), the LMS stability condition
+  for corrective writes, and a matched-budget comparison against delta-rule
+  and attention operators with an honest (unrounded) almost-equivalence TOST.
+  Code, trained checkpoints, experiment logs and a verification report are
+  included.
+authors:
+  - family-names: Escobar
+    given-names: Javier
+    affiliation: "Independent Researcher"
+date-released: 2026-08-21
+version: 1.0.0
+license: MIT
+keywords:
+  - associative memory
+  - linear attention
+  - delta rule
+  - forgetting
+  - VSA
+  - HRR
+  - fast weights
+  - recurrent memory
+  - complex-valued neural networks

@@ -1,0 +1,251 @@
+[{"stream_name":"stderr","time":5.446992369,"data":"/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":5.447072691,"data":"  validate(nb)\n"}
+,{"stream_name":"stderr","time":6.177046634,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.177075696,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.177081083,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.177085191,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":6.72083168,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.720886017,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.720891367,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.7209000119999995,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":7.7437664139999995,"data":"cwd: /kaggle/working\n"}
+,{"stream_name":"stdout","time":7.743806017,"data":"input dirs: ['onda-o05-ckpts']\n"}
+,{"stream_name":"stdout","time":7.743810999,"data":"  input onda-o05-ckpts -\u003e ['complex', 're']\n"}
+,{"stream_name":"stdout","time":7.815060977,"data":"wrote tests/common_smoke.py: 60864\n"}
+,{"stream_name":"stdout","time":7.815083266,"data":"wrote tests/muon_opt.py: 4410\n"}
+,{"stream_name":"stdout","time":7.815088302,"data":"wrote tests/wave_mem_n1.py: 19903\n"}
+,{"stream_name":"stdout","time":7.81509298,"data":"wrote tests/o04b_run.py: 12490\n"}
+,{"stream_name":"stdout","time":7.8151147309999995,"data":"wrote tests/wave_mem_smoke128.py: 18080\n"}
+,{"stream_name":"stdout","time":7.815118442,"data":"wrote prototypes/wave_mem/model.py: 6692\n"}
+,{"stream_name":"stdout","time":7.815121918,"data":"wrote prototypes/delta_forget/model.py: 5694\n"}
+,{"stream_name":"stdout","time":7.815125492,"data":"wrote prototypes/delta_nlms/model.py: 6147\n"}
+,{"stream_name":"stdout","time":7.92621981,"data":"CKPT OK: cache/complex/forget_retrieval_seed1_dm64_L2_ep80.pt\n"}
+,{"stream_name":"stdout","time":7.926247575,"data":"CKPT OK: cache/complex/forget_retrieval_seed2_dm64_L2_ep80.pt\n"}
+,{"stream_name":"stdout","time":7.926252565,"data":"CKPT OK: cache/complex/forget_retrieval_seed3_dm64_L2_ep80.pt\n"}
+,{"stream_name":"stdout","time":7.926256251,"data":"CKPT OK: cache/re/forget_retrieval_seed1_dm64_L2_ep80.pt\n"}
+,{"stream_name":"stdout","time":7.926259899,"data":"CKPT OK: cache/re/forget_retrieval_seed2_dm64_L2_ep80.pt\n"}
+,{"stream_name":"stdout","time":7.926270692,"data":"CKPT OK: cache/re/forget_retrieval_seed3_dm64_L2_ep80.pt\n"}
+,{"stream_name":"stdout","time":11.831948659,"data":"GPUs: 2\n"}
+,{"stream_name":"stdout","time":13.337265968,"data":"O05 runner: cwd=/kaggle/working/onda REPO=/kaggle/working/onda path0=['/kaggle/working/onda', '/kaggle/working/onda/tests', '/kaggle/lib/kagglegym']\n"}
+,{"stream_name":"stdout","time":13.360534541,"data":"O05 runner: cwd=/kaggle/working/onda REPO=/kaggle/working/onda path0=['/kaggle/working/onda', '/kaggle/working/onda/tests', '/kaggle/lib/kagglegym']\n"}
+,{"stream_name":"stdout","time":13.368021834,"data":"FR d=128: n_pairs [32,48] n_forget [1,2] max_seq 112 c=0.3046875 vocab=105\n"}
+,{"stream_name":"stdout","time":13.368041627,"data":"  wave: 60 ep x 600 / delta_nlms: 150 ep x 1200 (receta n1, v4 mostro EM 0.07-0.98 sub-entrenado)\n"}
+,{"stream_name":"stdout","time":13.369302325,"data":"FR d=128: n_pairs [32,48] n_forget [1,2] max_seq 112 c=0.3046875 vocab=105\n"}
+,{"stream_name":"stdout","time":13.369327139,"data":"  wave: 60 ep x 600 / delta_nlms: 150 ep x 1200 (receta n1, v4 mostro EM 0.07-0.98 sub-entrenado)\n"}
+,{"stream_name":"stdout","time":13.408697092,"data":"\n"}
+,{"stream_name":"stdout","time":13.408716528,"data":"===== O05 wave_complex seed=4 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":13.410765093,"data":"\n"}
+,{"stream_name":"stdout","time":13.410780488,"data":"===== O05 wave_complex seed=1 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":13.540059745,"data":"O05 runner: cwd=/kaggle/working/onda REPO=/kaggle/working/onda path0=['/kaggle/working/onda', '/kaggle/working/onda/tests', '/kaggle/lib/kagglegym']\n"}
+,{"stream_name":"stdout","time":13.540080171,"data":"O05 runner: cwd=/kaggle/working/onda REPO=/kaggle/working/onda path0=['/kaggle/working/onda', '/kaggle/working/onda/tests', '/kaggle/lib/kagglegym']\n"}
+,{"stream_name":"stdout","time":13.540084686,"data":"FR d=128: n_pairs [32,48] n_forget [1,2] max_seq 112 c=0.3046875 vocab=105\n"}
+,{"stream_name":"stdout","time":13.540088359,"data":"  wave: 60 ep x 600 / delta_nlms: 150 ep x 1200 (receta n1, v4 mostro EM 0.07-0.98 sub-entrenado)\n"}
+,{"stream_name":"stdout","time":13.540108008,"data":"FR d=128: n_pairs [32,48] n_forget [1,2] max_seq 112 c=0.3046875 vocab=105\n"}
+,{"stream_name":"stdout","time":13.540111886,"data":"  wave: 60 ep x 600 / delta_nlms: 150 ep x 1200 (receta n1, v4 mostro EM 0.07-0.98 sub-entrenado)\n"}
+,{"stream_name":"stdout","time":13.540115296,"data":"\n"}
+,{"stream_name":"stdout","time":13.540118608,"data":"===== O05 wave_complex seed=4 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":13.540122041,"data":"\n"}
+,{"stream_name":"stdout","time":13.540125408,"data":"===== O05 wave_complex seed=1 (60ep x 600) =====\n"}
+,{"stream_name":"stderr","time":19.880515536,"data":"/kaggle/working/onda/prototypes/wave_mem/model.py:61: UserWarning: Specified kernel cache directory could not be created! This disables kernel caching. Specified directory is /root/.cache/torch/kernels. This warning will appear only once per process. (Triggered internally at /pytorch/aten/src/ATen/native/cuda/jit_utils.cpp:1487.)\n"}
+,{"stream_name":"stderr","time":19.880550198999998,"data":"  delta[erase] = -w_cur[erase].unsqueeze(-1) * wh.unsqueeze(1)\n"}
+,{"stream_name":"stderr","time":20.082613488,"data":"/kaggle/working/onda/prototypes/wave_mem/model.py:61: UserWarning: Specified kernel cache directory could not be created! This disables kernel caching. Specified directory is /root/.cache/torch/kernels. This warning will appear only once per process. (Triggered internally at /pytorch/aten/src/ATen/native/cuda/jit_utils.cpp:1487.)\n"}
+,{"stream_name":"stderr","time":20.082650135,"data":"  delta[erase] = -w_cur[erase].unsqueeze(-1) * wh.unsqueeze(1)\n"}
+,{"stream_name":"stderr","time":20.082656194,"data":"\n"}
+,{"stream_name":"stderr","time":20.082660655,"data":"/kaggle/working/onda/prototypes/wave_mem/model.py:61: UserWarning: Specified kernel cache directory could not be created! This disables kernel caching. Specified directory is /root/.cache/torch/kernels. This warning will appear only once per process. (Triggered internally at /pytorch/aten/src/ATen/native/cuda/jit_utils.cpp:1487.)\n"}
+,{"stream_name":"stderr","time":20.082665975,"data":"  delta[erase] = -w_cur[erase].unsqueeze(-1) * wh.unsqueeze(1)\n"}
+,{"stream_name":"stdout","time":755.512133428,"data":"  train EM=1.000 loss=0.000 t=742s\n"}
+,{"stream_name":"stdout","time":755.720543954,"data":"  train EM=1.000 loss=0.000 t=742s\n"}
+,{"stream_name":"stdout","time":755.911802872,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":756.114651163,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":759.327951073,"data":"  probe: EM_vivo=1.0 sel=0.9719\n"}
+,{"stream_name":"stdout","time":759.363051466,"data":"\n"}
+,{"stream_name":"stdout","time":759.363107046,"data":"===== O05 wave_re seed=1 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":759.530687973,"data":"  probe: EM_vivo=1.0 sel=0.9719\n"}
+,{"stream_name":"stdout","time":759.530713703,"data":"\n"}
+,{"stream_name":"stdout","time":759.53071971,"data":"===== O05 wave_re seed=1 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":768.004814868,"data":"  train EM=1.000 loss=0.000 t=755s\n"}
+,{"stream_name":"stdout","time":768.207647364,"data":"  train EM=1.000 loss=0.000 t=755s\n"}
+,{"stream_name":"stdout","time":768.380899902,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":768.58360077,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":771.710624338,"data":"  probe: EM_vivo=1.0 sel=0.9812\n"}
+,{"stream_name":"stdout","time":771.745881488,"data":"\n"}
+,{"stream_name":"stdout","time":771.745908141,"data":"===== O05 wave_re seed=4 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":771.913440834,"data":"  probe: EM_vivo=1.0 sel=0.9812\n"}
+,{"stream_name":"stdout","time":771.913511916,"data":"\n"}
+,{"stream_name":"stdout","time":771.913518618,"data":"===== O05 wave_re seed=4 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":1496.722960563,"data":"  train EM=1.000 loss=0.000 t=737s\n"}
+,{"stream_name":"stdout","time":1496.931887193,"data":"  train EM=1.000 loss=0.000 t=737s\n"}
+,{"stream_name":"stdout","time":1497.099940636,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":1497.302622507,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":1500.414318748,"data":"  probe: EM_vivo=1.0 sel=0.9719\n"}
+,{"stream_name":"stdout","time":1500.49054091,"data":"\n"}
+,{"stream_name":"stdout","time":1500.490571305,"data":"===== O05 delta_nlms seed=1 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":1500.616969644,"data":"  probe: EM_vivo=1.0 sel=0.9719\n"}
+,{"stream_name":"stdout","time":1500.617144764,"data":"\n"}
+,{"stream_name":"stdout","time":1500.61716061,"data":"===== O05 delta_nlms seed=1 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":1517.156454573,"data":"  train EM=1.000 loss=0.000 t=745s\n"}
+,{"stream_name":"stdout","time":1517.359405625,"data":"  train EM=1.000 loss=0.000 t=745s\n"}
+,{"stream_name":"stdout","time":1517.52957062,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":1517.732269131,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":1520.811119309,"data":"  probe: EM_vivo=1.0 sel=0.9781\n"}
+,{"stream_name":"stdout","time":1520.881511032,"data":"\n"}
+,{"stream_name":"stdout","time":1520.881538105,"data":"===== O05 delta_nlms seed=4 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":1521.015039316,"data":"  probe: EM_vivo=1.0 sel=0.9781\n"}
+,{"stream_name":"stdout","time":1521.015064963,"data":"\n"}
+,{"stream_name":"stdout","time":1521.015111858,"data":"===== O05 delta_nlms seed=4 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":6373.440535728,"data":"  train EM=1.000 loss=0.000 t=4873s\n"}
+,{"stream_name":"stdout","time":6373.651023982,"data":"  train EM=1.000 loss=0.000 t=4873s\n"}
+,{"stream_name":"stdout","time":6373.824441653,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":6374.026968133,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":6374.424695592,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0125 sel=0.9875\n"}
+,{"stream_name":"stdout","time":6374.46139794,"data":"\n"}
+,{"stream_name":"stdout","time":6374.461433612,"data":"===== O05 wave_complex seed=2 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":6374.627193304,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0125 sel=0.9875\n"}
+,{"stream_name":"stdout","time":6374.627223584,"data":"\n"}
+,{"stream_name":"stdout","time":6374.627228381,"data":"===== O05 wave_complex seed=2 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":6453.767926685,"data":"  train EM=1.000 loss=0.000 t=4933s\n"}
+,{"stream_name":"stdout","time":6453.977218102,"data":"  train EM=1.000 loss=0.000 t=4933s\n"}
+,{"stream_name":"stdout","time":6454.163423337,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":6454.365932811,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":6454.77011072,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0219 sel=0.9781\n"}
+,{"stream_name":"stdout","time":6454.804386737,"data":"\n"}
+,{"stream_name":"stdout","time":6454.804413642,"data":"===== O05 wave_complex seed=5 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":6454.972737441,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0219 sel=0.9781\n"}
+,{"stream_name":"stdout","time":6454.972801541,"data":"\n"}
+,{"stream_name":"stdout","time":6454.972810572,"data":"===== O05 wave_complex seed=5 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":7103.024565205,"data":"  train EM=1.000 loss=0.004 t=729s\n"}
+,{"stream_name":"stdout","time":7103.23501259,"data":"  train EM=1.000 loss=0.004 t=729s\n"}
+,{"stream_name":"stdout","time":7103.401875316,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7103.605002404,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7106.626509282,"data":"  probe: EM_vivo=1.0 sel=0.9875\n"}
+,{"stream_name":"stdout","time":7106.661367424,"data":"\n"}
+,{"stream_name":"stdout","time":7106.661395098,"data":"===== O05 wave_re seed=2 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":7106.829275883,"data":"  probe: EM_vivo=1.0 sel=0.9875\n"}
+,{"stream_name":"stdout","time":7106.829320439,"data":"\n"}
+,{"stream_name":"stdout","time":7106.829327012,"data":"===== O05 wave_re seed=2 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":7199.106703842,"data":"  train EM=1.000 loss=0.000 t=744s\n"}
+,{"stream_name":"stdout","time":7199.317457614,"data":"  train EM=1.000 loss=0.000 t=744s\n"}
+,{"stream_name":"stdout","time":7199.497227721,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7199.699736721,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7202.824319278,"data":"  probe: EM_vivo=1.0 sel=0.975\n"}
+,{"stream_name":"stdout","time":7202.860949579,"data":"\n"}
+,{"stream_name":"stdout","time":7202.860977508,"data":"===== O05 wave_re seed=5 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":7203.026910284,"data":"  probe: EM_vivo=1.0 sel=0.975\n"}
+,{"stream_name":"stdout","time":7203.026952764,"data":"\n"}
+,{"stream_name":"stdout","time":7203.026960022,"data":"===== O05 wave_re seed=5 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":7851.238778956,"data":"  train EM=1.000 loss=0.002 t=745s\n"}
+,{"stream_name":"stdout","time":7851.448494263,"data":"  train EM=1.000 loss=0.002 t=745s\n"}
+,{"stream_name":"stdout","time":7851.610986407,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7851.813406337,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7854.825423504,"data":"  probe: EM_vivo=1.0 sel=0.9781\n"}
+,{"stream_name":"stdout","time":7854.892739344,"data":"\n"}
+,{"stream_name":"stdout","time":7854.892796858,"data":"===== O05 delta_nlms seed=2 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":7855.028147658,"data":"  probe: EM_vivo=1.0 sel=0.9781\n"}
+,{"stream_name":"stdout","time":7855.028186674,"data":"\n"}
+,{"stream_name":"stdout","time":7855.028192216,"data":"===== O05 delta_nlms seed=2 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":7951.911692718,"data":"  train EM=1.000 loss=0.000 t=749s\n"}
+,{"stream_name":"stdout","time":7952.121794828,"data":"  train EM=1.000 loss=0.000 t=749s\n"}
+,{"stream_name":"stdout","time":7952.270478373,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7952.473238982,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":7955.483577781,"data":"  probe: EM_vivo=1.0 sel=0.975\n"}
+,{"stream_name":"stdout","time":7955.551766115,"data":"\n"}
+,{"stream_name":"stdout","time":7955.551794302,"data":"===== O05 delta_nlms seed=5 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":7955.686210999,"data":"  probe: EM_vivo=1.0 sel=0.975\n"}
+,{"stream_name":"stdout","time":7955.68629567,"data":"\n"}
+,{"stream_name":"stdout","time":7955.686303483,"data":"===== O05 delta_nlms seed=5 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":12788.812451487,"data":"  train EM=1.000 loss=0.000 t=4934s\n"}
+,{"stream_name":"stdout","time":12789.026050146,"data":"  train EM=1.000 loss=0.000 t=4934s\n"}
+,{"stream_name":"stdout","time":12789.253807934,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":12789.456973933,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":12789.924229131,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0375 sel=0.9625\n"}
+,{"stream_name":"stdout","time":12789.967196193,"data":"\n"}
+,{"stream_name":"stdout","time":12789.967249117,"data":"===== O05 wave_complex seed=3 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":12790.127142152,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0375 sel=0.9625\n"}
+,{"stream_name":"stdout","time":12790.127181453,"data":"\n"}
+,{"stream_name":"stdout","time":12790.127187884,"data":"===== O05 wave_complex seed=3 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":12981.854278734,"data":"  train EM=1.000 loss=0.000 t=5026s\n"}
+,{"stream_name":"stdout","time":12982.066039751,"data":"  train EM=1.000 loss=0.000 t=5026s\n"}
+,{"stream_name":"stdout","time":12982.302609966,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":12982.5055221,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":12982.95822885,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0031 sel=0.9969\n"}
+,{"stream_name":"stdout","time":12982.959079897,"data":"  C1: falta outputs/n1_wave_complex/cache/forget_retrieval_seed4_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12982.959108871,"data":"  C1: falta outputs/n1_wave_complex/cache/forget_retrieval_seed5_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12982.959123933,"data":"  C1: falta outputs/n1_wave_re/cache/forget_retrieval_seed4_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12982.95913009,"data":"  C1: falta outputs/n1_wave_re/cache/forget_retrieval_seed5_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12982.960295875,"data":"\n"}
+,{"stream_name":"stdout","time":12982.960326005,"data":"Escrito: outputs/wave_mem/o05_part1.json  total=12969.6s\n"}
+,{"stream_name":"stdout","time":12983.161398928,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0031 sel=0.9969\n"}
+,{"stream_name":"stdout","time":12983.161436193,"data":"  C1: falta outputs/n1_wave_complex/cache/forget_retrieval_seed4_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12983.161441261,"data":"  C1: falta outputs/n1_wave_complex/cache/forget_retrieval_seed5_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12983.161445928,"data":"  C1: falta outputs/n1_wave_re/cache/forget_retrieval_seed4_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12983.161449858,"data":"  C1: falta outputs/n1_wave_re/cache/forget_retrieval_seed5_dm64_L2_ep80.pt - skip\n"}
+,{"stream_name":"stdout","time":12983.161453855,"data":"\n"}
+,{"stream_name":"stdout","time":12983.161457395,"data":"Escrito: outputs/wave_mem/o05_part1.json  total=12969.6s\n"}
+,{"stream_name":"stdout","time":13611.379016156,"data":"  train EM=1.000 loss=0.000 t=821s\n"}
+,{"stream_name":"stdout","time":13611.588293684,"data":"  train EM=1.000 loss=0.000 t=821s\n"}
+,{"stream_name":"stdout","time":13611.778212016,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":13611.981368441,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":13615.103978001,"data":"  probe: EM_vivo=1.0 sel=0.9906\n"}
+,{"stream_name":"stdout","time":13615.142590481,"data":"\n"}
+,{"stream_name":"stdout","time":13615.142636497,"data":"===== O05 wave_re seed=3 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":13615.30702659,"data":"  probe: EM_vivo=1.0 sel=0.9906\n"}
+,{"stream_name":"stdout","time":13615.307079444,"data":"\n"}
+,{"stream_name":"stdout","time":13615.307085085,"data":"===== O05 wave_re seed=3 (60ep x 600) =====\n"}
+,{"stream_name":"stdout","time":14436.43756124,"data":"  train EM=1.000 loss=0.000 t=821s\n"}
+,{"stream_name":"stdout","time":14436.648685649,"data":"  train EM=1.000 loss=0.000 t=821s\n"}
+,{"stream_name":"stdout","time":14436.832234736,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":14437.03459833,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":14440.200713771,"data":"  probe: EM_vivo=1.0 sel=0.9906\n"}
+,{"stream_name":"stdout","time":14440.2804054,"data":"\n"}
+,{"stream_name":"stdout","time":14440.280465675,"data":"===== O05 delta_nlms seed=3 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":14440.403020526,"data":"  probe: EM_vivo=1.0 sel=0.9906\n"}
+,{"stream_name":"stdout","time":14440.403072692,"data":"\n"}
+,{"stream_name":"stdout","time":14440.403080845,"data":"===== O05 delta_nlms seed=3 (150ep x 1200) =====\n"}
+,{"stream_name":"stdout","time":19516.123451771,"data":"  train EM=1.000 loss=0.000 t=5076s\n"}
+,{"stream_name":"stdout","time":19516.335606485,"data":"  train EM=1.000 loss=0.000 t=5076s\n"}
+,{"stream_name":"stdout","time":19516.514321241,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":19516.716883667,"data":"  autocheck harness EM=1.000\n"}
+,{"stream_name":"stdout","time":19517.120891274,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0031 sel=0.9969\n"}
+,{"stream_name":"stdout","time":19517.323725159,"data":"  probe: EM_vivo=1.0 EM_fuga=0.0031 sel=0.9969\n"}
+,{"stream_name":"stdout","time":19523.24166798,"data":"\n"}
+,{"stream_name":"stdout","time":19523.241710676,"data":"Escrito: outputs/wave_mem/o05_part0.json  total=19509.9s\n"}
+,{"stream_name":"stdout","time":19523.444145586,"data":"\n"}
+,{"stream_name":"stdout","time":19523.444187144,"data":"Escrito: outputs/wave_mem/o05_part0.json  total=19509.9s\n"}
+,{"stream_name":"stdout","time":19523.980596266,"data":"workers rc = [0, 0]\n"}
+,{"stream_name":"stdout","time":19524.003752332,"data":"MERGE OK\n"}
+,{"stream_name":"stdout","time":19524.021552421,"data":"TOST: {\n"}
+,{"stream_name":"stdout","time":19524.021581761,"data":" \"mean_delta\": -0.0031,\n"}
+,{"stream_name":"stdout","time":19524.021587646,"data":" \"sd\": 0.0184,\n"}
+,{"stream_name":"stdout","time":19524.021591466,"data":" \"ci90\": [\n"}
+,{"stream_name":"stdout","time":19524.021596394,"data":"  -0.0206,\n"}
+,{"stream_name":"stdout","time":19524.021599722,"data":"  0.0144\n"}
+,{"stream_name":"stdout","time":19524.02160468,"data":" ],\n"}
+,{"stream_name":"stdout","time":19524.021608059,"data":" \"equivalence_pass\": false,\n"}
+,{"stream_name":"stdout","time":19524.021611938,"data":" \"eps\": 0.02,\n"}
+,{"stream_name":"stdout","time":19524.021615775,"data":" \"n_seeds\": 5\n"}
+,{"stream_name":"stdout","time":19524.021619583,"data":"}\n"}
+,{"stream_name":"stdout","time":19524.0216232,"data":"C1 diff: {\n"}
+,{"stream_name":"stdout","time":19524.021626822,"data":" \"wave_complex\": {\n"}
+,{"stream_name":"stdout","time":19524.021630679,"data":"  \"clave\": 0.0,\n"}
+,{"stream_name":"stdout","time":19524.021634671,"data":"  \"clave_pass\": true,\n"}
+,{"stream_name":"stdout","time":19524.021638196,"data":"  \"estado\": 0.0064,\n"}
+,{"stream_name":"stdout","time":19524.021641585,"data":"  \"estado_pass\": true\n"}
+,{"stream_name":"stdout","time":19524.021645115,"data":" },\n"}
+,{"stream_name":"stdout","time":19524.021650051,"data":" \"wave_re\": {\n"}
+,{"stream_name":"stdout","time":19524.021659185,"data":"  \"clave\": 0.0026,\n"}
+,{"stream_name":"stdout","time":19524.021661703,"data":"  \"clave_pass\": true,\n"}
+,{"stream_name":"stdout","time":19524.021664129,"data":"  \"estado\": 0.0027,\n"}
+,{"stream_name":"stdout","time":19524.021666794,"data":"  \"estado_pass\": true\n"}
+,{"stream_name":"stdout","time":19524.021684484,"data":" }\n"}
+,{"stream_name":"stdout","time":19524.021688143,"data":"}\n"}
+,{"stream_name":"stdout","time":19524.021692842,"data":"runs: {'wave_complex_s1': 1.0, 'wave_re_s1': 1.0, 'delta_nlms_s1': 1.0, 'wave_complex_s2': 1.0, 'wave_re_s2': 1.0, 'delta_nlms_s2': 1.0, 'wave_complex_s3': 1.0, 'wave_re_s3': 1.0, 'delta_nlms_s3': 1.0, 'wave_complex_s4': 1.0, 'wave_re_s4': 1.0, 'delta_nlms_s4': 1.0, 'wave_complex_s5': 1.0, 'wave_re_s5': 1.0, 'delta_nlms_s5': 1.0}\n"}
+,{"stream_name":"stdout","time":19524.021698815,"data":"total_s: 19509.9\n"}
+,{"stream_name":"stderr","time":19526.669424069,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":19526.669465596,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":19526.810366393,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":19526.810414392,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":19527.385924442,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":19527.687234621,"data":"[NbConvertApp] Writing 165973 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":19529.971294666,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":19530.80219382,"data":"[NbConvertApp] Writing 685759 bytes to __results__.html\n"}
+]

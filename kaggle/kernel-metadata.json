@@ -1,0 +1,17 @@
+{
+  "id": "javierezcobar/onda-o05",
+  "title": "onda o05",
+  "code_file": "onda_o05.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "javierezcobar/onda-o05-ckpts"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": [],
+  "machine_shape": "NvidiaTeslaT4"
+}

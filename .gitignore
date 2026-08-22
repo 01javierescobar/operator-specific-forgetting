@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# LaTeX build artifacts (regenerable; keep .bbl for arXiv)
+*.aux
+*.log
+!outputs/wave_mem/o05_run.log
+*.out
+*.blg
+*.synctex.gz
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local work
+draft*.md
+*_draft*.md
+# Local-only: raw review deliveries (superseded by paper/verification_report.md)
+lab/entregas/

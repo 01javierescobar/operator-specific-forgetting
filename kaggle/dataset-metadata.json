@@ -1,0 +1,18 @@
+{
+  "id": "javierezcobar/onda-o05-ckpts",
+  "title": "onda o05 ckpts",
+  "isPrivate": true,
+  "licenses": [
+    {
+      "name": "other"
+    }
+  ],
+  "resources": [
+    {"path": "cache/complex/forget_retrieval_seed1_dm64_L2_ep80.pt"},
+    {"path": "cache/complex/forget_retrieval_seed2_dm64_L2_ep80.pt"},
+    {"path": "cache/complex/forget_retrieval_seed3_dm64_L2_ep80.pt"},
+    {"path": "cache/re/forget_retrieval_seed1_dm64_L2_ep80.pt"},
+    {"path": "cache/re/forget_retrieval_seed2_dm64_L2_ep80.pt"},
+    {"path": "cache/re/forget_retrieval_seed3_dm64_L2_ep80.pt"}
+  ]
+}

@@ -1,0 +1,248 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\graphicspath{{../figures/}}
+
+% Float placement parameters for clean, balanced layout
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.8}
+
+\newcommand{\vhat}{\hat{\mathbf{v}}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\vb}{\mathbf{v}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\St}{\mathbf{S}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\title{\textbf{Operator-Specific Forgetting in Matrix-Valued Associative Memory}}
+\author{Javier Escobar\\
+  Independent Researcher}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Selective forgetting is usually evaluated indirectly through retrieval accuracy or overwrite behavior. This work treats forgetting as a first-class, operator-specific property of recurrent associative memory. The investigation studies a matrix-valued complex memory that stores key--value associations by superposition and retrieves them by matched filtering. Closed-form, fit-free residual laws are derived for two readout channels (complex and real-truncated) under two controlled perturbation locations: key drift and state drift. Under independent random keys, the expected residual depends on the associative load $c=(n-1)/D$ rather than on dimension $D$ alone. Across trained recurrent models, the four predicted laws match pooled residual measurements with maximum absolute deviations of $0.0094$ at $D=64$ and $0.0049$ at $D=128$ under approximately matched load ($c \approx 0.30$). Under coherent key drift, the complex projector produces an algebraically zero residual under the idealized operator (verified numerically below the guard threshold $\varepsilon_{\text{null}} = 10^{-4}$ in 30/30 runs), while other cells leave structured residuals that support linear decoding under the specified probe protocol, even when pooled energy leakage is small. Furthermore, a corrective delta-rule write is analyzed as a first-order directional LMS loop, explaining its divergence when $\beta\,\|\mathbf{k}\|^2 \ge 2$; normalized-key delta writes restore bounded dynamics and exhibit a small mean selectivity difference ($-0.0031$) relative to the complex projector, though formal equivalence was inconclusive with five seeds ($90\%$ CI $[-0.0206,\,0.0144]$). We formalize operator-specific forgetting, derive closed-form residual laws, and connect residual structure to write stability.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Recurrent associative memories compress a growing sequence of key--value associations into a fixed-size state. This produces a state whose size is independent of sequence length during autoregressive inference, although it remains quadratic in the feature dimension $D$, aligning with recent linear-attention and recurrent state-space architectures \citep{schlag2021fastweight,yang2024deltanet,yang2025gateddelta}. However, compression introduces interference and makes forgetting difficult to characterize. A system may attenuate an association in energy while leaving a structured residual from which the target remains recoverable by downstream decoders.
+
+This paper addresses a narrower question: when an associative memory is instructed to forget a specific association, what determines whether the erased value remains recoverable? The investigation separates this question into an operator-level residual energy measurement and a functional linear decoding test. It also evaluates two controlled perturbation locations: a phase drift in the erase key at unbinding time, and a write-time phase offset in the target association.
+
+The primary contributions are:
+\begin{enumerate}
+  \item A protocol that treats forgetting as an operator-specific benchmark, separating pooled energy leakage from functional decodability.
+  \item Four closed-form, fit-free residual laws for complex and real-truncated channels under key and state drift.
+  \item Empirical verification of these laws in trained matrix-valued memories at $D=64$ and $D=128$ under approximately matched associative load.
+  \item An LMS/NLMS stability analysis explaining why an unnormalized corrective delta write diverges while open-loop superposition avoids feedback instability.
+\end{enumerate}
+
+The memory construction is grounded in holographic reduced representations, vector-symbolic architectures, complex associative memories, and linear-attention/fast-weight architectures \citep{plate1995holographic,kanerva2009hyperdimensional,gayler2003vector,frady2018theory,frady2020resonator,noest1988phasor,schlag2021fastweight,yang2024deltanet}. Superposition, conjugate matched filtering, and subtractive unbinding are established ingredients. We formalize operator-specific forgetting, derive closed-form residual laws, and analyze write stability within this memory formulation.
+
+\section{Memory and forgetting operators}\label{sec:operators}
+
+Let $\w_i \in \C^D$ be fixed codebook keys with unit-modulus entries ($|\w_{i,k}|=1$, squared Euclidean norm $\|\w_i\|_2^2 = D$) and $\vb_i \in \R^D$ be real-valued target vectors. The memory state $\M \in \C^{D \times D}$ stores $n$ associations by superposition:
+\begin{equation}
+\M = \sum_{i=1}^n \w_i \vb_i^\top .
+\end{equation}
+A matched-filter read with reference key $\w_j$ returns the row vector
+\begin{equation}
+\vhat_j = \frac{\w_j^H \M}{D} = \vb_j^\top + \frac{1}{D}\sum_{k \ne j} \w_j^H \w_k \vb_k^\top .
+\end{equation}
+Because the stored targets $\vb_i$ are real-valued while the memory state $\M$ is complex-valued, two readout channels are evaluated: the full complex channel $\vhat_j \in \C^D$ and the real-truncated channel $\operatorname{Re}(\vhat_j) \in \R^D$.
+
+We evaluate three model arms:
+\begin{itemize}
+  \item \textbf{\texttt{wave complex}}: complex superposition write, complex reread erase.
+  \item \textbf{\texttt{wave Re}}: complex superposition write, real-truncated reread erase.
+  \item \textbf{\texttt{normalized delta}}: normalized-key delta-rule write, projective erase.
+\end{itemize}
+
+All experiments execute erasure through a standardized erase command token (\texttt{FORGET\_ID}). The primary erase operator is the \emph{reread erase}, which reads an estimate of the target from the current state and subtracts its outer product:
+\begin{equation}
+\M' = \M - \w_j \vhat_j.
+\end{equation}
+For keys with unit-modulus entries and squared norm $\|\w_j\|_2^2=D$, this operation is algebraically identical to the rank-1 orthogonal projection induced by a $\beta=1$ delta rule with normalized keys (Section~\ref{sec:stability}). An alternative \emph{representational erase} subtracts the true target value ($\M - \w_j \vb_j^\top$), serving as a control condition.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.78\textwidth]{fig1_memory_diagram.pdf}
+  \caption{Write, read, and erase operators of the matrix-valued associative memory, illustrating the two controlled drift locations: phase drift of the erase key at unbinding time (key drift) and write-time phase offset on the target association followed by reference-clock mismatch during unbinding (state drift).}
+  \label{fig:diagram}
+\end{figure}
+
+\subsection{Controlled drift locations}
+
+Two controlled phase interventions are evaluated (Figure~\ref{fig:diagram}):
+\begin{enumerate}
+  \item \textbf{Key drift} ($\w_j \to \tilde{\w}_j = \w_j e^{i\delta}$): Memory associations are stored unperturbed. At erase time, local oscillator drift alters the erase key to $\tilde{\w}_j$. Both the re-read estimate $\vhat_j = \tilde{\w}_j^H \M / D$ and the subtractive unbinding use the drifted key:
+  \begin{equation}
+  \M' = \M - \tilde{\w}_j \vhat_j.
+  \end{equation}
+  \item \textbf{State drift}: We use \emph{state drift} to denote a write-time phase offset attached to the target association, followed by a mismatch between the stored phase coordinate used for re-reading and the reference coordinate used for unbinding. Specifically, the target item is stored as $(e^{i\delta} \w_j) \vb_j^\top$. Erase re-reads using the item's stored coordinate $\tilde{\w}_j = e^{i\delta}\w_j$ to obtain value estimate $\vhat_j = \tilde{\w}_j^H \M / D$, but executes unbinding with the unperturbed reference clock key $\w_j$:
+  \begin{equation}
+  \M' = \M - \w_j \vhat_j.
+  \end{equation}
+\end{enumerate}
+
+Query readout is always evaluated with the unperturbed reference key $\w_j$. For the complex channel, the post-erase query residual is $\mathbf{r}_j = \w_j^H \M' / D$. For the real channel, real truncation is applied both during re-read ($\vhat_j \leftarrow \operatorname{Re}(\vhat_j)$) and at query readout: $\mathbf{r}_j = \operatorname{Re}(\w_j^H \M' / D)$.
+
+\section{Closed-form residual laws}\label{sec:laws}
+
+Under the independent random-key model, the dependence on the number of interfering associations enters through $c=(n-1)/D$, following classical distributed capacity scaling \citep{plate1995holographic,kanerva2009hyperdimensional,frady2018theory}. For the pooled residual energy normalized by the pooled target energy $L = \sum_i \|\mathbf{r}_i\|^2 / \sum_i \|\vb_i\|^2$, the expected values under random unit-modulus keys are described by four closed-form, fit-free expressions:
+\begin{align}
+L_{\text{key, complex}}(\delta) &= 0, \label{eq:law_kc} \\
+L_{\text{state, complex}}(\delta) &= 2(1-\cos\delta)\,(1+c), \label{eq:law_sc} \\
+L_{\text{key, Re}}(\delta) &= \sin^4\delta + \frac{c}{4}\bigl(1-\cos 2\delta\bigr), \label{eq:law_kr} \\
+L_{\text{state, Re}}(\delta) &= (1-\cos\delta)^2 + c\,(1-\cos\delta). \label{eq:law_sr}
+\end{align}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.92\textwidth]{fig2_residual_laws.pdf}
+  \caption{Measured pooled residual energy versus the four closed-form laws across drift values $\delta \in \{0.0, 0.1, 0.2, 0.3, 0.4, 0.5\}$. Closed circles: $D=128$, five seeds (median with min--max bars). Open squares: $D=64$, three seeds. The key/complex cell produces an algebraically zero residual under the idealized operator (and numerically null residuals below $\varepsilon_{\text{null}}=10^{-4}$ across all 30 tested runs).}
+  \label{fig:laws}
+\end{figure}
+
+\paragraph{Derivation sketch for Eq.~\eqref{eq:law_sc}.} Under state drift, the re-read estimate with stored coordinate $\tilde{\w}_j = e^{i\delta}\w_j$ gives $\vhat_j = e^{-i\delta}\vb_j^\top + \frac{e^{-i\delta}}{D}\sum_{k \ne j}\w_j^H \w_k \vb_k^\top$. Subtracting $\w_j \vhat_j$ produces post-erase state $\M' = (e^{i\delta}-1)\w_j \vb_j^\top + \sum_{k \ne j} \w_k \vb_k^\top - \w_j \frac{e^{-i\delta}}{D}\sum_{k \ne j} \w_j^H \w_k \vb_k^\top$. Reading $\M'$ with reference key $\w_j$ returns target residual $(e^{i\delta}-1)\vb_j^\top$ and crosstalk $(1-e^{-i\delta})\frac{1}{D}\sum_{k \ne j}(\w_j^H \w_k)\vb_k^\top$. Taking expected squared norms over independent random unit-modulus keys gives $\mathbb{E}[\|\mathbf{r}_j\|^2] = |e^{i\delta}-1|^2 \|\vb_j\|^2 + |1-e^{-i\delta}|^2 c \|\vb_j\|^2 = 2(1-\cos\delta)(1+c)\|\vb_j\|^2$. Because the multiplicative factor is independent of the target norm, taking the ratio of the sum of expected residual energies to the sum of target energies recovers the identical expression for the expected pooled ratio:
+\begin{equation}
+\frac{\sum_j \mathbb{E}[\|\mathbf{r}_j\|^2]}{\sum_j \|\vb_j\|^2} = 2(1-\cos\delta)(1+c).
+\end{equation}
+
+\paragraph{Key/complex null residual.} Under coherent key drift, $\M' = \M - \tilde{\w}_j (\tilde{\w}_j^H \M / D)$ is algebraically an exact orthogonal projection onto the subspace orthogonal to $\tilde{\w}_j$, eliminating the target component identically ($L=0$ in the algebraic model). In numerical experiments, all 30 runs produced residuals below the predefined null threshold $\varepsilon_{\text{null}} = 10^{-4}$. In contrast, the remaining three cells retain structured residuals whose energy alone does not reveal whether a decoder can recover the forgotten value.
+
+Under the independent random-key model, the dependence on the number of interfering associations enters through $c=(n-1)/D$. The expected residual laws are invariant across dimension $D$ at fixed $c$; empirical trained-model measurements additionally reflect finite-sample and optimization variability (Figure~\ref{fig:laws}).
+
+\section{Write stability}\label{sec:stability}
+
+The corrective delta write updates a state matrix $\St$ according to
+\begin{equation}
+\St_t = \St_{t-1} + \beta\, \mathbf{k}_t \bigl(\mathbf{v}_t - \mathbf{k}_t^\top \St_{t-1}\bigr)^\top .
+\end{equation}
+Under a first-order directional approximation assuming quasi-orthogonal keys, the error dynamics along direction $\mathbf{k}_t$ follow the scalar recursion
+\begin{equation}
+s_t = \bigl(1 - \beta\|\mathbf{k}_t\|^2\bigr) s_{t-1} + \beta\, q_t,
+\end{equation}
+where $q_t$ represents cross-talk interference. The homogeneous dynamics are stable if and only if $|1 - \beta\|\mathbf{k}_t\|^2| < 1$, which requires $0 < \beta\|\mathbf{k}_t\|^2 < 2$.
+
+With $\beta=1$ and unnormalized key embeddings initialized such that $\|\mathbf{k}_t\|^2 \approx 8$, the directional feedback multiplier is approximately $1 - 8 = -7$. The state norm grows geometrically by $|-7|$ per update step ($\|\St\|$ escalates to $10^{11}$--$10^{12}$ within initial epochs), causing the unnormalized corrective baseline to fail. Normalizing the keys ($\|\mathbf{k}_t\|_2^2=1$) yields a normalized-key delta update \citep{widrow1960adaptive,widrow1985adaptive}; for $0 < \beta < 2$, this ensures $|1-\beta|<1$ and keeps the directional homogeneous dynamics inside the unit disk, maintaining bounded state norm and achieving stable retrieval (Figure~\ref{fig:stability}).
+
+This stability derivation provides an explanatory mechanism for why unnormalized closed-loop delta writes diverge without key normalization. It does not imply that all contemporary delta-rule architectures are unstable, as modern implementations typically incorporate RMSNorm, LayerNorm, or decay gating \citep{yang2024deltanet,yang2025gateddelta}. In contrast, the open-loop superposition write possesses no corrective feedback loop and does not exhibit the corrective-feedback instability analyzed here.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.78\textwidth]{fig5_write_stability.pdf}
+  \caption{State-norm evolution (log scale, epoch 1 to final epoch). Corrective delta with $\beta=1$ diverges ($\mathrm{EM}\approx 0.03$--$0.05$). Superposition writes (wave complex, wave Re) remain bounded. Normalized-key delta with $\beta=0.1$ maintains bounded state norm and achieves $\mathrm{EM}=1.000$.}
+  \label{fig:stability}
+\end{figure}
+
+\section{Experiments}\label{sec:experiments}
+
+A staged evaluation protocol was executed, progressing from synthetic algebra checks to fully trained recurrent models. The scale-matched experiment evaluated $D=64$ ($n=20$ pairs, associative load $c=19/64 \approx 0.2969$, three seeds) and $D=128$ ($n=40$ pairs, associative load $c=39/128 \approx 0.3047$, five seeds) across a drift grid $\delta \in \{0.0, 0.1, 0.2, 0.3, 0.4, 0.5\}$. A discrete vocabulary of 105 tokens was used (48 key tokens, 48 value tokens, and delimiter markers); the token vocabulary is used strictly to construct controlled associative sequences and is not intended as a natural-language modeling benchmark. Each arm and seed evaluated 320 forgetting events. For inferential comparisons, the random seed—not the individual forgetting event—was treated as the independent experimental unit.
+
+The primary residual metric was pooled across events:
+\begin{equation}
+L = \frac{\sum_i \|\mathbf{r}_i\|^2}{\sum_i \|\mathbf{v}_i\|^2},
+\end{equation}
+which avoids the heavy-tail variance of averaging per-example ratios when target vector norms vary. A linear Ridge regression probe ($\alpha=0.1$, within-model split of 75\% train [$n=240$] and 25\% test [$n=80$]) measured whether the post-erase query residual vector $\mathbf{r}_j$ retained sufficient structure to decode the continuous target vector $\vb_j \in \R^D$. At test time, continuous predictions $\hat{\mathbf{v}}$ were mapped to the value vocabulary by nearest cosine similarity to codebook vectors, and exact match was recorded when the recovered token matched the true target. Retrieval selectivity was evaluated across retained and erased pairs:
+\begin{equation}
+\text{Selectivity} = \mathrm{EM}_{\text{alive}} - \mathrm{EM}_{\text{erased}}.
+\end{equation}
+Erased-item exact match (EM) was evaluated only when the residual norm was strictly nonzero; residuals below the guard threshold $\varepsilon_{\text{null}} = 10^{-4}$ were recorded as numerically null residuals.
+
+At $D=128$, all 15 seed--arm combinations reached $\mathrm{EM}=1.000$; at $D=64$, all 9 seed--arm combinations likewise trained to $\mathrm{EM}=1.000$. Because the synthetic associative task saturates at this scale, EM serves as a validation sanity check rather than the primary evidence.
+
+\section{Results}\label{sec:results}
+
+Table~\ref{tab:deviations} reports the verified maximum absolute deviations between measured pooled residuals and the closed-form predictions across cells and dimensions, recomputed directly from the frozen JSON artifacts by \texttt{verify\_numbers.py}. At $D=64$, the maximum absolute deviation is $0.0094$; at $D=128$, it is $0.0049$. Both values remain below the pre-specified verification threshold of $0.02$ (Figure~\ref{fig:laws}).
+
+\begin{table}[t]
+  \centering
+  \caption{Maximum absolute deviation $|\text{measured} - \text{predicted}|$ over seeds, events, and drift grid (recomputed from frozen artifacts).}
+  \label{tab:deviations}
+  \vspace{0.5em}
+  \begin{tabular}{@{}llcc@{}}
+    \toprule
+    perturbation & readout channel & $D=64$ & $D=128$ \\
+    \midrule
+    key drift   & complex (algebraic zero) & 0.0000 & 0.0000 \\
+    state drift & complex: $2(1{-}\cos\delta)(1{+}c)$ & 0.0094 & 0.0049 \\
+    key drift   & real (Re): $\sin^4\delta + c(1{-}\cos 2\delta)/4$ & 0.0016 & 0.0018 \\
+    state drift & real (Re): $(1{-}\cos\delta)^2 + c(1{-}\cos\delta)$ & 0.0015 & 0.0018 \\
+    \midrule
+    \multicolumn{2}{@{}l}{Pre-registered verification gate} & $\le 0.02$ & $\le 0.02$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+At approximately matched load ($c \approx 0.30$, differing by $2.7\%$ between dimensions), all four cells demonstrate close agreement across dimensions, with a maximum cross-scale difference of $0.0064$ (Figure~\ref{fig:load}). Inverting the three non-zero theoretical laws on the measured pooled residuals accurately recovers the expected load $c=(n-1)/D$ at both scales ($c=39/128 \approx 0.3047$ at $D=128$ and $c=19/64 \approx 0.2969$ at $D=64$). The fourth cell confirms the algebraically zero prediction at both scales; all measured residuals were numerically null below $\varepsilon_{\text{null}}$ ($0.0000$ difference), confirming load invariance across all 4/4 cells.
+
+The key/complex cell produced algebraically zero and numerically null residuals below $\varepsilon_{\text{null}}$ in all 30 tested runs. The remaining cells exhibited non-zero residuals where the residual supported linear decoding under the specified within-model protocol despite low energetic leakage. Specifically, at $D=128$, the key/Re residual reaches only $0.002$ pooled energy at $\delta=0.1$, yet the ridge decoder recovers the erased value in roughly $5.6\%$ of events; decodability remains low until $\delta\approx0.25$ and increases substantially by $\delta\approx0.4$, whereas energy increases smoothly across the entire range (Figure~\ref{fig:decodability}). This disparity demonstrates why forgetting evaluation requires both operator-level residual metrics and functional decoding probes.
+
+\begin{figure}[t]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{fig3_load_scaling.pdf}
+    \caption{Measured load $c$ (median over drift values $\delta > 0$, with min--max bars) inverted from the three non-zero laws versus expected load $(n-1)/D$. Cross-dimensional agreement: maximum cell difference $0.0064$, with all four cells passing the $0.02$ gate.}
+    \label{fig:load}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{fig4_energy_vs_decodability.pdf}
+    \caption{Key/Re cell at $D=128$: pooled residual energy versus erased-item EM (ridge decodability). Decodability lags energetic leakage: remaining near zero until $\delta\approx0.25$ and increasing substantially by $\delta\approx0.4$, whereas energy increases smoothly across the entire range.}
+    \label{fig:decodability}
+  \end{minipage}
+\end{figure}
+
+The unnormalized $\beta=1$ corrective delta baseline failed to train because its write updates diverged (Section~\ref{sec:stability}). Normalized delta writes trained stably and produced a small mean selectivity difference of $-0.0031$ relative to wave complex, with a two-sided $90\%$ confidence interval (TOST at $\alpha=0.05$) of $[-0.0206,\,0.0144]$ (Figure~\ref{fig:tost}). Because the lower confidence bound crosses the equivalence margin $-\varepsilon=-0.02$ by $0.0006$ under $n=5$ seeds, the result is reported as inconclusive with respect to formal equivalence within margin $\varepsilon=0.02$.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.62\textwidth]{fig6_tost.pdf}
+  \caption{Two one-sided $t$-test (TOST at $\alpha=0.05$, $90\%$ CI) on retrieval selectivity between wave complex and normalized delta ($\varepsilon=0.02$, $n=5$ seeds). Mean difference: $-0.0031$; $90\%$ CI: $[-0.0206,\,0.0144]$. The confidence interval crosses $-\varepsilon$ by $0.0006$.}
+  \label{fig:tost}
+\end{figure}
+
+\section{Relation to prior work}\label{sec:related}
+
+The matrix memory formulation builds upon holographic reduced representations \citep{plate1995holographic} and vector-symbolic architectures \citep{kanerva2009hyperdimensional,gayler2003vector}, where items are superposed and unbundled via approximate matched filtering, with capacity limits characterized by \citet{frady2018theory} and factorization analyzed by \citet{frady2020resonator}. It connects directly to complex-valued associative memories, from phasor networks \citep{noest1988phasor} to recent phase-associative sequence architectures \citep{vishwakarma2026phaseassociative}; to fast-weight programmers and linear attention \citep{schlag2021fastweight}; to delta-rule linear attention and its parallel forms \citep{yang2024deltanet}; to gated delta architectures \citep{yang2025gateddelta,hatamizadeh2026gateddeltanet2}, which decouple erase and write gates; and to recall-centric evaluations in linear-attention systems \citep{arora2024simplelinear,arora2024zoology}. Classical LMS/NLMS adaptive filtering theory \citep{widrow1960adaptive,widrow1985adaptive} provides the foundation for the directional stability analysis in Section~\ref{sec:stability}.
+
+The framework is also related to machine unlearning and privacy research \citep{guo2020certified,bourtoule2021machine,sekhari2021remember}, but addresses a different problem: machine-unlearning methods typically evaluate parameter-space indistinguishability from a retrained model, whereas the present study measures residual state structure and separates energetic leakage from functional recoverability in recurrent memory states.
+
+The scope of novelty is specifically delimited: establishing a forgetting-centric evaluation protocol, formalizing the divergence between energetic and functional leakage, deriving the four-way drift/channel residual laws, and empirically validating these closed-form laws in trained recurrent memories under approximately matched associative load.
+
+\section{Limitations}\label{sec:limits}
+
+The present study utilizes synthetic key--value associative tasks, fixed codebooks, real-valued targets, an explicit matrix state requiring $O(D^2)$ parameters per layer, and controlled drift interventions. The closed-form laws assume independent unit-modulus random keys and single-item phase perturbations; learned codebooks, correlated multi-item drift, natural-language sequence modeling, and hardware throughput benchmarking represent avenues for future research. Statistical comparisons between arms are limited by the available seed count ($n=5$ at $D=128$, $n=3$ at $D=64$). These findings do not claim general superiority over Transformer self-attention or all linear-attention architectures.
+
+\section{Conclusion}\label{sec:conclusion}
+
+Selective forgetting in recurrent associative memory cannot be characterized adequately by retrieval accuracy alone. In matrix-valued associative memories, the post-erase query residual depends systematically on the erase operator, readout channel, and perturbation location. Four closed-form, fit-free laws accurately predict empirical residuals across multiple dimensions under approximately matched associative load. Under coherent key drift, the complex projection guarantees algebraically zero target residual under the idealized operator, while normalized delta dynamics provide a stable control condition. We formalize operator-specific forgetting, derive closed-form residual laws, and connect residual structure to write stability.
+
+\section*{Reproducibility}
+
+Code, configurations, checkpoints, raw JSON outputs, execution logs, and verification scripts are released in the associated open repository and DOI record. The frozen reference commit is \texttt{cec4ffe}, tagged \texttt{lab-radioactivo-v1}. All quantitative values in this manuscript are recomputed directly from the frozen JSON artifacts by \texttt{paper/verify\_numbers.py}; all figures are regenerated by \texttt{paper/make\_figures.py}. The primary trained-model gate (O05) was executed on two NVIDIA T4 GPUs (Kaggle kernel \texttt{javierezcobar/onda-o05}, 5.44~h, 15 runs).
+
+\section*{Use of AI tools}
+
+AI-assisted tools (large language models) were used throughout the research process for code development, experimental design iteration, debugging, and adversarial verification of intermediate claims across the O01--O05 protocol. All mathematical derivations, experimental protocols, quantitative results, and scientific conclusions were validated by the author. The AI tools are not listed as authors and bear no responsibility for the content of this manuscript.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
