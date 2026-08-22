@@ -16,8 +16,8 @@ authors:
   - family-names: Escobar
     given-names: Javier
     affiliation: "Independent Researcher"
-date-released: 2026-08-21
-version: 1.0.0
+date-released: 2026-08-22
+version: 1.0.7
 license: MIT
 repository-code: "https://github.com/01javierescobar/operator-specific-forgetting"
 identifiers:
