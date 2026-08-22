@@ -134,3 +134,23 @@ u = a^T V se escribe u = V^T p + i V^T q, p,q iid N(0,I_n).
 - Pendiente cerrar: ensamblar Var(Z) exacta, dividir por D^4, multiplicar
   por |g|^4, validar contra sd(Y_j)=0.02483 medido; luego el coeficiente
   -0.95/n de Cov (mismo mecanismo de norma compartida entre items).
+
+
+## 10. Sesion grind 2: descomposicion de CV per-item VALIDADA
+
+u = a^T V reduccion + CLT (a ~ CN(0, DI) legitimo para D>=32):
+CV^2(Y_j) = 2/D [chi2_D lectura] + 2/D [inverse-chi2 denominador S_j]
+          + (D-1)/(D(n-1)) [fluctuacion de ||a||^2, condicionada en w_j]
+Prediccion D=64,n=20: 0.1144 vs MC 0.1089 (+5%). Tres fuentes:
+chi2 lectura 17.7%, denominador 17.7%, norma coeficientes 22.4%.
+
+TENSION ABIERTA: CV per-item ~ 1/sqrt(D) pero sd(L) pooled medido ~ 1/D.
+El ensamblado pooled (delta-method seccion 6) transforma el escalado via
+denominador compartido y terminos Cov(-0.95/n). Ese ensamblado es el
+bloque final para la fórmula cerrada de g(c).
+
+Ruta pragmatica propuesta para el paper: calibrar kappa(c) directamente
+de una grilla MC densa (c x delta) como banda k-sigma empirica, citando
+la descomposicion per-item como mecanismo explicativo; la Var pooled
+cerrada rigurosa queda como apendice futuro. Honestidad: sin el ensamblado
+cerrado, la banda es calibrada por simulacion, no derivada en papel.
