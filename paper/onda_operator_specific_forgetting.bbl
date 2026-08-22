@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{36}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -22,6 +22,18 @@ Simran Arora, Sabri Eyuboglu, Michael Zhang, Aman Timalsina, Silas Alberti,
 \newblock In \emph{Proceedings of the 41st International Conference on Machine
   Learning (ICML)}, volume 235, pages 10041--10071. PMLR, 2024{\natexlab{b}}.
 
+\bibitem[Ba et~al.(2016)Ba, Hinton, Mnih, Leibo, and Ionescu]{ba2016using}
+Jimmy Ba, Geoffrey~E. Hinton, Volodymyr Mnih, Joel~Z. Leibo, and Catalin
+  Ionescu.
+\newblock Using fast weights to attend to the recent past.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, volume~29, 2016.
+
+\bibitem[Behrouz et~al.(2025)Behrouz, Zhong, and Mirrokni]{behrouz2025titans}
+Ali Behrouz, Peilin Zhong, and Vahab Mirrokni.
+\newblock Titans: Learning to memorize at test time.
+\newblock \emph{arXiv preprint arXiv:2501.00663}, 2025.
+
 \bibitem[Bourtoule et~al.(2021)Bourtoule, Chandrasekaran, Choquette-Choo, Jia,
   Travers, Zhang, Lie, and Papernot]{bourtoule2021machine}
 Lucas Bourtoule, Varun Chandrasekaran, Christopher~A. Choquette-Choo, Hengrui
@@ -30,6 +42,12 @@ Lucas Bourtoule, Varun Chandrasekaran, Christopher~A. Choquette-Choo, Hengrui
 \newblock In \emph{42nd IEEE Symposium on Security and Privacy (S\&P)}, pages
   141--159, 2021.
 \newblock \doi{10.1109/SP40001.2021.00019}.
+
+\bibitem[Dao and Gu(2024)]{dao2024transformers}
+Tri Dao and Albert Gu.
+\newblock Transformers are {SSM}s: Generalized models and efficient algorithms
+  through structured state space duality.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, 2024.
 
 \bibitem[Frady et~al.(2018)Frady, Kleyko, and Sommer]{frady2018theory}
 E.~Paxon Frady, Denis Kleyko, and Friedrich~T. Sommer.
@@ -55,6 +73,11 @@ Ross~W. Gayler.
 \newblock In \emph{Proceedings of the Joint International Conference on
   Cognitive Science (ICCS)}, pages 133--138, 2003.
 
+\bibitem[Gu and Dao(2023)]{gu2023mamba}
+Albert Gu and Tri Dao.
+\newblock Mamba: Linear-time sequence modeling with selective state spaces.
+\newblock \emph{arXiv preprint arXiv:2312.00752}, 2023.
+
 \bibitem[Guo et~al.(2020)Guo, Goldstein, Hannun, and van~der
   Maaten]{guo2020certified}
 Chuan Guo, Tom Goldstein, Awni Hannun, and Laurens van~der Maaten.
@@ -68,6 +91,21 @@ Ali Hatamizadeh, Yejin Choi, and Jan Kautz.
 \newblock Gated {DeltaNet}-2: Decoupling erase and write in linear attention.
 \newblock \emph{arXiv preprint arXiv:2605.22791}, 2026.
 
+\bibitem[Hopfield(1982)]{hopfield1982neural}
+John~J. Hopfield.
+\newblock Neural networks and physical systems with emergent collective
+  computational abilities.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 79\penalty0
+  (8):\penalty0 2554--2558, 1982.
+\newblock \doi{10.1073/pnas.79.8.2554}.
+
+\bibitem[Hu et~al.(2025)Hu, Pan, Du, Lan, Tang, Wen, Liang, and
+  Sun]{hu2025comba}
+Jiaxi Hu, Yongqi Pan, Jusen Du, Disen Lan, Xiaqiang Tang, Qingsong Wen, Yuxuan
+  Liang, and Weigao Sun.
+\newblock Comba: Improving bilinear {RNN}s with closed-loop control.
+\newblock \emph{arXiv preprint arXiv:2506.02475}, 2025.
+
 \bibitem[Kanerva(2009)]{kanerva2009hyperdimensional}
 Pentti Kanerva.
 \newblock Hyperdimensional computing: An introduction to computing in
@@ -76,11 +114,44 @@ Pentti Kanerva.
   2009.
 \newblock \doi{10.1007/s12559-009-9009-8}.
 
+\bibitem[Katharopoulos et~al.(2020)Katharopoulos, Vyas, Pappas, and
+  Fleuret]{katharopoulos2020transformers}
+Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and Fran{\c{c}}ois
+  Fleuret.
+\newblock Transformers are {RNN}s: Fast autoregressive transformers with linear
+  attention.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, pages
+  5156--5165, 2020.
+
+\bibitem[{Kimi Team}(2025)]{kimi2025linear}
+{Kimi Team}.
+\newblock Kimi linear: An expressive, efficient attention architecture.
+\newblock \emph{arXiv preprint arXiv:2510.26692}, 2025.
+
+\bibitem[Kohonen(1972)]{kohonen1972correlation}
+Teuvo Kohonen.
+\newblock Correlation matrix memories.
+\newblock \emph{IEEE Transactions on Computers}, C-21\penalty0 (4):\penalty0
+  353--359, 1972.
+\newblock \doi{10.1109/T-C.1972.223996}.
+
+\bibitem[Krotov and Hopfield(2016)]{krotov2016dense}
+Dmitri Krotov and John~J. Hopfield.
+\newblock Dense associative memory for pattern recognition.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, volume~29, 2016.
+
 \bibitem[Noest(1989)]{noest1988phasor}
 Andre~J. Noest.
 \newblock Phasor neural networks.
 \newblock In \emph{Advances in Neural Information Processing Systems 1 (NIPS
   1988)}, pages 584--591, 1989.
+
+\bibitem[Peng et~al.(2023)Peng, Alcaide, Anthony, et~al.]{peng2023rwkv}
+Bo~Peng, Eric Alcaide, Quentin Anthony, et~al.
+\newblock {RWKV}: Reinventing {RNN}s for the transformer era.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP}, 2023.
 
 \bibitem[Plate(1995)]{plate1995holographic}
 Tony~A. Plate.
@@ -89,12 +160,30 @@ Tony~A. Plate.
   623--641, 1995.
 \newblock \doi{10.1109/72.377968}.
 
+\bibitem[Ramsauer et~al.(2021)Ramsauer, Sch{\"a}fl, Lehner, Seidl, Widrich,
+  Adler, Gruber, Holzleitner, Pavlovi{\'c}, Sandve, Greiff, Kreil, Kopp,
+  Klambauer, Brandstetter, and Hochreiter]{ramsauer2021hopfield}
+Hubert Ramsauer, Bernhard Sch{\"a}fl, Johannes Lehner, Philipp Seidl, Michael
+  Widrich, Thomas Adler, Lukas Gruber, Markus Holzleitner, Milena Pavlovi{\'c},
+  Geir~Kjetil Sandve, Victor Greiff, David Kreil, Michael Kopp, G{\"u}nter
+  Klambauer, Johannes Brandstetter, and Sepp Hochreiter.
+\newblock Hopfield networks is all you need.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2021.
+
 \bibitem[Schlag et~al.(2021)Schlag, Irie, and
   Schmidhuber]{schlag2021fastweight}
 Imanol Schlag, Kazuki Irie, and J{\"u}rgen Schmidhuber.
 \newblock Linear transformers are secretly fast weight programmers.
 \newblock In \emph{Proceedings of the 38th International Conference on Machine
   Learning (ICML)}, pages 9355--9366. PMLR, 2021.
+
+\bibitem[Schmidhuber(1992)]{schmidhuber1992learning}
+J{\"u}rgen Schmidhuber.
+\newblock Learning to control fast-weight memories: An introduction to
+  recurrent waiting networks.
+\newblock \emph{Neural Computation}, 4\penalty0 (1):\penalty0 131--139, 1992.
+\newblock \doi{10.1162/neco.1992.4.1.131}.
 
 \bibitem[Sekhari et~al.(2021)Sekhari, Acharya, Kamath, and
   Suresh]{sekhari2021remember}
@@ -103,6 +192,28 @@ Ayush Sekhari, Jayadev Acharya, Gautam Kamath, and Ananda~Theertha Suresh.
   unlearning.
 \newblock In \emph{Advances in Neural Information Processing Systems 34
   (NeurIPS 2021)}, pages 18075--18086, 2021.
+
+\bibitem[Su et~al.(2021)Su, Lu, Pan, Murtadha, Wen, and Liu]{su2021roformer}
+Jianlin Su, Yu~Lu, Shengfeng Pan, Ahmed Murtadha, Bo~Wen, and Yunfeng Liu.
+\newblock {RoFormer}: Enhanced transformer with rotary position embedding.
+\newblock \emph{arXiv preprint arXiv:2104.09864}, 2021.
+
+\bibitem[Sun et~al.(2024)Sun, Li, Dalal, Xu, Vikram, Zhang, Dubois, Chen, Wang,
+  Koyejo, Hashimoto, and Guestrin]{sun2024ttt}
+Yu~Sun, Xinhao Li, Karan Dalal, Jiarui Xu, Arjun Vikram, Genghan Zhang, Yann
+  Dubois, Xinlei Chen, Xiaolong Wang, Sanmi Koyejo, Tatsunori Hashimoto, and
+  Carlos Guestrin.
+\newblock Learning to (learn at test time): {RNN}s with expressive hidden
+  states.
+\newblock \emph{arXiv preprint arXiv:2407.04620}, 2024.
+
+\bibitem[Sun et~al.(2023)Sun, Dong, Huang, Ma, Xia, Xue, Wang, and
+  Wei]{sun2023retentive}
+Yutao Sun, Li~Dong, Shaohan Huang, Shuming Ma, Yuqing Xia, Jilong Xue, Jianyong
+  Wang, and Furu Wei.
+\newblock Retentive network: A successor to transformer for large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2307.08621}, 2023.
 
 \bibitem[Vishwakarma and Agostino(2026)]{vishwakarma2026phaseassociative}
 Gowrav Vishwakarma and Christopher~J. Agostino.
@@ -120,12 +231,27 @@ Bernard Widrow and Samuel~D. Stearns.
 \newblock \emph{Adaptive Signal Processing}.
 \newblock Prentice-Hall, 1985.
 
-\bibitem[Yang et~al.(2024)Yang, Wang, Zhang, Shen, and Kim]{yang2024deltanet}
+\bibitem[Willshaw et~al.(1969)Willshaw, Buneman, and
+  Longuet-Higgins]{willshaw1969nonholographic}
+David~J. Willshaw, O.~Peter Buneman, and Hugh~C. Longuet-Higgins.
+\newblock Non-holographic associative memory.
+\newblock \emph{Nature}, 222:\penalty0 960--962, 1969.
+\newblock \doi{10.1038/222960a0}.
+
+\bibitem[Yang et~al.(2024{\natexlab{a}})Yang, Wang, Shen, and
+  Panda]{yang2024gla}
+Songlin Yang, Bailin Wang, Yikang Shen, and Rameswar Panda.
+\newblock Gated linear attention transformers with hardware-efficient training.
+\newblock In \emph{International Conference on Machine Learning (ICML)},
+  2024{\natexlab{a}}.
+
+\bibitem[Yang et~al.(2024{\natexlab{b}})Yang, Wang, Zhang, Shen, and
+  Kim]{yang2024deltanet}
 Songlin Yang, Bailin Wang, Yu~Zhang, Yikang Shen, and Yoon Kim.
 \newblock Parallelizing linear transformers with the delta rule over sequence
   length.
 \newblock In \emph{Advances in Neural Information Processing Systems 37
-  (NeurIPS 2024)}, pages 115491--115522, 2024.
+  (NeurIPS 2024)}, pages 115491--115522, 2024{\natexlab{b}}.
 
 \bibitem[Yang et~al.(2025)Yang, Kautz, and Hatamizadeh]{yang2025gateddelta}
 Songlin Yang, Jan Kautz, and Ali Hatamizadeh.
