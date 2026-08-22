@@ -105,7 +105,7 @@ Query readout is always evaluated with the unperturbed reference key $\w_j$. For
 
 \section{Closed-form residual laws}\label{sec:laws}
 
-Under the independent random-key model, the dependence on the number of interfering associations enters through $c=(n-1)/D$, following classical distributed capacity scaling \citep{plate1995holographic,kanerva2009hyperdimensional,frady2018theory}. For the pooled residual energy normalized by the pooled target energy $L = \sum_i \|\mathbf{r}_i\|^2 / \sum_i \|\vb_i\|^2$, the expected values under random unit-modulus keys are described by four closed-form, fit-free expressions:
+Under the independent random-key model (i.i.d.\ unit-modulus entries with uniform phases), the dependence on the number of interfering associations enters through $c=(n-1)/D$, following classical distributed capacity scaling \citep{plate1995holographic,kanerva2009hyperdimensional,frady2018theory}. For the pooled residual energy normalized by the pooled target energy $L = \sum_i \|\mathbf{r}_i\|^2 / \sum_i \|\vb_i\|^2$, the expected values under random unit-modulus keys are described by four closed-form, fit-free expressions:
 \begin{align}
 L_{\text{key, complex}}(\delta) &= 0, \label{eq:law_kc} \\
 L_{\text{state, complex}}(\delta) &= 2(1-\cos\delta)\,(1+c), \label{eq:law_sc} \\
@@ -134,8 +134,9 @@ Under the independent random-key model, the dependence on the number of interfer
 
 The corrective delta write updates a state matrix $\St$ according to
 \begin{equation}
-\St_t = \St_{t-1} + \beta\, \mathbf{k}_t \bigl(\mathbf{v}_t - \mathbf{k}_t^\top \St_{t-1}\bigr)^\top .
+\St_t = \St_{t-1} + \beta\, \mathbf{k}_t \bigl(\mathbf{v}_t^\top - \mathbf{k}_t^\top \St_{t-1}\bigr),
 \end{equation}
+where $\mathbf{k}_t$ and $\mathbf{v}_t$ are column vectors; for complex keys and states, transposes are replaced by conjugate transposes.
 Under a first-order directional approximation assuming quasi-orthogonal keys, the error dynamics along direction $\mathbf{k}_t$ follow the scalar recursion
 \begin{equation}
 s_t = \bigl(1 - \beta\|\mathbf{k}_t\|^2\bigr) s_{t-1} + \beta\, q_t,
@@ -192,7 +193,7 @@ Table~\ref{tab:deviations} reports the verified maximum absolute deviations betw
   \end{tabular}
 \end{table}
 
-At approximately matched load ($c \approx 0.30$, differing by $2.7\%$ between dimensions), all four cells demonstrate close agreement across dimensions, with a maximum cross-scale difference of $0.0064$ (Figure~\ref{fig:load}). Inverting the three non-zero theoretical laws on the measured pooled residuals accurately recovers the expected load $c=(n-1)/D$ at both scales ($c=39/128 \approx 0.3047$ at $D=128$ and $c=19/64 \approx 0.2969$ at $D=64$). The fourth cell confirms the algebraically zero prediction at both scales; all measured residuals were numerically null below $\varepsilon_{\text{null}}$ ($0.0000$ difference), confirming load invariance across all 4/4 cells.
+At approximately matched load ($c \approx 0.30$, differing by $2.7\%$ between dimensions), the three non-trivial cells demonstrate close agreement across dimensions, with a maximum cross-scale difference of $0.0064$ (Figure~\ref{fig:load}). Inverting these laws on the measured pooled residuals recovers the generating load $c=(n-1)/D$ at both scales ($c=39/128 \approx 0.3047$ at $D=128$ and $c=19/64 \approx 0.2969$ at $D=64$); because the laws are linear in $c$, this inversion is a consistency check rather than independent validation. The key/complex cell is identically zero for every load and therefore carries no information about load dependence; its residuals remain numerically null below $\varepsilon_{\text{null}}$ at both scales.
 
 The key/complex cell produced algebraically zero and numerically null residuals below $\varepsilon_{\text{null}}$ in all 30 tested runs. The remaining cells exhibited non-zero residuals where the residual supported linear decoding under the specified within-model protocol despite low energetic leakage. Specifically, at $D=128$, the key/Re residual reaches only $0.002$ pooled energy at $\delta=0.1$, yet the ridge decoder recovers the erased value in roughly $5.6\%$ of test events; chance level for nearest-token decoding over the 48-value vocabulary is $1/48 \approx 2.1\%$, so low-$\delta$ decoding is only marginally above chance and the dissociation claim rests on the mid-to-high drift range. Decodability remains low until $\delta\approx0.25$ and increases substantially by $\delta\approx0.4$, whereas energy increases smoothly across the entire range (Figure~\ref{fig:decodability}). This disparity demonstrates why forgetting evaluation requires both operator-level residual metrics and functional decoding probes.
 
@@ -201,7 +202,7 @@ The key/complex cell produced algebraically zero and numerically null residuals 
   \begin{minipage}[t]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{fig3_load_scaling.pdf}
-    \caption{Measured load $c$ (median over drift values $\delta > 0$, with min--max bars) inverted from the three non-zero laws versus expected load $(n-1)/D$. Cross-dimensional agreement: maximum cell difference $0.0064$, with all four cells passing the $0.02$ gate.}
+    \caption{Measured load $c$ (median over drift values $\delta > 0$, with min--max bars) inverted from the three non-zero laws versus expected load $(n-1)/D$. Cross-dimensional agreement: maximum cell difference $0.0064$ for the three non-trivial cells.}
     \label{fig:load}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.48\textwidth}
@@ -212,7 +213,7 @@ The key/complex cell produced algebraically zero and numerically null residuals 
   \end{minipage}
 \end{figure}
 
-The unnormalized $\beta=1$ corrective delta baseline failed to train because its write updates diverged (Section~\ref{sec:stability}). Normalized delta writes trained stably and produced a small mean selectivity difference of $-0.0031$ relative to wave complex, with a two-sided $90\%$ confidence interval (TOST at $\alpha=0.05$; per-seed selectivity differences paired across arms, Student-$t$ interval with four degrees of freedom) of $[-0.0206,\,0.0144]$ (Figure~\ref{fig:tost}). Because the lower confidence bound crosses the equivalence margin $-\varepsilon=-0.02$ by $0.0006$ under $n=5$ seeds, the result is reported as inconclusive with respect to formal equivalence within margin $\varepsilon=0.02$.
+The unnormalized $\beta=1$ corrective delta baseline failed to train because its write updates diverged (Section~\ref{sec:stability}). Normalized delta writes trained stably and produced a small mean selectivity difference of $-0.0031$ relative to wave complex, with a two-sided $90\%$ confidence interval (TOST at $\alpha=0.05$; per-seed selectivity differences paired across arms, Student-$t$ interval with four degrees of freedom) of $[-0.0206,\,0.0144]$ (Figure~\ref{fig:tost}). The two arms are compared under their respective deployed training recipes, which differ in budget (Section~\ref{sec:experiments}; Supp.~F), so the comparison concerns operator-plus-recipe composites; isolating the write operators alone would require budget-matched retraining. Because the lower confidence bound crosses the equivalence margin $-\varepsilon=-0.02$ by $0.0006$ under $n=5$ seeds, the result is reported as inconclusive with respect to formal equivalence within margin $\varepsilon=0.02$.
 
 \begin{figure}[t]
   \centering
@@ -233,7 +234,7 @@ The scope of novelty is specifically delimited: establishing a forgetting-centri
 
 \section{Limitations}\label{sec:limits}
 
-The present study utilizes synthetic key--value associative tasks, fixed codebooks, real-valued targets, an explicit matrix state requiring $O(D^2)$ parameters per layer, and controlled drift interventions. The closed-form laws assume independent unit-modulus random keys and single-item phase perturbations; learned codebooks, correlated multi-item drift, natural-language sequence modeling, and hardware throughput benchmarking represent avenues for future research. Statistical comparisons between arms are limited by the available seed count ($n=5$ at $D=128$, $n=3$ at $D=64$); no formal power analysis was conducted. The cross-scale comparison holds the associative load approximately matched (within $2.7\%$; exact matching would require $n=39$ pairs at $D=128$), and a systematic sweep of $c$ at fixed $D$ has not been performed. Erasure through multiplicative, channel-wise decay or erase gates---as deployed in recent gated delta architectures \citep{yang2025gateddelta,hatamizadeh2026gateddeltanet2}---is not modeled here; the present laws characterize subtractive projection-style erasure. These findings do not claim general superiority over Transformer self-attention or all linear-attention architectures.
+The present study utilizes synthetic key--value associative tasks, fixed codebooks, real-valued targets, an explicit matrix state requiring $O(D^2)$ parameters per layer, and controlled drift interventions. The closed-form laws assume independent unit-modulus random keys and single-item phase perturbations; learned codebooks, correlated multi-item drift, natural-language sequence modeling, and hardware throughput benchmarking represent avenues for future research. Statistical comparisons between arms are limited by the available seed count ($n=5$ at $D=128$, $n=3$ at $D=64$); no prospective power analysis was conducted, although a post-hoc calculation from the observed dispersion (per-seed standard deviation $\approx 0.018$) indicates that $n \approx 8$ paired seeds would provide approximately $90\%$ power to establish equivalence at the margin $\varepsilon = 0.02$. The cross-scale comparison holds the associative load approximately matched (within $2.7\%$; exact matching would require $n=39$ pairs at $D=128$), and a systematic sweep of $c$ at fixed $D$ has not been performed. Erasure through multiplicative, channel-wise decay or erase gates---as deployed in recent gated delta architectures \citep{yang2025gateddelta,hatamizadeh2026gateddeltanet2}---is not modeled here; the present laws characterize subtractive projection-style erasure. These findings do not claim general superiority over Transformer self-attention or all linear-attention architectures.
 
 \section{Conclusion}\label{sec:conclusion}
 

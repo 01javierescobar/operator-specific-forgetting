@@ -73,24 +73,27 @@ The erased value is re-presented from an external target rather than re-read fro
 \subsection{C.5 Normalized delta control}
 The corrective delta-rule update modifies state $\St \in \R^{D \times D}$ via
 \begin{equation}
-\St_t = \St_{t-1} + \beta\, \mathbf{k}_t \bigl(\mathbf{v}_t - \mathbf{k}_t^\top \St_{t-1}\bigr)^\top .
+\St_t = \St_{t-1} + \beta\, \mathbf{k}_t \bigl(\mathbf{v}_t^\top - \mathbf{k}_t^\top \St_{t-1}\bigr),
 \end{equation}
+where $\mathbf{k}_t$ and $\mathbf{v}_t$ are column vectors and the outer product of $\mathbf{k}_t$ with the row residual $(\mathbf{v}_t^\top - \mathbf{k}_t^\top \St_{t-1})$ is taken; for complex keys and states, transposes are replaced by conjugate transposes.
 In the normalized-key delta control arm, keys are normalized ($\|\mathbf{k}_t\|_2^2 = 1$). For $0 < \beta < 2$, this maintains the directional feedback multiplier $|1 - \beta| < 1$ strictly inside the stable unit disk.
 
 \section{D. Closed-form law derivations}\label{sec:D}
 
+Throughout this section, key entries are drawn i.i.d.\ with independent uniform phases over $[0, 2\pi)$. This yields $\mathbb{E}[\mathbf{w}_i^H \mathbf{w}_k] = 0$ and $\mathbb{E}[|\mathbf{w}_i^H \mathbf{w}_k|^2] = D$ for $i \ne k$, vanishing mixed cross-moments ($\mathbb{E}[\alpha_{jk}\alpha_{jl}^{*}] = 0$ for $k \ne l$, where $\alpha_{jk} = \mathbf{w}_j^H \mathbf{w}_k / D$), and circular crosstalk phasors ($\mathbb{E}[z^2] = 0$ and $\mathbb{E}[(\operatorname{Re} z)^2] = \mathbb{E}|z|^2/2$ for the Re-channel statements). Target vectors are deterministic and independent of the keys.
+
 \subsection{D.1 Distributed crosstalk scaling}
-For independent random unit-modulus keys $\mathbf{w}_i, \mathbf{w}_k \in \C^D$, the inner products satisfy $\mathbb{E}[|\mathbf{w}_i^H \mathbf{w}_k|^2] = D$ for $i \ne k$. After normalization by $D$, each interfering association contributes expected energy $\mathbb{E}[|\mathbf{w}_i^H \mathbf{w}_k / D|^2] = 1/D$. Summing over $n-1$ interfering associations yields the crosstalk load $c=(n-1)/D$, consistent with distributed associative memory capacity \citep{plate1995holographic,kanerva2009hyperdimensional,frady2018theory}.
+For independent random unit-modulus keys $\mathbf{w}_i, \mathbf{w}_k \in \C^D$, the inner products satisfy $\mathbb{E}[|\mathbf{w}_i^H \mathbf{w}_k|^2] = D$ for $i \ne k$. After normalization by $D$, each interfering association contributes expected key-coefficient energy $\mathbb{E}[|\mathbf{w}_i^H \mathbf{w}_k / D|^2] = 1/D$ per unit squared norm of its target vector (absolute energy $\|\mathbf{v}_k\|^2/D$). Summing over $n-1$ interfering associations yields the crosstalk load $c=(n-1)/D$, consistent with distributed associative memory capacity \citep{plate1995holographic,kanerva2009hyperdimensional,frady2018theory}.
 
 \subsection{D.2 Key drift under complex channel}
-The operator $\mathbf{P}_{\tilde{\mathbf{w}}_j}^\perp = \mathbf{I} - \tilde{\mathbf{w}}_j \tilde{\mathbf{w}}_j^H / D$ is an exact rank-1 projection matrix. When querying with reference key $\mathbf{w}_j = \tilde{\mathbf{w}}_j e^{-i\delta}$, the target component in $\M'$ along direction $\tilde{\mathbf{w}}_j$ is identically zero. Therefore, $L_{\text{key, complex}}(\delta) = 0$ in the algebraic model.
+The operator $\mathbf{P}_{\tilde{\mathbf{w}}_j}^\perp = \mathbf{I} - \tilde{\mathbf{w}}_j \tilde{\mathbf{w}}_j^H / D$ is the orthogonal projection onto the $(D-1)$-dimensional subspace orthogonal to $\tilde{\mathbf{w}}_j$ (the rank-one object is $\tilde{\mathbf{w}}_j \tilde{\mathbf{w}}_j^H / D$). When querying with reference key $\mathbf{w}_j = \tilde{\mathbf{w}}_j e^{-i\delta}$, the target component in $\M'$ along direction $\tilde{\mathbf{w}}_j$ is identically zero. Therefore, $L_{\text{key, complex}}(\delta) = 0$ in the algebraic model.
 
 \subsection{D.3 State drift under complex channel}
 With target item stored as $(e^{i\delta}\mathbf{w}_j)\mathbf{v}_j^\top$ and unbinding performed with reference key $\mathbf{w}_j$, the re-read estimate is:
 \begin{equation}
-\hat{\mathbf{v}}_j = \frac{\tilde{\mathbf{w}}_j^H \M}{D} = \mathbf{v}_j^\top + \frac{e^{-i\delta}}{D}\sum_{k \ne j} \mathbf{w}_j^H \mathbf{w}_k \mathbf{v}_k^\top :
+\hat{\mathbf{v}}_j = \frac{\tilde{\mathbf{w}}_j^H \M}{D} = \mathbf{v}_j^\top + \frac{e^{-i\delta}}{D}\sum_{k \ne j} \mathbf{w}_j^H \mathbf{w}_k \mathbf{v}_k^\top .
 \end{equation}
-the target phase cancels because the estimate is read with the item's own stored coordinate $\tilde{\mathbf{w}}_j$, while the crosstalk terms retain the $e^{-i\delta}$ factor.
+The target phase cancels because the estimate is read with the item's own stored coordinate $\tilde{\mathbf{w}}_j$, while the crosstalk terms retain the $e^{-i\delta}$ factor.
 Subtracting $\mathbf{w}_j \hat{\mathbf{v}}_j$ yields the post-erase state:
 \begin{equation}
 \M' = (e^{i\delta}-1)\mathbf{w}_j \mathbf{v}_j^\top + \sum_{k \ne j} \mathbf{w}_k \mathbf{v}_k^\top - \mathbf{w}_j \frac{e^{-i\delta}}{D}\sum_{k \ne j} \mathbf{w}_j^H \mathbf{w}_k \mathbf{v}_k^\top .
@@ -112,7 +115,7 @@ Applying real projection $\operatorname{Re}(\cdot)$ both at the re-read estimate
   \begin{equation}
   L_{\text{key, Re}}(\delta) = \sin^4\delta + \frac{c}{4}\bigl(1-\cos 2\delta\bigr).
   \end{equation}
-  \item \textbf{State drift (Re channel)}: The target association written with phase offset $e^{i\delta}$ yields an unbinding target residual $(1-\cos\delta)\mathbf{v}_j^\top$, with energy $(1-\cos\delta)^2 \|\mathbf{v}_j\|^2$. The unbinding subtracts the real part of the re-read crosstalk, leaving pooled interference energy $c(1-\cos\delta)$. Independent key phases ensure vanishing cross-terms in expectation, yielding:
+  \item \textbf{State drift (Re channel)}: The target association written with phase offset $e^{i\delta}$ yields an unbinding target residual $(\cos\delta-1)\mathbf{v}_j^\top$, with energy $(1-\cos\delta)^2 \|\mathbf{v}_j\|^2$. The unbinding subtracts the real part of the re-read crosstalk, leaving pooled interference energy $c(1-\cos\delta)$. Independent key phases ensure vanishing cross-terms in expectation, yielding:
   \begin{equation}
   L_{\text{state, Re}}(\delta) = (1-\cos\delta)^2 + c\,(1-\cos\delta).
   \end{equation}
@@ -145,7 +148,7 @@ With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \a
 
 \section{G. Numerical results summary}\label{sec:G}
 
-At $D=128$, all 15 seed--arm combinations reached $\mathrm{EM}=1.000$; at $D=64$, all 9 seed--arm combinations likewise trained to $\mathrm{EM}=1.000$. The four closed-form laws predicted empirical pooled residuals with maximum absolute deviation of $0.0049$ at $D=128$ and $0.0094$ at $D=64$, remaining below the $0.02$ verification threshold. Dimension-matched load comparison passed for all four cells with maximum cross-scale difference $0.0064$.
+At $D=128$, all 15 seed--arm combinations reached $\mathrm{EM}=1.000$; at $D=64$, all 9 seed--arm combinations likewise trained to $\mathrm{EM}=1.000$. The four closed-form laws predicted empirical pooled residuals with maximum absolute deviation of $0.0049$ at $D=128$ and $0.0094$ at $D=64$, remaining below the $0.02$ verification threshold. Dimension-matched load agreement for the three non-trivial cells showed maximum cross-scale difference $0.0064$.
 
 In the key/complex condition, all 30 runs (five seeds $\times$ six drift magnitudes) produced algebraically zero and numerically null residuals below the numerical guard threshold $\varepsilon_{\text{null}} = 10^{-4}$. TOST yielded mean difference $-0.0031$ with $90\%$ CI $[-0.0206,\,0.0144]$; because the lower bound crosses $-\varepsilon=-0.02$ by $0.0006$ under $n=5$ seeds, the result is reported as inconclusive with respect to formal equivalence.
 
