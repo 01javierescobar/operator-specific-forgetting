@@ -96,3 +96,19 @@ parcial entre terminos crecientes y decrecientes en c.
   de T_kl (E[T^2]=D para k!=l, E[S_k^2]=D(D+2)); auditoria cruzada de
   consejeros antes de cerrar.
 - Barrido extendido sugerido: variar sigma_v para separar contribuciones.
+
+
+## 8. Lemas medidos (tests/varL_lemmas.py, estado/complex @ d=0.5, D=64)
+
+- E[Y_j] = |g|^2 (n-1)/D verificado en n=10/20/40/80 (<5%: fluctuacion de
+  normas de valores).
+- Cov(Y_j,Y_i) promedio / Var(Y_j) = -0.101 / -0.050 / -0.025 / -0.012 para
+  n=10/20/40/80 => Cov = -Var * 0.95/n con precision notable.
+- Var(Y_j) superlineal: 2.09e-4 / 6.17e-4 / 1.80e-3 / 6.37e-3 (~n^1.55).
+- Entonces Var(Qx) = n Var(Y) [1 - 0.95] aprox = 0.05 n Var(Y): la suma de
+  varianzas individuales se cancela casi completa por la covarianza
+  negativa. Este factor de cancelacion es el corazon algebraico restante.
+- Siguiente grind cerrado: (i) derivar Var(Y_j) cerrada via Wishart-ish
+  momentos condicionales; (ii) derivar el coeficiente -0.95/n desde los
+  terminos recirculantes beta_ji beta_ij* (antigravity) + valores
+  compartidos; (iii) ensamblar g(c) y validar contra secciones 2a+2b.
