@@ -19,6 +19,11 @@ authors:
 date-released: 2026-08-21
 version: 1.0.0
 license: MIT
+repository-code: "https://github.com/01javierescobar/operator-specific-forgetting"
+identifiers:
+  - identifier: https://doi.org/10.5281/zenodo.22051928
+    type: doi
+    description: Zenodo concept DOI (resolves to the latest archived version).
 keywords:
   - associative memory
   - linear attention

@@ -1,4 +1,6 @@
-﻿# Operator-Specific Forgetting in Matrix-Valued Associative Memory
+# Operator-Specific Forgetting in Matrix-Valued Associative Memory
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22051928.svg)](https://doi.org/10.5281/zenodo.22051928)
 
 **Author**: Javier Escobar - Independent Researcher
 **Version**: v1.0.0 - **Date**: 2026-08-21 - **Source commit**: `cec4ffe` (tag `lab-radioactivo-v1`)
