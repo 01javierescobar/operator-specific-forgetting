@@ -69,3 +69,30 @@ L7. Fórmula final sd(L) = |γ|²/D · g(c) con g cerrada; ajuste conjunto contr
   Goodman Statistical Optics, Pitman/Geary ratio-independence.
 - Discrepancia abierta: resolver con L4/L5 + barrero n extendido antes de
   escribir cualquier ecuación en el suplemento.
+
+
+## 6. Hallazgos estructurales de sesion (delta-method, tests/varL_delta_method.py)
+
+Identidad validada empiricamente (error < 1%):
+sd^2(L) = [Var(Q) + E[L]^2 Var(SumS) - 2 E[L] Cov(Q,SumS)] / Sbar^2, Cov ~ 0.
+
+Pieza ya cerrada: E[L]^2 Var(SumS)/Sbar^2 = 2|gamma|^4 (1+c)^2 / D.
+Estado/complex @0.5 D=64: aporta sd-parcial 0.0127; Re: misma formula.
+
+Hipotesis H (crosstalk auto-concentrado, Var(Qx)=0) REFUTADA:
+prediccion |gamma|^2 sqrt(2nD)/Sbar = 0.00976 vs medido 0.00366 en clave/re.
+=> Var(Qx) domina en canales Re y es material en complex.
+
+Descomposicion correcta del numerador:
+Q = |gamma|^2 [SumS (target determinista) + Qx (crosstalk)],
+E[Qx]/Sbar = |gamma|^2 c verificado; queda derivar Var(Qx) conjunta sobre
+claves y valores, mas Cov(SumS, Qx). Pistas: en Re la parte de claves
+domina (~3.7x, secion 2c); el minimo U-shaped en c sugiere cancelacion
+parcial entre terminos crecientes y decrecientes en c.
+
+## 7. Estado abierto
+
+- Grind completo de Var(Qx) con momentos seccion 3 + momentos gaussianos
+  de T_kl (E[T^2]=D para k!=l, E[S_k^2]=D(D+2)); auditoria cruzada de
+  consejeros antes de cerrar.
+- Barrido extendido sugerido: variar sigma_v para separar contribuciones.
