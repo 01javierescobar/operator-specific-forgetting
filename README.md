@@ -1,6 +1,6 @@
 ﻿# Operator-Specific Forgetting in Matrix-Valued Associative Memory
 
-**Author**: Javier Escobar - Independent Researcher, Caaguazu, Paraguay
+**Author**: Javier Escobar - Independent Researcher
 **Version**: v1.0.0 - **Date**: 2026-08-21 - **Source commit**: `cec4ffe` (tag `lab-radioactivo-v1`)
 
 This package contains the code, data, and verification report for a controlled
