@@ -41,10 +41,7 @@ def A_factor(cell, ch, dlt):
 
 
 def run_point(D, n, seed_base):
-    w_list = []
-    v_list = []
-    for k in range(K):
-        w_list.append(draw(seed_base + k, D, n))
+    w_list = [draw(seed_base + k, D, n) for k in range(K)]
     acc = {}
     for ci in range(K):
         w, v = w_list[ci]
@@ -77,8 +74,8 @@ def run_point(D, n, seed_base):
                         key = (cell, ch, dlt)
                         num[key] = num.get(key, 0.0) + L * vj.pow(2).sum().item()
                         den[key] = den.get(key, 0.0) + vj.pow(2).sum().item()
-            for key in list(num.keys()):
-                acc.setdefault(key, []).append(num[key] / den[key])
+                for key in num:
+                    acc.setdefault(key, []).append(num[key] / den[key])
     return acc
 
 
@@ -95,17 +92,11 @@ def main():
                     continue
                 sd = statistics.pstdev(vals)
                 mean = statistics.mean(vals)
-                if cell == "clave" and ch == "complex":
-                    continue
-                if ch == "complex":
-                    A = 2 * (1 - math.cos(dlt))
-                else:
-                    continue
-                if cell == "estado" and dlt > 0:
-                    kappa = sd * D / A
-                    out["kappa"][f"D{D}/c{c:.4f}/d{dlt}"] = round(kappa, 4)
                 out["grid"][f"D{D}/n{n}/c{c:.4f}/{cell}/{ch}/d{dlt}"] = {
                     "mean": round(mean, 5), "sd": round(sd, 6)}
+                if cell == "estado" and ch == "complex" and dlt > 0:
+                    A = 2 * (1 - math.cos(dlt))
+                    out["kappa"][f"D{D}/c{c:.4f}/d{dlt}"] = round(sd * D / A, 4)
             print(f"D={D} c={c:.4f} done")
     out["meta"] = {"K": K, "delta_grid": list(DELTA_GRID),
                    "c_targets": list(C_TARGETS), "note": "kappa = sd(L)*D/(2(1-cos d)) estado/complex"}

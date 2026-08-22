@@ -38,6 +38,7 @@ o05 = load("outputs/wave_mem/o05.json")
 o04b = load("outputs/wave_mem/o04b.json")
 autopsy = load("outputs/wave_mem/delta_autopsy.json")
 autopsy_beta = load("outputs/wave_mem/delta_autopsy_beta.json")
+calib = load("outputs/wave_mem/varL_calibration.json")
 
 DELTAS = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
 DL = [str(d) for d in DELTAS]
@@ -140,6 +141,11 @@ ax.text(5.0, -0.25, r"$\mathbf{State\ drift}$: stored item $\mathbf{v}_j e^{i\de
 
 savefig(fig, "fig1_memory_diagram")
 
+def calib_sd(D, n, cell, ch, dlt):
+    key = f"D{D}/n{n}/c{(n - 1) / D:.4f}/{cell}/{ch}/d{dlt}"
+    return calib["grid"][key]["sd"]
+
+
 # ---------------------------------------------------------------------------
 print("fig2: residual laws")
 fig, axes = plt.subplots(2, 2, figsize=(7.2, 5.6), sharex=True)
@@ -150,12 +156,24 @@ cells_info = [
     ("estado", "re", "State drift / Real readout"),
 ]
 x = DELTAS
-xs = [d + 0.008 for d in DELTAS]
+xd128 = [d - 0.007 for d in DELTAS]
+xd64 = [d + 0.009 for d in DELTAS]
 
 for ax, (cell, chan, title) in zip(axes.flat, cells_info):
     arm = "wave_complex" if chan == "complex" else "wave_re"
     y = [law(cell, chan, d, C128) for d in DELTAS]
     ax.plot(x, y, "-", color="#1f4e79", lw=1.6, label=r"law, $c=39/128$")
+    if not (cell == "clave" and chan == "complex"):
+        s128 = [calib_sd(128, 39, cell, chan, d) for d in DELTAS]
+        s64 = [calib_sd(64, 20, cell, chan, d) for d in DELTAS]
+        ax.fill_between(x, [yv - 3 * s for yv, s in zip(y, s128)],
+                        [yv + 3 * s for yv, s in zip(y, s128)],
+                        color="#1f4e79", alpha=0.10, lw=0,
+                        label=r"$\pm 3\sigma$ ensemble")
+        ax.fill_between(x, [yv - s for yv, s in zip(y, s128)],
+                        [yv + s for yv, s in zip(y, s128)],
+                        color="#1f4e79", alpha=0.22, lw=0,
+                        label=r"$\pm 1\sigma$ ensemble")
     meds, los, his = [], [], []
     for dl in DL:
         f = o05_fugas(arm, cell, dl)
@@ -163,24 +181,24 @@ for ax, (cell, chan, title) in zip(axes.flat, cells_info):
         los.append(min(f))
         his.append(max(f))
     ax.errorbar(
-        xs, meds, yerr=[[m - lo for m, lo in zip(meds, los)],
+        xd128, meds, yerr=[[m - lo for m, lo in zip(meds, los)],
                         [hi - m for m, hi in zip(meds, his)]],
-        fmt="o", ms=4, color="#1f4e79", capsize=2, lw=0.9,
-        label=r"$d=128$, 5 seeds", zorder=3)
+        fmt="o", ms=4.5, color="#1f4e79", capsize=2, lw=0.9,
+        label=r"$d=128$, 5 seeds", zorder=4)
     if cell != "clave" or chan != "complex":
         f64 = [statistics.median(o04b_fugas(arm, cell, dl)) for dl in DL]
-        ax.plot(xs, f64, "s", ms=3.6, mfc="none", mec="#b02a37", mew=1.1,
-                label=r"$d=64$, 3 seeds", zorder=3)
+        ax.plot(xd64, f64, "s", ms=4, mfc="none", mec="#b02a37", mew=1.2,
+                label=r"$d=64$, 3 seeds", zorder=4)
     if cell == "clave" and chan == "complex":
-        ax.set_ylim(-0.02, 0.02)
-        ax.annotate("exact zero residual\n(30/30 null outcomes)", xy=(0.25, 0.008),
+        ax.set_ylim(-0.0012, 0.0012)
+        ax.annotate("consistent with zero\n(below $\\varepsilon_{null}$ in all runs)", xy=(0.25, 0.00045),
                     fontsize=8.5, color="#555", ha="center")
     ax.set_title(title, fontsize=10)
     ax.set_xlim(-0.02, 0.55)
     ax.set_xticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5])
     ax.grid(alpha=0.25, lw=0.5)
     if chan == "complex" and cell == "estado":
-        ax.legend(fontsize=8, loc="upper left")
+        ax.legend(fontsize=7.5, loc="upper left")
 
 axes[1, 0].set_xlabel(r"Phase drift $\delta$ (rad)")
 axes[1, 1].set_xlabel(r"Phase drift $\delta$ (rad)")
@@ -200,13 +218,13 @@ def measured_c(chan, cell, fugas, dl):
         return [4 * (f - math.sin(dl) ** 4) / (1 - math.cos(2 * dl)) for f in fugas]
     return [(f - (1 - math.cos(dl)) ** 2) / (1 - math.cos(dl)) for f in fugas]
 
-fig, ax = plt.subplots(figsize=(5.0, 3.6))
-cellchan = [("estado", "complex", "state / complex"),
-            ("clave", "re", "key / real"),
-            ("estado", "re", "state / real")]
+fig, ax = plt.subplots(figsize=(5.6, 3.8))
+cellchan = [("estado", "complex", "state / complex", -0.055),
+            ("clave", "re", "key / real", 0.0),
+            ("estado", "re", "state / real", +0.055)]
 markers = {"state / complex": "o", "key / real": "s", "state / real": "^"}
 
-for (cell, chan, label_name) in cellchan:
+for (cell, chan, label_name, dx) in cellchan:
     arm = "wave_complex" if chan == "complex" else "wave_re"
     est128, est64 = [], []
     for dl in DL[1:]:
@@ -216,13 +234,13 @@ for (cell, chan, label_name) in cellchan:
     m128, m64 = statistics.median(est128), statistics.median(est64)
     lo128, hi128 = min(est128), max(est128)
     lo64, hi64 = min(est64), max(est64)
-    ax.errorbar([0], [m128], yerr=[[m128 - lo128], [hi128 - m128]],
+    ax.errorbar([0 + dx], [m128], yerr=[[m128 - lo128], [hi128 - m128]],
                 fmt=markers[label_name], ms=5.5, color="#1f4e79", capsize=3, lw=1.1)
-    ax.errorbar([1], [m64], yerr=[[m64 - lo64], [hi64 - m64]],
+    ax.errorbar([1 + dx], [m64], yerr=[[m64 - lo64], [hi64 - m64]],
                 fmt=markers[label_name], ms=5.5, mfc="none", color="#1f4e79", capsize=3, lw=1.1)
-    ax.scatter([0], [m128], marker=markers[label_name], s=35, color="#1f4e79",
+    ax.scatter([0 + dx], [m128], marker=markers[label_name], s=35, color="#1f4e79",
                zorder=3, label=label_name)
-    ax.scatter([1], [m64], marker=markers[label_name], s=35, facecolors="none",
+    ax.scatter([1 + dx], [m64], marker=markers[label_name], s=35, facecolors="none",
                color="#1f4e79", zorder=3)
 
 ax.axhline(C128, color="#b02a37", ls="--", lw=1.2)
@@ -231,14 +249,14 @@ ax.axhline(C64, color="#b02a37", ls=":", lw=1.2)
 ax.text(0.5, C128 + 0.007, r"theory $(n-1)/D=39/128$", fontsize=8, color="#b02a37", ha="center")
 ax.text(0.5, C64 - 0.015, r"theory $19/64$", fontsize=8, color="#b02a37", ha="center")
 
-ax.set_xlim(-0.5, 1.5)
+ax.set_xlim(-0.55, 1.55)
 ax.set_xticks([0, 1])
 ax.set_xticklabels(["$d=128$\n(5 seeds)", "$d=64$\n(3 seeds)"])
 ax.set_ylabel(r"Measured load $c$ (median over $\delta$)")
 ax.set_ylim(0.15, 0.42)
 ax.grid(alpha=0.25, lw=0.5)
 ax.legend(fontsize=8, loc="lower right")
-ax.annotate("4/4 cells agree within 0.0064", xy=(0.5, 0.37), ha="center", fontsize=8.5,
+ax.annotate("3 non-trivial cells agree\n(max diff 0.0064, stored pairing)", xy=(0.5, 0.37), ha="center", fontsize=8.5,
             bbox=dict(boxstyle="round,pad=0.2", fc="#f8f9fa", ec="#ccc", lw=0.8))
 fig.tight_layout()
 savefig(fig, "fig3_load_scaling")
@@ -252,7 +270,7 @@ fugas = [o05_fugas("wave_re", "clave", dl) for dl in DL]
 med = [statistics.median(f) for f in fugas]
 lo = [min(f) for f in fugas]
 hi = [max(f) for f in fugas]
-ax.errorbar(xs, med, yerr=[[a - b for a, b in zip(med, lo)], [a - b for a, b in zip(hi, med)]],
+ax.errorbar(xd128, med, yerr=[[a - b for a, b in zip(med, lo)], [a - b for a, b in zip(hi, med)]],
             fmt="o", ms=4, color="#1f4e79", capsize=2, lw=0.9, label=r"Measured energy")
 ax2 = ax.twinx()
 em = [statistics.median(o05_em_guarded("wave_re", "clave", dl)) for dl in DL]
@@ -270,7 +288,7 @@ h1, l1 = ax.get_legend_handles_labels()
 h2, l2 = ax2.get_legend_handles_labels()
 ax.legend(h1 + h2, l1 + l2, fontsize=7.5, loc="upper left")
 
-ax.annotate("Decodability lags energy\n(EM $\\approx 0$ until $\\delta\\approx 0.25$)",
+ax.annotate("Decodability lags energy\n(EM near chance through $\\delta\\approx 0.2$)",
             xy=(0.04, 0.052), fontsize=8, color="#333",
             bbox=dict(boxstyle="round,pad=0.25", fc="#fdfdfd", ec="#bbb", lw=0.6))
 fig.tight_layout()
@@ -296,7 +314,7 @@ last = [
     autopsy_beta["wave_re_S_norm"][1],
     autopsy_beta["beta01_S_norm_last"][0],
 ]
-colors = ["#b02a37", "#b02a37", "#1f4e79", "#1f4e79", "#2d6a4f"]
+colors = ["#b02a37", "#b02a37", "#1f4e79", "#1f4e79", "#006666"]
 for i, (a, b, col) in enumerate(zip(first, last, colors)):
     ax.scatter([i], [a], marker="o", s=30, color=col, zorder=3)
     ax.annotate("", xy=(i, b), xytext=(i, a),
