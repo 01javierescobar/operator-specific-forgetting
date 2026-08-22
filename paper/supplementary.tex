@@ -70,7 +70,7 @@ When evaluating the real channel, real truncation is applied to the reread estim
 \subsection{C.4 Representational erase control}
 The erased value is re-presented from an external target rather than reread from the state: $\M' = \M - \mathbf{w}_j \mathbf{v}_j^\top$. This serves as a control condition separating operator-level self-estimation from state residual dynamics.
 
-This control was executed at $D=64$ in an early milestone (three seeds $\times$ six drift magnitudes, both arms). Measured pooled residuals track the parameter-free closed-form predictions within the consistency tolerance on each arm's own readout channel: maximum absolute deviation $0.020$ (complex) and $0.017$ (Re) over seeds and drift grid. Because these predictions do not depend on how the perturbation is injected, the control isolates self-estimation error from intrinsic post-erase residual structure.
+This control was executed at $D=64$ in an early milestone (three seeds $\times$ six drift magnitudes, both arms). Measured pooled residuals track the parameter-free closed-form predictions within the consistency tolerance on each arm's own readout channel: a maximum absolute deviation of $0.020$ (complex) and $0.017$ (Re) over seeds and drift grid. Because these predictions do not depend on how the perturbation is injected, the control isolates self-estimation error from intrinsic post-erase residual structure.
 
 \subsection{C.5 Normalized delta control}
 The corrective delta-rule update modifies state $\St \in \R^{D \times D}$ via
@@ -78,7 +78,7 @@ The corrective delta-rule update modifies state $\St \in \R^{D \times D}$ via
 \St_t = \St_{t-1} + \beta\, \mathbf{k}_t \bigl(\mathbf{v}_t^\top - \mathbf{k}_t^\top \St_{t-1}\bigr),
 \end{equation}
 where $\mathbf{k}_t$ and $\mathbf{v}_t$ are column vectors and the outer product of $\mathbf{k}_t$ with the row residual $(\mathbf{v}_t^\top - \mathbf{k}_t^\top \St_{t-1})$ is taken; for complex keys and states, transposes are replaced by conjugate transposes.
-In the normalized-key delta control arm, keys are normalized ($\|\mathbf{k}_t\|_2^2 = 1$). For $0 < \beta < 2$, this maintains the directional feedback multiplier $|1 - \beta| < 1$ strictly inside the stable unit disk.
+In the normalized-key delta control arm, keys are normalized ($\|\mathbf{k}_t\|_2^2 = 1$). For $0 < \beta < 2$, this keeps the directional feedback multiplier $|1 - \beta| < 1$ strictly inside the stable unit disk and maintains a bounded state norm.
 
 \section{D. Closed-form law derivations}\label{sec:D}
 
@@ -104,14 +104,14 @@ Reading with reference key $\mathbf{w}_j$ yields target residual $(e^{i\delta}-1
 \begin{equation}
 \mathbf{r}_{\text{cross}} = \bigl(1-e^{-i\delta}\bigr)\frac{1}{D}\sum_{k \ne j}(\mathbf{w}_j^H \mathbf{w}_k)\mathbf{v}_k^\top .
 \end{equation}
-Summing squared residual norms over stored items before taking expectations---the level at which the pooled estimator is defined---and using $\mathbb{E}[|\mathbf{w}_j^H \mathbf{w}_k|^2] = D$ for $k \ne j$ together with $\sum_j \sum_{k \ne j} \|\mathbf{v}_k\|^2 = (n-1)\sum_k \|\mathbf{v}_k\|^2$ gives
+Squared residual norms are summed over stored items before taking expectations (matching the definition of the pooled estimator). Substituting $\mathbb{E}[|\mathbf{w}_j^H \mathbf{w}_k|^2] = D$ for $k \ne j$ and $\sum_j \sum_{k \ne j} \|\mathbf{v}_k\|^2 = (n-1)\sum_k \|\mathbf{v}_k\|^2$ gives
 \begin{equation}
 \frac{\sum_j \mathbb{E}[\|\mathbf{r}_j\|^2]}{\sum_j \|\mathbf{v}_j\|^2} = |e^{i\delta}-1|^2 + |1-e^{-i\delta}|^2 \frac{n-1}{D} = 2(1-\cos\delta)(1+c),
 \end{equation}
 with no equal-norm assumption on the target vectors. (Per-item expectations would additionally require equal target norms and are not invoked.)
 
 \subsection{D.4 Real-truncated channel derivations}
-Applying real projection $\operatorname{Re}(\cdot)$ both at the reread estimate $\hat{\mathbf{v}}_j \leftarrow \operatorname{Re}(\hat{\mathbf{v}}_j)$ and at the final query readout $\mathbf{r}_j = \operatorname{Re}(\mathbf{w}_j^H \M' / D)$ projects out the imaginary component of the phase differences.
+Applying the real projection operator $\operatorname{Re}(\cdot)$ to both the reread estimate ($\hat{\mathbf{v}}_j \leftarrow \operatorname{Re}(\hat{\mathbf{v}}_j)$) and the final query readout ($\mathbf{r}_j = \operatorname{Re}(\mathbf{w}_j^H \M' / D)$) projects out the imaginary component of the phase differences.
 \begin{itemize}
   \item \textbf{Key drift (Re channel)}: Under key drift, the target contribution to the real query residual is $\sin^2\delta \cdot \mathbf{v}_j^\top$, yielding target energy $\sin^4\delta \|\mathbf{v}_j\|^2$. The interfering crosstalk from $n-1$ unperturbed associations integrates over independent random phases to pooled relative energy $\frac{c}{4}(1-\cos 2\delta)$. Cross-terms between target and interference vanish in expectation due to zero-mean key correlations ($\mathbb{E}[\mathbf{w}_j^H \mathbf{w}_k]=0$ for $k \ne j$). Summing gives:
   \begin{equation}
@@ -140,12 +140,12 @@ With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \a
   \item \textbf{Vocabulary}: Discrete alphabet of 105 tokens (48 key tokens, 48 value tokens, special marker tokens). The token vocabulary is used strictly to construct controlled key--value associative sequences; the evaluation is not intended as a natural-language modeling benchmark.
   \item \textbf{Arms}: \texttt{wave\_complex}, \texttt{wave\_re}, \texttt{normalized\_delta}.
   \item \textbf{Training}: AdamW (learning rate $10^{-3}$, weight decay $0.01$, gradient-norm clip $1.0$). Wave arms: 60 epochs over 600 training examples; \texttt{normalized\_delta}: 150 epochs over 1200 examples. Model dimension $128$, two layers. Exact operator definitions are in \texttt{prototypes/} in the repository.
-  \item \textbf{Seeds and codebook}: The unit-modulus key codebook is fixed across all seeds (generation seed $0$). The seed indexes parameter initialization and the dataset draws (train/validation pairs and probe events); seed-level variability therefore reflects optimization and data-sampling variability, not resampling of the random-key ensemble over which the closed-form expectations are taken.
+  \item \textbf{Seeds and codebook}: The unit-modulus key codebook is fixed across all seeds (generation seed $0$). The random seed controls parameter initialization and the dataset draws (train/validation pairs and probe events); seed-level variability therefore reflects optimization and data-sampling variability, not resampling of the random-key ensemble over which the closed-form expectations are taken.
   \item \textbf{Events and Units}: 320 forgetting events per arm and seed (exceeding pre-specified minimum of 300). For all inferential statistical tests, the random seed was treated as the independent experimental unit.
   \item \textbf{Drift grid}: $\delta \in \{0.0, 0.1, 0.2, 0.3, 0.4, 0.5\}$.
   \item \textbf{Ridge probe}: Linear Ridge regression ($\alpha=0.1$, within-model split of 75\% train [$n=240$] / 25\% test [$n=80$]) mapping readout residuals $\mathbf{r}_j$ to continuous targets $\mathbf{v}_j \in \R^D$. Continuous predictions were decoded to the discrete value vocabulary by nearest cosine distance, with exact match recorded when the recovered token matched the true target token; chance level is $1/48 \approx 2.1\%$ over the 48-value vocabulary.
   \item \textbf{Selectivity}: $\text{Selectivity} = \mathrm{EM}_{\text{alive}} - \mathrm{EM}_{\text{erased}}$.
-  \item \textbf{Equivalence test}: Two one-sided $t$-test (TOST at $\alpha=0.05$, two-sided $90\%$ CI) on retrieval selectivity between \texttt{wave\_complex} and \texttt{normalized\_delta} with pre-specified margin $\varepsilon=0.02$. Differences are computed per seed (paired across arms) and tested against the margin with a Student-$t$ interval ($\mathrm{df}=4$).
+  \item \textbf{Equivalence test}: Two one-sided $t$-tests (TOST at $\alpha=0.05$, two-sided $90\%$ CI) are computed on retrieval selectivity between \texttt{wave\_complex} and \texttt{normalized\_delta} with pre-specified margin $\varepsilon=0.02$. Differences are computed per seed (paired across arms) and tested against the margin with a Student-$t$ interval ($\mathrm{df}=4$).
 \end{itemize}
 
 \section{G. Numerical results summary}\label{sec:G}
