@@ -7,6 +7,8 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{xcolor}
 \usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
 
 \newcommand{\M}{\mathbf{M}}
@@ -20,7 +22,7 @@
 \title{\textbf{Supplementary Material: Operator-Specific Forgetting in Matrix-Valued Associative Memory}}
 \author{Javier Escobar\\
   Independent Researcher}
-\date{\today}
+\date{August 21, 2026}
 
 \begin{document}
 \maketitle
@@ -86,8 +88,9 @@ The operator $\mathbf{P}_{\tilde{\mathbf{w}}_j}^\perp = \mathbf{I} - \tilde{\mat
 \subsection{D.3 State drift under complex channel}
 With target item stored as $(e^{i\delta}\mathbf{w}_j)\mathbf{v}_j^\top$ and unbinding performed with reference key $\mathbf{w}_j$, the re-read estimate is:
 \begin{equation}
-\hat{\mathbf{v}}_j = \frac{\tilde{\mathbf{w}}_j^H \M}{D} = e^{-i\delta}\mathbf{v}_j^\top + \frac{e^{-i\delta}}{D}\sum_{k \ne j} \mathbf{w}_j^H \mathbf{w}_k \mathbf{v}_k^\top .
+\hat{\mathbf{v}}_j = \frac{\tilde{\mathbf{w}}_j^H \M}{D} = \mathbf{v}_j^\top + \frac{e^{-i\delta}}{D}\sum_{k \ne j} \mathbf{w}_j^H \mathbf{w}_k \mathbf{v}_k^\top :
 \end{equation}
+the target phase cancels because the estimate is read with the item's own stored coordinate $\tilde{\mathbf{w}}_j$, while the crosstalk terms retain the $e^{-i\delta}$ factor.
 Subtracting $\mathbf{w}_j \hat{\mathbf{v}}_j$ yields the post-erase state:
 \begin{equation}
 \M' = (e^{i\delta}-1)\mathbf{w}_j \mathbf{v}_j^\top + \sum_{k \ne j} \mathbf{w}_k \mathbf{v}_k^\top - \mathbf{w}_j \frac{e^{-i\delta}}{D}\sum_{k \ne j} \mathbf{w}_j^H \mathbf{w}_k \mathbf{v}_k^\top .
@@ -96,23 +99,20 @@ Reading with reference key $\mathbf{w}_j$ yields target residual $(e^{i\delta}-1
 \begin{equation}
 \mathbf{r}_{\text{cross}} = \bigl(1-e^{-i\delta}\bigr)\frac{1}{D}\sum_{k \ne j}(\mathbf{w}_j^H \mathbf{w}_k)\mathbf{v}_k^\top .
 \end{equation}
-Taking expected squared norms over independent unit-modulus keys gives
+Summing squared residual norms over stored items before taking expectations---the level at which the pooled estimator is defined---and using $\mathbb{E}[|\mathbf{w}_j^H \mathbf{w}_k|^2] = D$ for $k \ne j$ together with $\sum_j \sum_{k \ne j} \|\mathbf{v}_k\|^2 = (n-1)\sum_k \|\mathbf{v}_k\|^2$ gives
 \begin{equation}
-\mathbb{E}[\|\mathbf{r}_j\|^2] = |e^{i\delta}-1|^2 \|\mathbf{v}_j\|^2 + |1-e^{-i\delta}|^2 \frac{n-1}{D}\|\mathbf{v}_j\|^2 = 2(1-\cos\delta)(1+c)\|\mathbf{v}_j\|^2.
+\frac{\sum_j \mathbb{E}[\|\mathbf{r}_j\|^2]}{\sum_j \|\mathbf{v}_j\|^2} = |e^{i\delta}-1|^2 + |1-e^{-i\delta}|^2 \frac{n-1}{D} = 2(1-\cos\delta)(1+c),
 \end{equation}
-Because the factor $2(1-\cos\delta)(1+c)$ is invariant across target vectors, the ratio of the sum of expected residual energies to the sum of target energies preserves the identical pooled law:
-\begin{equation}
-\frac{\sum_j \mathbb{E}[\|\mathbf{r}_j\|^2]}{\sum_j \|\mathbf{v}_j\|^2} = 2(1-\cos\delta)(1+c).
-\end{equation}
+with no equal-norm assumption on the target vectors. (Per-item expectations would additionally require equal target norms and are not invoked.)
 
 \subsection{D.4 Real-truncated channel derivations}
 Applying real projection $\operatorname{Re}(\cdot)$ both at the re-read estimate $\hat{\mathbf{v}}_j \leftarrow \operatorname{Re}(\hat{\mathbf{v}}_j)$ and at the final query readout $\mathbf{r}_j = \operatorname{Re}(\mathbf{w}_j^H \M' / D)$ projects out the imaginary component of the phase differences.
 \begin{itemize}
-  \item \textbf{Key drift (Re channel)}: Under key drift, the target contribution to the real query residual is $\sin^2\delta \cdot \mathbf{v}_j^\top$, yielding target energy $\sin^4\delta \|\mathbf{v}_j\|^2$. The interfering crosstalk from $n-1$ unperturbed associations integrates over independent random phases to $\frac{c}{4}(1-\cos 2\delta)\|\mathbf{v}_j\|^2$. Cross-terms between target and interference vanish in expectation due to zero-mean key correlations ($\mathbb{E}[\mathbf{w}_j^H \mathbf{w}_k]=0$ for $k \ne j$). Summing gives:
+  \item \textbf{Key drift (Re channel)}: Under key drift, the target contribution to the real query residual is $\sin^2\delta \cdot \mathbf{v}_j^\top$, yielding target energy $\sin^4\delta \|\mathbf{v}_j\|^2$. The interfering crosstalk from $n-1$ unperturbed associations integrates over independent random phases to pooled relative energy $\frac{c}{4}(1-\cos 2\delta)$. Cross-terms between target and interference vanish in expectation due to zero-mean key correlations ($\mathbb{E}[\mathbf{w}_j^H \mathbf{w}_k]=0$ for $k \ne j$). Summing gives:
   \begin{equation}
   L_{\text{key, Re}}(\delta) = \sin^4\delta + \frac{c}{4}\bigl(1-\cos 2\delta\bigr).
   \end{equation}
-  \item \textbf{State drift (Re channel)}: The target association written with phase offset $e^{i\delta}$ yields an unbinding target residual $(1-\cos\delta)\mathbf{v}_j^\top$, with energy $(1-\cos\delta)^2 \|\mathbf{v}_j\|^2$. The unbinding subtracts the real part of the re-read crosstalk, leaving residual interference energy $c(1-\cos\delta)\|\mathbf{v}_j\|^2$. Independent key phases ensure vanishing cross-terms in expectation, yielding:
+  \item \textbf{State drift (Re channel)}: The target association written with phase offset $e^{i\delta}$ yields an unbinding target residual $(1-\cos\delta)\mathbf{v}_j^\top$, with energy $(1-\cos\delta)^2 \|\mathbf{v}_j\|^2$. The unbinding subtracts the real part of the re-read crosstalk, leaving pooled interference energy $c(1-\cos\delta)$. Independent key phases ensure vanishing cross-terms in expectation, yielding:
   \begin{equation}
   L_{\text{state, Re}}(\delta) = (1-\cos\delta)^2 + c\,(1-\cos\delta).
   \end{equation}
@@ -126,7 +126,7 @@ s_t = \bigl(1 - \beta\|\mathbf{k}_t\|^2\bigr) s_{t-1} + \beta\, q_t,
 \end{equation}
 where $q_t$ represents cross-talk from other stored patterns. The homogeneous dynamics are stable if and only if $|1-\beta\|\mathbf{k}_t\|^2| < 1$, which requires $0 < \beta\|\mathbf{k}_t\|^2 < 2$.
 
-With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \approx 8$), the multiplier $|1-8| = 7$ induces exponential growth ($\|\St_t\| \sim 7^t$), causing numerical explosion within early epochs ($\|\St\| \approx 10^{11}$--$10^{12}$). Key normalization ensures $\|\mathbf{k}_t\|_2^2 = 1$; for $0 < \beta < 2$, this yields $|1-\beta| < 1$ and keeps the directional dynamics inside the unit disk.
+With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \approx 8$), the multiplier $|1-8| = 7$ compounds along each revisited key direction---the task draws from a finite key vocabulary that recurs across updates---inducing exponential growth of the state norm ($\|\St\| \approx 10^{11}$--$10^{12}$ within early epochs). Key normalization ensures $\|\mathbf{k}_t\|_2^2 = 1$; for $0 < \beta < 2$, this yields $|1-\beta| < 1$ and keeps the directional dynamics inside the unit disk.
 
 \section{F. Experimental protocol (O05 milestone)}\label{sec:F}
 
@@ -134,24 +134,26 @@ With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \a
   \item \textbf{Dimensions}: Primary scale $D=128$ ($n=40$ pairs, predicted load $c=39/128 \approx 0.3047$, five seeds) compared against $D=64$ ($n=20$ pairs, predicted load $c=19/64 \approx 0.2969$, three seeds), achieving approximately matched load (2.7\% difference).
   \item \textbf{Vocabulary}: Discrete alphabet of 105 tokens (48 key tokens, 48 value tokens, special marker tokens). The token vocabulary is used strictly to construct controlled key--value associative sequences; the evaluation is not intended as a natural-language modeling benchmark.
   \item \textbf{Arms}: \texttt{wave\_complex}, \texttt{wave\_re}, \texttt{normalized\_delta}.
-  \item \textbf{Events and Units}: 320 forgetting events per arm and seed (exceeding pre-registered minimum of 300). For all inferential statistical tests, the random seed was treated as the independent experimental unit.
+  \item \textbf{Training}: AdamW (learning rate $10^{-3}$, weight decay $0.01$, gradient-norm clip $1.0$). Wave arms: 60 epochs over 600 training examples; \texttt{normalized\_delta}: 150 epochs over 1200 examples. Model dimension $128$, two layers. Exact operator definitions are in \texttt{prototypes/} in the repository.
+  \item \textbf{Seeds and codebook}: The unit-modulus key codebook is fixed across all seeds (generation seed $0$). The seed indexes parameter initialization and the dataset draws (train/validation pairs and probe events); seed-level variability therefore reflects optimization and data-sampling variability, not resampling of the random-key ensemble over which the closed-form expectations are taken.
+  \item \textbf{Events and Units}: 320 forgetting events per arm and seed (exceeding pre-specified minimum of 300). For all inferential statistical tests, the random seed was treated as the independent experimental unit.
   \item \textbf{Drift grid}: $\delta \in \{0.0, 0.1, 0.2, 0.3, 0.4, 0.5\}$.
-  \item \textbf{Ridge probe}: Linear Ridge regression ($\alpha=0.1$, within-model split of 75\% train [$n=240$] / 25\% test [$n=80$]) mapping readout residuals $\mathbf{r}_j$ to continuous targets $\mathbf{v}_j \in \R^D$. Continuous predictions were decoded to the discrete value vocabulary by nearest cosine distance, with exact match recorded when the recovered token matched the true target token.
+  \item \textbf{Ridge probe}: Linear Ridge regression ($\alpha=0.1$, within-model split of 75\% train [$n=240$] / 25\% test [$n=80$]) mapping readout residuals $\mathbf{r}_j$ to continuous targets $\mathbf{v}_j \in \R^D$. Continuous predictions were decoded to the discrete value vocabulary by nearest cosine distance, with exact match recorded when the recovered token matched the true target token; chance level is $1/48 \approx 2.1\%$ over the 48-value vocabulary.
   \item \textbf{Selectivity}: $\text{Selectivity} = \mathrm{EM}_{\text{alive}} - \mathrm{EM}_{\text{erased}}$.
-  \item \textbf{Equivalence test}: Two one-sided $t$-test (TOST at $\alpha=0.05$, two-sided $90\%$ CI) on retrieval selectivity between \texttt{wave\_complex} and \texttt{normalized\_delta} with pre-registered margin $\varepsilon=0.02$.
+  \item \textbf{Equivalence test}: Two one-sided $t$-test (TOST at $\alpha=0.05$, two-sided $90\%$ CI) on retrieval selectivity between \texttt{wave\_complex} and \texttt{normalized\_delta} with pre-specified margin $\varepsilon=0.02$. Differences are computed per seed (paired across arms) and tested against the margin with a Student-$t$ interval ($\mathrm{df}=4$).
 \end{itemize}
 
 \section{G. Numerical results summary}\label{sec:G}
 
 At $D=128$, all 15 seed--arm combinations reached $\mathrm{EM}=1.000$; at $D=64$, all 9 seed--arm combinations likewise trained to $\mathrm{EM}=1.000$. The four closed-form laws predicted empirical pooled residuals with maximum absolute deviation of $0.0049$ at $D=128$ and $0.0094$ at $D=64$, remaining below the $0.02$ verification threshold. Dimension-matched load comparison passed for all four cells with maximum cross-scale difference $0.0064$.
 
-In the key/complex condition, all 30 seed $\times$ drift runs produced algebraically zero and numerically null residuals below the numerical guard threshold $\varepsilon_{\text{null}} = 10^{-4}$. TOST yielded mean difference $-0.0031$ with $90\%$ CI $[-0.0206,\,0.0144]$; because the lower bound crosses $-\varepsilon=-0.02$ by $0.0006$ under $n=5$ seeds, the result is reported as inconclusive with respect to formal equivalence.
+In the key/complex condition, all 30 runs (five seeds $\times$ six drift magnitudes) produced algebraically zero and numerically null residuals below the numerical guard threshold $\varepsilon_{\text{null}} = 10^{-4}$. TOST yielded mean difference $-0.0031$ with $90\%$ CI $[-0.0206,\,0.0144]$; because the lower bound crosses $-\varepsilon=-0.02$ by $0.0006$ under $n=5$ seeds, the result is reported as inconclusive with respect to formal equivalence.
 
 \section{H. Metric audit}\label{sec:H}
 
 A simple mean of per-example ratios $\frac{1}{N}\sum_i (\|\mathbf{r}_i\|^2 / \|\mathbf{v}_i\|^2)$ introduced severe estimation variance in trained models due to small target vector norms in the denominator. The primary metric was therefore standardized as the pooled ratio of sums $L = \sum_i \|\mathbf{r}_i\|^2 / \sum_i \|\mathbf{v}_i\|^2$, stabilizing the estimator.
 
-When the post-erase residual is algebraically zero, computing erased-item exact match by taking an argmax over random noise is uninformative. In our evaluation protocol, residuals below $\varepsilon_{\text{null}} = 10^{-4}$ are recorded as numerically null residuals.
+When the post-erase residual is algebraically zero, computing erased-item exact match by taking an argmax over random noise is uninformative. In our evaluation protocol, residuals below $\varepsilon_{\text{null}} = 10^{-4}$ are recorded as numerically null residuals; the threshold is set well above the floating-point noise floor of the computation.
 
 \section{I. Negative results and scope boundaries}\label{sec:I}
 
