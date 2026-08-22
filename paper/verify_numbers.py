@@ -109,6 +109,25 @@ all_c1 = all(c1[a][f"{c}_pass"] for a in ("wave_complex", "wave_re") for c in ("
 print(f"  -> max diff = {mx_c1:.4f} (gate 0.02), 4/4 pass = {all_c1}")
 
 print()
+print("--- 5b. Cross-scale offset attributable to load mismatch alone ---")
+c128 = o05["c"]
+dc = c128 - (19 / 64)
+slopes = {
+    "clave/complex": lambda d: 0.0,
+    "estado/complex": lambda d: 2 * (1 - math.cos(d)),
+    "clave/re": lambda d: (1 - math.cos(2 * d)) / 4,
+    "estado/re": lambda d: (1 - math.cos(d)),
+}
+mx_attr = 0.0
+deltas_f = [float(x) for x in deltas]
+for name, slope in slopes.items():
+    worst = max(slope(d) * dc for d in deltas_f)
+    mx_attr = max(mx_attr, worst)
+    print(f"  {name}: max over delta of slope*dc = {worst:.5f}")
+print(f"  -> max offset expected from dc alone = {mx_attr:.5f} "
+      f"(compare with cross-scale max diff {mx_c1:.4f})")
+
+print()
 print("=" * 78)
 print("6. TOST wave_complex vs delta_nlms (selectividad)")
 print("=" * 78)

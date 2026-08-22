@@ -33,7 +33,7 @@ Reference commit: \texttt{cec4ffe}. Tag: \texttt{lab-radioactivo-v1}. Repository
 
 The repository contains implementations, execution runners, evaluation probes, audit logs, model checkpoints, frozen claims, and execution transcripts for experimental milestones O01--O05. The primary trained-model gate is O05. Verification tooling:
 \begin{itemize}
-  \item \texttt{paper/verify\_numbers.py}: Recomputes all quantitative values and verification gates directly from frozen JSON artifacts.
+  \item \texttt{paper/verify\_numbers.py}: Recomputes all quantitative values and consistency tolerances directly from frozen JSON artifacts.
   \item \texttt{paper/make\_figures.py}: Regenerates all publication figures (PDF and PNG at 300~DPI) from the same frozen artifacts.
 \end{itemize}
 
@@ -69,6 +69,8 @@ When evaluating the real channel, real truncation is applied to the re-read esti
 
 \subsection{C.4 Representational erase control}
 The erased value is re-presented from an external target rather than re-read from the state: $\M' = \M - \mathbf{w}_j \mathbf{v}_j^\top$. This serves as a control condition separating operator-level self-estimation from state residual dynamics.
+
+This control was executed at $D=64$ during the O04 milestone (three seeds $\times$ six drift magnitudes, both arms). Measured pooled residuals track the stored zero-free-parameter oracle-channel predictions within the consistency tolerance for each arm's own readout channel: maximum absolute deviation $0.020$ (complex channel) and $0.017$ (Re channel) over seeds and drift grid. The oracle-channel laws are insensitive to the injection variant later corrected in O04b (lab record), so the control cleanly separates self-estimation error from intrinsic post-erase residual structure.
 
 \subsection{C.5 Normalized delta control}
 The corrective delta-rule update modifies state $\St \in \R^{D \times D}$ via
@@ -148,7 +150,33 @@ With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \a
 
 \section{G. Numerical results summary}\label{sec:G}
 
-At $D=128$, all 15 seed--arm combinations reached $\mathrm{EM}=1.000$; at $D=64$, all 9 seed--arm combinations likewise trained to $\mathrm{EM}=1.000$. The four closed-form laws predicted empirical pooled residuals with maximum absolute deviation of $0.0049$ at $D=128$ and $0.0094$ at $D=64$, remaining below the $0.02$ verification threshold. Dimension-matched load agreement for the three non-trivial cells showed maximum cross-scale difference $0.0064$.
+At $D=128$, all 15 seed--arm combinations reached $\mathrm{EM}=1.000$; at $D=64$, all 9 seed--arm combinations likewise trained to $\mathrm{EM}=1.000$. The four closed-form laws predicted empirical pooled residuals with maximum absolute deviation of $0.0049$ at $D=128$ and $0.0094$ at $D=64$, remaining below the $0.02$ consistency tolerance. Dimension-matched load agreement for the three non-trivial cells showed maximum cross-scale difference $0.0064$, of which $0.0019$ (state/complex, $\delta=0.5$) is attributable to the residual load mismatch alone.
+
+Per-seed dispersion of the pooled deviations is reported in Table~\ref{tab:perseed}: the stored maxima are not driven by a single outlier seed.
+
+\begin{table}[h]
+  \centering
+  \caption{Maximum absolute deviation $|\text{measured}-\text{predicted}|$ per seed under the pooled estimator (recomputed from frozen artifacts). D=64 entries pool two events per seed; ``max'' is the stored value of Table~1 in the main text.}
+  \label{tab:perseed}
+  \vspace{0.5em}
+  \begin{tabular}{@{}llcccccc@{}}
+    \toprule
+    $D$ & cell/channel & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & max \\
+    \midrule
+    128 & key/complex     & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ \\
+    128 & state/complex   & 0.0031 & 0.0004 & 0.0033 & 0.0049 & 0.0006 & 0.0049 \\
+    128 & key/Re          & 0.0006 & 0.0007 & 0.0018 & 0.0018 & 0.0013 & 0.0018 \\
+    128 & state/Re        & 0.0018 & 0.0006 & 0.0015 & 0.0011 & 0.0002 & 0.0018 \\
+    \midrule
+    64  & key/complex     & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & -- & -- & $<10^{-4}$ \\
+    64  & state/complex   & 0.0094 & 0.0077 & 0.0086 & -- & -- & 0.0094 \\
+    64  & key/Re          & 0.0009 & 0.0016 & 0.0007 & -- & -- & 0.0016 \\
+    64  & state/Re        & 0.0015 & 0.0003 & 0.0015 & -- & -- & 0.0015 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Because all closed-form laws are expectations over the random-key ensemble while every trained experiment shares a single fixed codebook (Supp.~F), an additional synthetic probe (\texttt{tests/codebook\_ensemble\_probe.py}) repeats the algebraic $2\times2\times\delta$ computation over eight independent codebooks at $D=64$, $n=20$. Inter-codebook dispersion is small: the largest standard deviation of $L$ across codebooks is $0.012$ ($\delta=0.5$, state/complex), and per-codebook maximum absolute deviations range from $0.004$ to $0.024$. The fixed codebook used throughout the trained experiments lies within this ensemble spread.
 
 In the key/complex condition, all 30 runs (five seeds $\times$ six drift magnitudes) produced algebraically zero and numerically null residuals below the numerical guard threshold $\varepsilon_{\text{null}} = 10^{-4}$. TOST yielded mean difference $-0.0031$ with $90\%$ CI $[-0.0206,\,0.0144]$; because the lower bound crosses $-\varepsilon=-0.02$ by $0.0006$ under $n=5$ seeds, the result is reported as inconclusive with respect to formal equivalence.
 
