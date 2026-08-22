@@ -52,25 +52,25 @@ where $\mathbf{r}_i$ is the post-erase query readout residual.
 \section{C. Formal operator definitions}\label{sec:C}
 
 \subsection{C.1 Key drift reread erase}
-Memory items are stored unperturbed. At erase time, local oscillator drift alters the erase key to $\tilde{\mathbf{w}}_j = \mathbf{w}_j e^{i\delta}$. The erase operator re-reads using $\tilde{\mathbf{w}}_j$ and subtracts the outer product:
+Memory items are stored unperturbed. At erase time, local oscillator drift alters the erase key to $\tilde{\mathbf{w}}_j = \mathbf{w}_j e^{i\delta}$. The erase operator rereads using $\tilde{\mathbf{w}}_j$ and subtracts the outer product:
 \begin{equation}
 \hat{\mathbf{v}}_j = \frac{\tilde{\mathbf{w}}_j^H \M}{D}, \qquad \M' = \M - \tilde{\mathbf{w}}_j \hat{\mathbf{v}}_j.
 \end{equation}
 Because both the projection estimate and the subtractive unbinding use $\tilde{\mathbf{w}}_j$, the operation represents an exact orthogonal projection onto the subspace orthogonal to $\tilde{\mathbf{w}}_j$.
 
 \subsection{C.2 State drift reread erase}
-We use state drift to denote a write-time phase offset attached to the target association, followed by a mismatch between the stored phase coordinate used for re-reading and the reference coordinate used for unbinding. Specifically, the target association is stored as $(e^{i\delta} \mathbf{w}_j) \mathbf{v}_j^\top$. At erase time, the erase operator re-reads using the item's stored key coordinate $\tilde{\mathbf{w}}_j = e^{i\delta}\mathbf{w}_j$ to recover $\hat{\mathbf{v}}_j = \tilde{\mathbf{w}}_j^H \M / D$, but subtracts using the current reference clock key $\mathbf{w}_j$:
+We use state drift to denote a write-time phase offset attached to the target association, followed by a mismatch between the stored phase coordinate used for rereading and the reference coordinate used for unbinding. Specifically, the target association is stored as $(e^{i\delta} \mathbf{w}_j) \mathbf{v}_j^\top$. At erase time, the erase operator rereads using the item's stored key coordinate $\tilde{\mathbf{w}}_j = e^{i\delta}\mathbf{w}_j$ to recover $\hat{\mathbf{v}}_j = \tilde{\mathbf{w}}_j^H \M / D$, but subtracts using the current reference clock key $\mathbf{w}_j$:
 \begin{equation}
 \M' = \M - \mathbf{w}_j \hat{\mathbf{v}}_j.
 \end{equation}
 
 \subsection{C.3 Real-truncated readout channel}
-When evaluating the real channel, real truncation is applied to the re-read estimate before subtraction: $\hat{\mathbf{v}}_j \leftarrow \operatorname{Re}(\hat{\mathbf{v}}_j)$. At query time, the readout residual is evaluated as $\mathbf{r}_j = \operatorname{Re}(\mathbf{w}_j^H \M' / D)$.
+When evaluating the real channel, real truncation is applied to the reread estimate before subtraction: $\hat{\mathbf{v}}_j \leftarrow \operatorname{Re}(\hat{\mathbf{v}}_j)$. At query time, the readout residual is evaluated as $\mathbf{r}_j = \operatorname{Re}(\mathbf{w}_j^H \M' / D)$.
 
 \subsection{C.4 Representational erase control}
-The erased value is re-presented from an external target rather than re-read from the state: $\M' = \M - \mathbf{w}_j \mathbf{v}_j^\top$. This serves as a control condition separating operator-level self-estimation from state residual dynamics.
+The erased value is re-presented from an external target rather than reread from the state: $\M' = \M - \mathbf{w}_j \mathbf{v}_j^\top$. This serves as a control condition separating operator-level self-estimation from state residual dynamics.
 
-This control was executed at $D=64$ during the O04 milestone (three seeds $\times$ six drift magnitudes, both arms; the two entries of each stored \texttt{fuga\_represent} pair are two pooled events, not channels). Measured pooled residuals track the stored zero-free-parameter oracle-channel predictions within the consistency tolerance for each arm's own readout channel: maximum absolute deviation $0.020$ (complex channel) and $0.017$ (Re channel) over seeds and drift grid. The oracle-channel laws are insensitive to the injection variant later corrected in O04b (lab record), so the control cleanly separates self-estimation error from intrinsic post-erase residual structure.
+This control was executed at $D=64$ in an early milestone (three seeds $\times$ six drift magnitudes, both arms). Measured pooled residuals track the parameter-free closed-form predictions within the consistency tolerance on each arm's own readout channel: maximum absolute deviation $0.020$ (complex) and $0.017$ (Re) over seeds and drift grid. Because these predictions do not depend on how the perturbation is injected, the control isolates self-estimation error from intrinsic post-erase residual structure.
 
 \subsection{C.5 Normalized delta control}
 The corrective delta-rule update modifies state $\St \in \R^{D \times D}$ via
@@ -91,7 +91,7 @@ For independent random unit-modulus keys $\mathbf{w}_i, \mathbf{w}_k \in \C^D$, 
 The operator $\mathbf{P}_{\tilde{\mathbf{w}}_j}^\perp = \mathbf{I} - \tilde{\mathbf{w}}_j \tilde{\mathbf{w}}_j^H / D$ is the orthogonal projection onto the $(D-1)$-dimensional subspace orthogonal to $\tilde{\mathbf{w}}_j$ (the rank-one object is $\tilde{\mathbf{w}}_j \tilde{\mathbf{w}}_j^H / D$). When querying with reference key $\mathbf{w}_j = \tilde{\mathbf{w}}_j e^{-i\delta}$, the target component in $\M'$ along direction $\tilde{\mathbf{w}}_j$ is identically zero. Therefore, $L_{\text{key, complex}}(\delta) = 0$ in the algebraic model.
 
 \subsection{D.3 State drift under complex channel}
-With target item stored as $(e^{i\delta}\mathbf{w}_j)\mathbf{v}_j^\top$ and unbinding performed with reference key $\mathbf{w}_j$, the re-read estimate is:
+With target item stored as $(e^{i\delta}\mathbf{w}_j)\mathbf{v}_j^\top$ and unbinding performed with reference key $\mathbf{w}_j$, the reread estimate is:
 \begin{equation}
 \hat{\mathbf{v}}_j = \frac{\tilde{\mathbf{w}}_j^H \M}{D} = \mathbf{v}_j^\top + \frac{e^{-i\delta}}{D}\sum_{k \ne j} \mathbf{w}_j^H \mathbf{w}_k \mathbf{v}_k^\top .
 \end{equation}
@@ -111,13 +111,13 @@ Summing squared residual norms over stored items before taking expectations---th
 with no equal-norm assumption on the target vectors. (Per-item expectations would additionally require equal target norms and are not invoked.)
 
 \subsection{D.4 Real-truncated channel derivations}
-Applying real projection $\operatorname{Re}(\cdot)$ both at the re-read estimate $\hat{\mathbf{v}}_j \leftarrow \operatorname{Re}(\hat{\mathbf{v}}_j)$ and at the final query readout $\mathbf{r}_j = \operatorname{Re}(\mathbf{w}_j^H \M' / D)$ projects out the imaginary component of the phase differences.
+Applying real projection $\operatorname{Re}(\cdot)$ both at the reread estimate $\hat{\mathbf{v}}_j \leftarrow \operatorname{Re}(\hat{\mathbf{v}}_j)$ and at the final query readout $\mathbf{r}_j = \operatorname{Re}(\mathbf{w}_j^H \M' / D)$ projects out the imaginary component of the phase differences.
 \begin{itemize}
   \item \textbf{Key drift (Re channel)}: Under key drift, the target contribution to the real query residual is $\sin^2\delta \cdot \mathbf{v}_j^\top$, yielding target energy $\sin^4\delta \|\mathbf{v}_j\|^2$. The interfering crosstalk from $n-1$ unperturbed associations integrates over independent random phases to pooled relative energy $\frac{c}{4}(1-\cos 2\delta)$. Cross-terms between target and interference vanish in expectation due to zero-mean key correlations ($\mathbb{E}[\mathbf{w}_j^H \mathbf{w}_k]=0$ for $k \ne j$). Summing gives:
   \begin{equation}
   L_{\text{key, Re}}(\delta) = \sin^4\delta + \frac{c}{4}\bigl(1-\cos 2\delta\bigr).
   \end{equation}
-  \item \textbf{State drift (Re channel)}: The target association written with phase offset $e^{i\delta}$ yields an unbinding target residual $(\cos\delta-1)\mathbf{v}_j^\top$, with energy $(1-\cos\delta)^2 \|\mathbf{v}_j\|^2$. The unbinding subtracts the real part of the re-read crosstalk, leaving pooled interference energy $c(1-\cos\delta)$. Independent key phases ensure vanishing cross-terms in expectation, yielding:
+  \item \textbf{State drift (Re channel)}: The target association written with phase offset $e^{i\delta}$ yields an unbinding target residual $(\cos\delta-1)\mathbf{v}_j^\top$, with energy $(1-\cos\delta)^2 \|\mathbf{v}_j\|^2$. The unbinding subtracts the real part of the reread crosstalk, leaving pooled interference energy $c(1-\cos\delta)$. Independent key phases ensure vanishing cross-terms in expectation, yielding:
   \begin{equation}
   L_{\text{state, Re}}(\delta) = (1-\cos\delta)^2 + c\,(1-\cos\delta).
   \end{equation}
@@ -129,7 +129,7 @@ Along direction $\mathbf{k}_t$, projecting the state error yields the first-orde
 \begin{equation}
 s_t = \bigl(1 - \beta\|\mathbf{k}_t\|^2\bigr) s_{t-1} + \beta\, q_t,
 \end{equation}
-where $q_t$ represents cross-talk from other stored patterns. The homogeneous dynamics are stable if and only if $|1-\beta\|\mathbf{k}_t\|^2| < 1$, which requires $0 < \beta\|\mathbf{k}_t\|^2 < 2$.
+where $q_t$ represents crosstalk from other stored patterns. The homogeneous dynamics are stable if and only if $|1-\beta\|\mathbf{k}_t\|^2| < 1$, which requires $0 < \beta\|\mathbf{k}_t\|^2 < 2$.
 
 With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \approx 8$), the multiplier $|1-8| = 7$ compounds along each revisited key direction---the task draws from a finite key vocabulary that recurs across updates---inducing exponential growth of the state norm ($\|\St\| \approx 10^{11}$--$10^{12}$ within early epochs). Key normalization ensures $\|\mathbf{k}_t\|_2^2 = 1$; for $0 < \beta < 2$, this yields $|1-\beta| < 1$ and keeps the directional dynamics inside the unit disk.
 
@@ -156,7 +156,7 @@ Per-seed dispersion of the pooled deviations is reported in Table~\ref{tab:perse
 
 \begin{table}[h]
   \centering
-  \caption{Maximum absolute deviation $|\text{measured}-\text{predicted}|$ per seed under the pooled estimator (recomputed from frozen artifacts). D=64 entries pool two events per seed; ``max'' is the stored value of Table~1 in the main text.}
+  \caption{Maximum absolute deviation $|\text{measured}-\text{predicted}|$ per seed under the pooled estimator (recomputed from frozen artifacts). For $D=64$, each entry is the maximum over the two stored pooled values of that seed; ``max'' is the value quoted in Table~1 of the main text.}
   \label{tab:perseed}
   \vspace{0.5em}
   \begin{tabular}{@{}llcccccc@{}}
@@ -182,7 +182,7 @@ In the key/complex condition, all 30 runs (five seeds $\times$ six drift magnitu
 
 \section{H. Metric audit}\label{sec:H}
 
-A simple mean of per-example ratios $\frac{1}{N}\sum_i (\|\mathbf{r}_i\|^2 / \|\mathbf{v}_i\|^2)$ introduced severe estimation variance in trained models due to small target vector norms in the denominator. The primary metric was therefore standardized as the pooled ratio of sums $L = \sum_i \|\mathbf{r}_i\|^2 / \sum_i \|\mathbf{v}_i\|^2$, stabilizing the estimator.
+A simple mean of per-example ratios $\frac{1}{N}\sum_i (\|\mathbf{r}_i\|^2 / \|\mathbf{v}_i\|^2)$ introduced large estimation variance in trained models due to small target vector norms in the denominator. The primary metric was therefore standardized as the pooled ratio of sums $L = \sum_i \|\mathbf{r}_i\|^2 / \sum_i \|\mathbf{v}_i\|^2$, stabilizing the estimator.
 
 When the post-erase residual is algebraically zero, computing erased-item exact match by taking an argmax over random noise is uninformative. In our evaluation protocol, residuals below $\varepsilon_{\text{null}} = 10^{-4}$ are recorded as numerically null residuals; the threshold is set well above the floating-point noise floor of the computation.
 
