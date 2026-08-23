@@ -330,7 +330,7 @@ ax.set_ylim(10, 1e14)
 ax.set_xlim(-0.6, 4.6)
 ax.grid(alpha=0.25, lw=0.5, which="both")
 
-ax.annotate("Diverges ($\\|\\mathbf{S}\\| \\sim 10^{11}\\!-\\!10^{12}$)\nEM $\\approx$ 0.03--0.05",
+ax.annotate("Diverges ($\\|\\mathbf{S}\\| \\sim 10^{11}\\!-\\!10^{12}$)\nEM $\\approx$ 0.03–0.05",
             xy=(0.6, 2e8), fontsize=8.2, color="#b02a37", ha="center",
             bbox=dict(boxstyle="round,pad=0.25", fc="#fdf2f2", ec="#b02a37", lw=0.7))
 ax.annotate(r"Bounded ($\|\mathbf{S}\| \approx 55$)" + "\n" + r"$\mathrm{EM}=1.000$",
