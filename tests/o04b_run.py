@@ -53,12 +53,15 @@ def law(cell, channel, dlt, c, conv):
     return 2 * (1 - math.cos(dlt)) + c * (3 - 2 * math.cos(dlt)) / 2
 
 
-def replay_wave(model, x, y, seqs, v_erased, cell, dlt, device, per_event=False):
+def replay_wave(model, x, y, seqs, v_erased, cell, dlt, device, per_event=False,
+                return_pred=False):
     """Replay externo exacto del forward wave (memoria externa, sin
     decode_step del modelo) con inyeccion por celda. Devuelve EM y fuga
     POOLED por capa. Con per_event=True devuelve ademas los ratios de
     potencia residual por evento (capa 0) para la guarda de residual nulo
-    (O05, adicion del auditor)."""
+    (O05, adicion del auditor). Con return_pred=True devuelve tambien el
+    vector de predicciones por evento (cluster_a_controls: convenciones
+    de nulos). Flags independientes y retrocompatibles."""
     B, T = x.shape
     is_re = model.read_proj == 're'
     D = model.d_model
@@ -144,7 +147,11 @@ def replay_wave(model, x, y, seqs, v_erased, cell, dlt, device, per_event=False)
             v0 = v0.real
         ratios = (r0.abs().pow(2).sum(dim=1) /
                   v0.abs().pow(2).sum(dim=1).clamp(min=1e-12))
+        if return_pred:
+            return em, fuga, ratios, pred
         return em, fuga, ratios
+    if return_pred:
+        return em, fuga, pred
     return em, fuga
 
 
