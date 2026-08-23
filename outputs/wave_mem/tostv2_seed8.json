@@ -1,0 +1,261 @@
+{
+  "variant": "o05",
+  "d_model": 128,
+  "n_layers": 2,
+  "seeds": [
+    8
+  ],
+  "n_probe_events": 320,
+  "c": 0.3046875,
+  "spec": "FR only, n_pairs [32,48], 48 keys/48 vals (vocab 105, KeySpace O05), wave 60ep x 600 / delta_nlms 150ep x 1200 (v5; v4: wave EM 1.000 a 60ep x 600, delta sub-entrenado)",
+  "eps_null": 0.0001,
+  "runs": {
+    "wave_complex_s8": {
+      "train_em": 1.0,
+      "probe": {
+        "em_alive": 1.0,
+        "cells": {
+          "clave": {
+            "0.0": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.1": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.2": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.3": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.4": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.5": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            }
+          },
+          "estado": {
+            "0.0": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.1": {
+              "fuga": 0.013,
+              "pred": 0.013,
+              "em_guarded": 0.015625,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.2": {
+              "fuga": 0.0519,
+              "pred": 0.052,
+              "em_guarded": 0.0062500000931322575,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.3": {
+              "fuga": 0.1162,
+              "pred": 0.1165,
+              "em_guarded": 0.0,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.4": {
+              "fuga": 0.2054,
+              "pred": 0.206,
+              "em_guarded": 0.0,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.5": {
+              "fuga": 0.3186,
+              "pred": 0.3194,
+              "em_guarded": 0.0,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            }
+          }
+        },
+        "autocheck_harness_em": 1.0,
+        "autocheck_ok": true,
+        "em_erased_d0": 0.0156,
+        "selectividad": 0.9844
+      }
+    },
+    "wave_re_s8": {
+      "train_em": 1.0,
+      "probe": {
+        "em_alive": 1.0,
+        "cells": {
+          "clave": {
+            "0.0": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.1": {
+              "fuga": 0.0017,
+              "pred": 0.0016,
+              "em_guarded": 0.015625,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.2": {
+              "fuga": 0.0077,
+              "pred": 0.0076,
+              "em_guarded": 0.06562500447034836,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.3": {
+              "fuga": 0.0213,
+              "pred": 0.0209,
+              "em_guarded": 0.5406250357627869,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.4": {
+              "fuga": 0.0467,
+              "pred": 0.0461,
+              "em_guarded": 0.9625000357627869,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.5": {
+              "fuga": 0.0886,
+              "pred": 0.0878,
+              "em_guarded": 1.0,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            }
+          },
+          "estado": {
+            "0.0": {
+              "fuga": 0.0,
+              "pred": 0.0,
+              "em_guarded": "residual nulo",
+              "null_frac": 1.0,
+              "em_on_nonnull_frac": 0.0
+            },
+            "0.1": {
+              "fuga": 0.0016,
+              "pred": 0.0015,
+              "em_guarded": 0.015625,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.2": {
+              "fuga": 0.0066,
+              "pred": 0.0065,
+              "em_guarded": 0.012500000186264515,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.3": {
+              "fuga": 0.0158,
+              "pred": 0.0156,
+              "em_guarded": 0.0,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.4": {
+              "fuga": 0.0307,
+              "pred": 0.0303,
+              "em_guarded": 0.0,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            },
+            "0.5": {
+              "fuga": 0.0529,
+              "pred": 0.0523,
+              "em_guarded": 0.0,
+              "null_frac": 0.0,
+              "em_on_nonnull_frac": 1.0
+            }
+          }
+        },
+        "autocheck_harness_em": 1.0,
+        "autocheck_ok": true,
+        "em_erased_d0": 0.0156,
+        "selectividad": 0.9844
+      }
+    },
+    "delta_nlms_s8": {
+      "train_em": 1.0,
+      "probe": {
+        "em_alive": 1.0,
+        "em_erased": 0.0125,
+        "autocheck_harness_em": 1.0,
+        "autocheck_ok": true,
+        "selectividad": 0.9875
+      }
+    }
+  },
+  "tost": {
+    "mean_delta": -0.0031,
+    "sd": 0.0,
+    "ci90": [
+      -0.0031,
+      -0.0031
+    ],
+    "equivalence_pass": true,
+    "eps": 0.02
+  },
+  "c1_matched_c": {
+    "wave_complex": {
+      "s8": {
+        "status": "skip"
+      }
+    },
+    "wave_re": {
+      "s8": {
+        "status": "skip"
+      }
+    },
+    "diff_d128_d64": {
+      "wave_complex": {
+        "clave": 0.0,
+        "clave_pass": true,
+        "estado": 0.0,
+        "estado_pass": true
+      },
+      "wave_re": {
+        "clave": 0.0,
+        "clave_pass": true,
+        "estado": 0.0,
+        "estado_pass": true
+      }
+    }
+  },
+  "total_seconds": 6136.6
+}
