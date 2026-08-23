@@ -1,0 +1,135 @@
+{
+  "variant": "o04_laws_verify",
+  "D": 64,
+  "n": 24,
+  "grid": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "trials": 20,
+  "leyes": {
+    "complex": {
+      "0.0": {
+        "reread": 0.0,
+        "represent": 0.418646,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.359375,
+        "pred_represent_re": 0.179688,
+        "pred_reread_re_sin4": 0.0
+      },
+      "0.1": {
+        "reread": 0.0,
+        "represent": 0.390849,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.369367,
+        "pred_represent_re": 0.179712,
+        "pred_reread_re_sin4": 0.00189
+      },
+      "0.2": {
+        "reread": 0.0,
+        "represent": 0.422388,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.399242,
+        "pred_represent_re": 0.180085,
+        "pred_reread_re_sin4": 0.00865
+      },
+      "0.3": {
+        "reread": 0.0,
+        "represent": 0.454103,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.448702,
+        "pred_represent_re": 0.181682,
+        "pred_reread_re_sin4": 0.023319
+      },
+      "0.4": {
+        "reread": 0.0,
+        "represent": 0.526368,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.517253,
+        "pred_represent_re": 0.185919,
+        "pred_reread_re_sin4": 0.050246
+      },
+      "0.5": {
+        "reread": 0.0,
+        "represent": 0.630716,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.60421,
+        "pred_represent_re": 0.194674,
+        "pred_reread_re_sin4": 0.094131
+      }
+    },
+    "re": {
+      "0.0": {
+        "reread": 0.0,
+        "represent": 0.186461,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.359375,
+        "pred_represent_re": 0.179688,
+        "pred_reread_re_sin4": 0.0
+      },
+      "0.1": {
+        "reread": 0.001704,
+        "represent": 0.18696,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.369367,
+        "pred_represent_re": 0.179712,
+        "pred_reread_re_sin4": 0.00189
+      },
+      "0.2": {
+        "reread": 0.009663,
+        "represent": 0.196541,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.399242,
+        "pred_represent_re": 0.180085,
+        "pred_reread_re_sin4": 0.00865
+      },
+      "0.3": {
+        "reread": 0.026602,
+        "represent": 0.156289,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.448702,
+        "pred_represent_re": 0.181682,
+        "pred_reread_re_sin4": 0.023319
+      },
+      "0.4": {
+        "reread": 0.053134,
+        "represent": 0.191769,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.517253,
+        "pred_represent_re": 0.185919,
+        "pred_reread_re_sin4": 0.050246
+      },
+      "0.5": {
+        "reread": 0.090906,
+        "represent": 0.226157,
+        "pred_reread_complex": 0.0,
+        "pred_represent_complex": 0.60421,
+        "pred_represent_re": 0.194674,
+        "pred_reread_re_sin4": 0.094131
+      }
+    }
+  },
+  "estabilidad": {
+    "correctivo_beta1_kk8": {
+      "gain": 7,
+      "normS_t120": 860369473661974.4
+    },
+    "correctivo_beta01_kk8": {
+      "gain": 0.19999999999999996,
+      "normS_t120": 11.960744694706726
+    },
+    "correctivo_beta1_kk15": {
+      "gain": 0.5,
+      "normS_t120": 51.777236855886756
+    },
+    "superposicion_beta1": {
+      "gain": "sin lazo (abierto)",
+      "normS_t120": 125.25564174057939
+    },
+    "teorema": "correctivo = lazo cerrado, exige beta||k||^2 < 2; superposicion = lazo abierto, estable incondicional"
+  }
+}

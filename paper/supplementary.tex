@@ -131,7 +131,7 @@ s_t = \bigl(1 - \beta\|\mathbf{k}_t\|^2\bigr) s_{t-1} + \beta\, q_t,
 \end{equation}
 where $q_t$ represents crosstalk from other stored patterns. The homogeneous dynamics are stable if and only if $|1-\beta\|\mathbf{k}_t\|^2| < 1$, which requires $0 < \beta\|\mathbf{k}_t\|^2 < 2$.
 
-With $\beta=1$ and unnormalized embedding initialization ($\|\mathbf{k}_t\|^2 \approx 8$), the multiplier $|1-8| = 7$ compounds along each revisited key direction---the task draws from a finite key vocabulary that recurs across updates---inducing exponential growth of the state norm ($\|\St\| \approx 10^{11}$--$10^{12}$ within early epochs). Key normalization ensures $\|\mathbf{k}_t\|_2^2 = 1$; for $0 < \beta < 2$, this yields $|1-\beta| < 1$ and keeps the directional dynamics inside the unit disk.
+With $\beta=1$ and the measured unnormalized initialization ($\|\mathbf{k}_t\|^2 \approx 21$ on the released baseline), the per-direction multiplier $|1-\beta\|\mathbf{k}_t\|^2| \approx 20$ compounds along each revisited key direction---the task uses a finite key vocabulary that recurs across updates---inducing exponential growth of the state norm ($\|\St\|$ reaching $10^{11}$--$10^{12}$ within early epochs under open-loop random-item writes). Key normalization ensures $\|\mathbf{k}_t\|_2^2 = 1$; for $0 < \beta < 2$, this yields $|1-\beta| < 1$ and keeps the directional dynamics inside the unit disk.
 
 \section{F. Experimental protocol (O05 milestone)}\label{sec:F}
 

@@ -1,0 +1,45 @@
+{
+  "tabla_valor": {
+    "real": {
+      "reread_complex": 0.0,
+      "reread_re": 0.068,
+      "original_v": 0.128
+    },
+    "complex": {
+      "reread_complex": 0.0,
+      "reread_re": 0.56,
+      "original_v": 0.124
+    }
+  },
+  "drift_fase": {
+    "reread": [],
+    "represent": [],
+    "0.0": {
+      "reread": 0.0,
+      "represent": 0.1423
+    },
+    "0.2": {
+      "reread": 0.0,
+      "represent": 0.1833
+    },
+    "0.4": {
+      "reread": 0.0,
+      "represent": 0.3012
+    }
+  },
+  "pred_represent_delta2": 0.04,
+  "delta_real_rotacion": {
+    "0.0": 0.0,
+    "0.2": 0.0001,
+    "0.4": 0.0003
+  },
+  "pred_sin2_delta": {
+    "0.0": 0.0,
+    "0.2": 0.039,
+    "0.4": 0.152
+  },
+  "ruido_iid_sigma05": {
+    "reread": 0.1563,
+    "represent": 0.1248
+  }
+}

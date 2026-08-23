@@ -1,0 +1,119 @@
+{
+  "vector_geometry": [
+    {
+      "D": 64,
+      "n": 4,
+      "snr_mean": 0.35,
+      "pred_2_over_n": 0.667
+    },
+    {
+      "D": 64,
+      "n": 16,
+      "snr_mean": 0.075,
+      "pred_2_over_n": 0.133
+    },
+    {
+      "D": 64,
+      "n": 64,
+      "snr_mean": 0.015,
+      "pred_2_over_n": 0.032
+    },
+    {
+      "D": 128,
+      "n": 4,
+      "snr_mean": 0.359,
+      "pred_2_over_n": 0.667
+    },
+    {
+      "D": 128,
+      "n": 16,
+      "snr_mean": 0.069,
+      "pred_2_over_n": 0.133
+    },
+    {
+      "D": 128,
+      "n": 64,
+      "snr_mean": 0.016,
+      "pred_2_over_n": 0.032
+    },
+    {
+      "D": 256,
+      "n": 4,
+      "snr_mean": 0.337,
+      "pred_2_over_n": 0.667
+    },
+    {
+      "D": 256,
+      "n": 16,
+      "snr_mean": 0.066,
+      "pred_2_over_n": 0.133
+    },
+    {
+      "D": 256,
+      "n": 64,
+      "snr_mean": 0.016,
+      "pred_2_over_n": 0.032
+    }
+  ],
+  "matrix_geometry": [
+    {
+      "D": 64,
+      "n": 4,
+      "snr_mean": 33.426,
+      "pred_D_over_2n": 10.667
+    },
+    {
+      "D": 64,
+      "n": 16,
+      "snr_mean": 4.404,
+      "pred_D_over_2n": 2.133
+    },
+    {
+      "D": 64,
+      "n": 64,
+      "snr_mean": 1.013,
+      "pred_D_over_2n": 0.508
+    },
+    {
+      "D": 128,
+      "n": 4,
+      "snr_mean": 50.401,
+      "pred_D_over_2n": 21.333
+    },
+    {
+      "D": 128,
+      "n": 16,
+      "snr_mean": 9.423,
+      "pred_D_over_2n": 4.267
+    },
+    {
+      "D": 128,
+      "n": 64,
+      "snr_mean": 2.101,
+      "pred_D_over_2n": 1.016
+    },
+    {
+      "D": 256,
+      "n": 4,
+      "snr_mean": 125.759,
+      "pred_D_over_2n": 42.667
+    },
+    {
+      "D": 256,
+      "n": 16,
+      "snr_mean": 19.655,
+      "pred_D_over_2n": 8.533
+    },
+    {
+      "D": 256,
+      "n": 64,
+      "snr_mean": 4.196,
+      "pred_D_over_2n": 2.032
+    }
+  ],
+  "erase_ops": {
+    "antifase_vs_resta_rel": 0.0,
+    "residual_re_read_rel": 0.0,
+    "pred_crosstalk_floor": 7.5
+  }
+}

@@ -154,3 +154,16 @@ de una grilla MC densa (c x delta) como banda k-sigma empirica, citando
 la descomposicion per-item como mecanismo explicativo; la Var pooled
 cerrada rigurosa queda como apendice futuro. Honestidad: sin el ensamblado
 cerrado, la banda es calibrada por simulacion, no derivada en papel.
+
+
+## 11. Resolucion del caveat ||k||^2 ~ 8
+
+Medicion por el camino real de escritura (k_proj sobre embedding del
+key token pendiente, prototype delta_forget sin entrenar, key tokens
+9..48): block0 mean 21.03, block1 mean 21.14. Consistente con la
+inicializacion default de PyTorch (E||k||^2 = D/3 = 64/3 = 21.3).
+El approx 8 de la seccion 4 NO correspondia al baseline publicado;
+corregido en main (multiplicador |1-21| ~ 20) y Supp E.
+La narrativa de divergencia queda intacta o peor (20 > 7).
+Nota: mi heuristica previa 'primera Linear sobre token 10' dio 31.8
+por medir el modulo equivocado; descartada.

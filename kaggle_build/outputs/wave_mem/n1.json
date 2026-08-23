@@ -1,0 +1,612 @@
+{
+  "variant": "wave_mem_n1",
+  "d_model": 64,
+  "n_layers": 2,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "n_probe_events": 320,
+  "spec": "cpu_quick 5-task, FR n_pairs [16,24] n_forget [1,2]",
+  "runs": {
+    "wave_complex_s1": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.004879281918207804,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 91.25087022781372
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.016666666666666666,
+          "final_loss": 6.751416524251302,
+          "final_token_acc": 0.016666666666666666,
+          "max_em_in_window": 0.03333333333333333,
+          "seconds": 90.17351198196411
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.3828153549596247,
+          "final_token_acc": 0.09423251589464124,
+          "max_em_in_window": 0.0,
+          "seconds": 403.8790936470032
+        },
+        "state_tracking": {
+          "final_exact_match": 0.30666666666666664,
+          "final_loss": 1.1001888910929363,
+          "final_token_acc": 0.30666666666666664,
+          "max_em_in_window": 0.4066666666666667,
+          "seconds": 167.89990615844727
+        },
+        "forget_retrieval": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.0024532223989566166,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 470.0814588069916
+        }
+      },
+      "probe": {
+        "alive": {
+          "events": 320,
+          "em_reread": 1.0,
+          "em_represent": 1.0
+        },
+        "erased": {
+          "events": 320,
+          "em_reread": 0.0281,
+          "em_represent": 0.0063,
+          "fuga_power_reread": [
+            0.0,
+            0.0
+          ],
+          "fuga_power_represent": [
+            0.3198,
+            0.3269
+          ],
+          "ridge_readout": {
+            "cosine_test": -0.0002,
+            "mse_rel": 1.0
+          },
+          "ridge_M_proj": {
+            "cosine_test": 0.035,
+            "mse_rel": 1.3155
+          }
+        },
+        "selectividad_reread": 0.9719,
+        "selectividad_represent": 0.9937
+      }
+    },
+    "wave_re_s1": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.003917726005117098,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 57.32610321044922
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.03333333333333333,
+          "final_loss": 5.210936228434245,
+          "final_token_acc": 0.03333333333333333,
+          "max_em_in_window": 0.05,
+          "seconds": 40.36876082420349
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.382873050090294,
+          "final_token_acc": 0.09536784741144415,
+          "max_em_in_window": 0.0,
+          "seconds": 179.47922801971436
+        },
+        "state_tracking": {
+          "final_exact_match": 0.4066666666666667,
+          "final_loss": 1.0925969696044922,
+          "final_token_acc": 0.4066666666666667,
+          "max_em_in_window": 0.4066666666666667,
+          "seconds": 66.11661028862
+        },
+        "forget_retrieval": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.0017769697805245718,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 193.085111618042
+        }
+      },
+      "probe": {
+        "alive": {
+          "events": 320,
+          "em_reread": 1.0,
+          "em_represent": 1.0
+        },
+        "erased": {
+          "events": 320,
+          "em_reread": 0.0469,
+          "em_represent": 0.0063,
+          "fuga_power_reread": [
+            0.0,
+            0.0
+          ],
+          "fuga_power_represent": [
+            0.1655,
+            0.1704
+          ],
+          "ridge_readout": {
+            "cosine_test": 0.0452,
+            "mse_rel": 1.0
+          },
+          "ridge_M_proj": {
+            "cosine_test": -0.0295,
+            "mse_rel": 1.4262
+          }
+        },
+        "selectividad_reread": 0.9531,
+        "selectividad_represent": 0.9937
+      }
+    },
+    "delta_forget_s1": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 0.075,
+          "final_loss": 7.669963836669922,
+          "final_token_acc": 0.075,
+          "max_em_in_window": 0.075,
+          "seconds": 36.72590255737305
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.041666666666666664,
+          "final_loss": 7.753398640950521,
+          "final_token_acc": 0.041666666666666664,
+          "max_em_in_window": 0.08333333333333333,
+          "seconds": 36.72511386871338
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.383012749085526,
+          "final_token_acc": 0.09309718437783833,
+          "max_em_in_window": 0.0,
+          "seconds": 152.0599286556244
+        },
+        "state_tracking": {
+          "final_exact_match": 0.4066666666666667,
+          "final_loss": 1.0935755157470703,
+          "final_token_acc": 0.4066666666666667,
+          "max_em_in_window": 0.4066666666666667,
+          "seconds": 53.42293310165405
+        },
+        "forget_retrieval": {
+          "final_exact_match": 0.0,
+          "final_loss": NaN,
+          "final_token_acc": 0.0,
+          "max_em_in_window": 0.06666666666666667,
+          "seconds": 279.7737159729004
+        }
+      },
+      "probe": {
+        "fr_status": "nan_failed"
+      }
+    },
+    "wave_complex_s2": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.004212401000161966,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 58.725143909454346
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.025,
+          "final_loss": 6.283420054117839,
+          "final_token_acc": 0.025,
+          "max_em_in_window": 0.05,
+          "seconds": 40.55675983428955
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.382704012334848,
+          "final_token_acc": 0.09870366158744599,
+          "max_em_in_window": 0.0,
+          "seconds": 186.13263773918152
+        },
+        "state_tracking": {
+          "final_exact_match": 0.32,
+          "final_loss": 1.1155641682942707,
+          "final_token_acc": 0.32,
+          "max_em_in_window": 0.37333333333333335,
+          "seconds": 72.93846821784973
+        },
+        "forget_retrieval": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.002215031534433365,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 207.309903383255
+        }
+      },
+      "probe": {
+        "alive": {
+          "events": 320,
+          "em_reread": 1.0,
+          "em_represent": 1.0
+        },
+        "erased": {
+          "events": 320,
+          "em_reread": 0.025,
+          "em_represent": 0.0,
+          "fuga_power_reread": [
+            0.0,
+            0.0
+          ],
+          "fuga_power_represent": [
+            0.3119,
+            0.3119
+          ],
+          "ridge_readout": {
+            "cosine_test": -0.0219,
+            "mse_rel": 1.0
+          },
+          "ridge_M_proj": {
+            "cosine_test": 0.015,
+            "mse_rel": 1.3522
+          }
+        },
+        "selectividad_reread": 0.975,
+        "selectividad_represent": 1.0
+      }
+    },
+    "wave_re_s2": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.003933128652473291,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 42.46664261817932
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.058333333333333334,
+          "final_loss": 5.381311289469401,
+          "final_token_acc": 0.058333333333333334,
+          "max_em_in_window": 0.058333333333333334,
+          "seconds": 41.848907709121704
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.383206695216554,
+          "final_token_acc": 0.0950648169206277,
+          "max_em_in_window": 0.0,
+          "seconds": 152.9008433818817
+        },
+        "state_tracking": {
+          "final_exact_match": 0.30666666666666664,
+          "final_loss": 1.1228473536173502,
+          "final_token_acc": 0.30666666666666664,
+          "max_em_in_window": 0.32,
+          "seconds": 64.87959480285645
+        },
+        "forget_retrieval": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.001770297959446907,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 195.30223298072815
+        }
+      },
+      "probe": {
+        "alive": {
+          "events": 320,
+          "em_reread": 1.0,
+          "em_represent": 1.0
+        },
+        "erased": {
+          "events": 320,
+          "em_reread": 0.025,
+          "em_represent": 0.0,
+          "fuga_power_reread": [
+            0.0,
+            0.0
+          ],
+          "fuga_power_represent": [
+            0.1639,
+            0.1637
+          ],
+          "ridge_readout": {
+            "cosine_test": 0.0139,
+            "mse_rel": 1.0
+          },
+          "ridge_M_proj": {
+            "cosine_test": 0.0084,
+            "mse_rel": 1.3683
+          }
+        },
+        "selectividad_reread": 0.975,
+        "selectividad_represent": 1.0
+      }
+    },
+    "delta_forget_s2": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 0.016666666666666666,
+          "final_loss": 7.881701787312825,
+          "final_token_acc": 0.016666666666666666,
+          "max_em_in_window": 0.06666666666666667,
+          "seconds": 37.84994959831238
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.041666666666666664,
+          "final_loss": 7.668567148844401,
+          "final_token_acc": 0.041666666666666664,
+          "max_em_in_window": 0.08333333333333333,
+          "seconds": 37.911158323287964
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.3835793539207306,
+          "final_token_acc": 0.09119854446213327,
+          "max_em_in_window": 0.0,
+          "seconds": 146.50964856147766
+        },
+        "state_tracking": {
+          "final_exact_match": 0.32,
+          "final_loss": 1.1171129608154298,
+          "final_token_acc": 0.32,
+          "max_em_in_window": 0.32,
+          "seconds": 54.62903189659119
+        },
+        "forget_retrieval": {
+          "final_exact_match": 0.02,
+          "final_loss": 4.240096130371094,
+          "final_token_acc": 0.02,
+          "max_em_in_window": 0.07333333333333333,
+          "seconds": 205.69204330444336
+        }
+      },
+      "probe": {
+        "alive": {
+          "events": 320,
+          "em_reread": 0.025,
+          "em_represent": 0.0281
+        },
+        "erased": {
+          "events": 320,
+          "em_reread": 0.0188,
+          "em_represent": 0.0219,
+          "fuga_power_reread": [
+            1.8364614171885185e+32,
+            1.0559340327188898e+32
+          ],
+          "fuga_power_represent": [
+            2.010390058426803e+32,
+            5.883428027863764e+31
+          ],
+          "ridge_readout": {
+            "cosine_test": -0.0127,
+            "mse_rel": 2031308.1844
+          },
+          "ridge_M_proj": {
+            "cosine_test": 0.0027,
+            "mse_rel": 224249.825
+          }
+        },
+        "selectividad_reread": 0.0062,
+        "selectividad_represent": 0.0031
+      }
+    },
+    "wave_complex_s3": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.004900314037998518,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 38.59968018531799
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.025,
+          "final_loss": 6.214831670125325,
+          "final_token_acc": 0.025,
+          "max_em_in_window": 0.075,
+          "seconds": 38.40199041366577
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.385046495114519,
+          "final_token_acc": 0.09540072859744991,
+          "max_em_in_window": 0.0,
+          "seconds": 160.68338060379028
+        },
+        "state_tracking": {
+          "final_exact_match": 0.34,
+          "final_loss": 1.0988874816894532,
+          "final_token_acc": 0.34,
+          "max_em_in_window": 0.34,
+          "seconds": 67.65049862861633
+        },
+        "forget_retrieval": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.0022388872504234313,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 199.74852991104126
+        }
+      },
+      "probe": {
+        "alive": {
+          "events": 320,
+          "em_reread": 1.0,
+          "em_represent": 1.0
+        },
+        "erased": {
+          "events": 320,
+          "em_reread": 0.0281,
+          "em_represent": 0.0,
+          "fuga_power_reread": [
+            0.0,
+            0.0
+          ],
+          "fuga_power_represent": [
+            0.3176,
+            0.3245
+          ],
+          "ridge_readout": {
+            "cosine_test": -0.0063,
+            "mse_rel": 1.0
+          },
+          "ridge_M_proj": {
+            "cosine_test": -0.0106,
+            "mse_rel": 1.414
+          }
+        },
+        "selectividad_reread": 0.9719,
+        "selectividad_represent": 1.0
+      }
+    },
+    "wave_re_s3": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.004182059317827225,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 37.61412072181702
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.0,
+          "final_loss": 5.3694358189900715,
+          "final_token_acc": 0.0,
+          "max_em_in_window": 0.025,
+          "seconds": 37.12660193443298
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.3848295924007785,
+          "final_token_acc": 0.08925318761384335,
+          "max_em_in_window": 0.0,
+          "seconds": 181.04244875907898
+        },
+        "state_tracking": {
+          "final_exact_match": 0.32,
+          "final_loss": 1.1059049860636394,
+          "final_token_acc": 0.32,
+          "max_em_in_window": 0.34,
+          "seconds": 71.23917031288147
+        },
+        "forget_retrieval": {
+          "final_exact_match": 1.0,
+          "final_loss": 0.0015490093578894933,
+          "final_token_acc": 1.0,
+          "max_em_in_window": 1.0,
+          "seconds": 263.46652579307556
+        }
+      },
+      "probe": {
+        "alive": {
+          "events": 320,
+          "em_reread": 1.0,
+          "em_represent": 1.0
+        },
+        "erased": {
+          "events": 320,
+          "em_reread": 0.0281,
+          "em_represent": 0.0063,
+          "fuga_power_reread": [
+            0.0,
+            0.0
+          ],
+          "fuga_power_represent": [
+            0.168,
+            0.1693
+          ],
+          "ridge_readout": {
+            "cosine_test": 0.0306,
+            "mse_rel": 1.0
+          },
+          "ridge_M_proj": {
+            "cosine_test": -0.014,
+            "mse_rel": 1.3845
+          }
+        },
+        "selectividad_reread": 0.9719,
+        "selectividad_represent": 0.9937
+      }
+    },
+    "delta_forget_s3": {
+      "tasks": {
+        "mqar_1hop": {
+          "final_exact_match": 0.041666666666666664,
+          "final_loss": 6.9708201090494795,
+          "final_token_acc": 0.041666666666666664,
+          "max_em_in_window": 0.10833333333333334,
+          "seconds": 46.52249264717102
+        },
+        "mqar_2hop": {
+          "final_exact_match": 0.041666666666666664,
+          "final_loss": 7.133583450317383,
+          "final_token_acc": 0.041666666666666664,
+          "max_em_in_window": 0.06666666666666667,
+          "seconds": 44.387417793273926
+        },
+        "copy_reverse": {
+          "final_exact_match": 0.0,
+          "final_loss": 2.384447545953136,
+          "final_token_acc": 0.09790528233151184,
+          "max_em_in_window": 0.0,
+          "seconds": 178.96310091018677
+        },
+        "state_tracking": {
+          "final_exact_match": 0.34,
+          "final_loss": 1.099540074666341,
+          "final_token_acc": 0.34,
+          "max_em_in_window": 0.34,
+          "seconds": 59.56401181221008
+        },
+        "forget_retrieval": {
+          "final_exact_match": 0.0,
+          "final_loss": NaN,
+          "final_token_acc": 0.0,
+          "max_em_in_window": 0.05333333333333334,
+          "seconds": 240.09737825393677
+        }
+      },
+      "probe": {
+        "fr_status": "nan_failed"
+      }
+    }
+  },
+  "tost_control": {
+    "status": "NO COMPUTABLE en FR",
+    "reason": "delta_forget no entrena forget_retrieval a d=64 (EM ~ chance, loss NaN): el control de identidad wave_complex vs delta no existe en FR",
+    "n_common": 1
+  },
+  "contrast_re_vs_others": {
+    "by_seed": {
+      "1": {
+        "sel_re": 0.9531,
+        "sel_wc": 0.9719,
+        "sel_delta": null
+      },
+      "2": {
+        "sel_re": 0.975,
+        "sel_wc": 0.975,
+        "sel_delta": 0.0062
+      },
+      "3": {
+        "sel_re": 0.9719,
+        "sel_wc": 0.9719,
+        "sel_delta": null
+      }
+    },
+    "pred_deficit_re": "(n-1)/(2D) en fuga del canal re vs complex"
+  },
+  "env": {
+    "python": "3.14.6",
+    "torch": "2.10.0+cpu"
+  },
+  "git_hash": "834eb442482251b667dc16471c35731e2e823d85",
+  "total_seconds": 3230.3
+}
