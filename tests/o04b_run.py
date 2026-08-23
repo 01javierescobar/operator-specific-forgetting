@@ -54,7 +54,7 @@ def law(cell, channel, dlt, c, conv):
 
 
 def replay_wave(model, x, y, seqs, v_erased, cell, dlt, device, per_event=False,
-                return_pred=False):
+                return_pred=False, key_perturb=None, pparam=0.0):
     """Replay externo exacto del forward wave (memoria externa, sin
     decode_step del modelo) con inyeccion por celda. Devuelve EM y fuga
     POOLED por capa. Con per_event=True devuelve ademas los ratios de
@@ -100,11 +100,34 @@ def replay_wave(model, x, y, seqs, v_erased, cell, dlt, device, per_event=False,
                     M[b][write] += wv[write].unsqueeze(-1) * vts[b][write].unsqueeze(1)
             if erase.any():
                 wd = ph * cb[tok]
+                if key_perturb is not None:
+                    pp = pparam
+                    if key_perturb == 'coord_phase':
+                        # fase por-coordenada U(-pp,pp): cambia la direccion
+                        noise_ph = torch.exp(1j * ((torch.rand_like(
+                            wd[erase].real) * 2 - 1) * pp))
+                        wd_eff = wd.clone()
+                        wd_eff[erase] = wd[erase] * noise_ph
+                    elif key_perturb == 'additive':
+                        # ruido complejo gaussiano; amplitud preservada
+                        g = (torch.randn_like(wd[erase].real)
+                             + 1j * torch.randn_like(wd[erase].real)) \
+                            * (pp / math.sqrt(2.0))
+                        raw = wd[erase] + g
+                        norm_keep = (wd[erase].abs().pow(2).sum(dim=1)
+                                     ).sqrt().unsqueeze(-1).clamp(min=1e-12)
+                        newn = raw.abs().pow(2).sum(dim=1).sqrt().unsqueeze(-1).clamp(min=1e-12)
+                        wd_eff = wd.clone()
+                        wd_eff[erase] = raw / newn * norm_keep
+                    else:
+                        raise ValueError(key_perturb)
+                else:
+                    wd_eff = wd
                 for b in range(model.n_layers):
-                    wh = torch.einsum('bd,bdj->bj', torch.conj(wd)[erase], M[b][erase]) / D
+                    wh = torch.einsum('bd,bdj->bj', torch.conj(wd_eff)[erase], M[b][erase]) / D
                     if is_re:
                         wh = torch.complex(wh.real, torch.zeros_like(wh.real))
-                    outer = wd if cell == 'clave' else cb[tok]
+                    outer = wd_eff if cell == 'clave' else cb[tok]
                     M[b][erase] -= outer[erase].unsqueeze(-1) * wh.unsqueeze(1)
             if read.any():
                 for b in range(model.n_layers):

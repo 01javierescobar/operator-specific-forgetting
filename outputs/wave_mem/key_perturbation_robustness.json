@@ -1,0 +1,778 @@
+{
+ "variant": "key_perturbation_robustness",
+ "n_events": 320,
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "note": "perturbacion aplicada al erase key (celda clave) y comparada contra estado sin perturbar; global_phase es el caso del paper",
+ "runs": {
+  "wave_complex_s1": {
+   "global_phase@0.0": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "global_phase@0.3": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "coord_phase@0.1": {
+    "clave": {
+     "fuga": 0.00102,
+     "em_raw": 0.0281,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0281
+    },
+    "estado": {
+     "fuga": 0.00106,
+     "em_raw": 0.0281,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0281
+    }
+   },
+   "coord_phase@0.3": {
+    "clave": {
+     "fuga": 0.00978,
+     "em_raw": 0.0938,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0938
+    },
+    "estado": {
+     "fuga": 0.00958,
+     "em_raw": 0.05,
+     "null_frac": 0.0,
+     "em_nonnull": 0.05
+    }
+   },
+   "coord_phase@0.5": {
+    "clave": {
+     "fuga": 0.0304,
+     "em_raw": 0.5437,
+     "null_frac": 0.0,
+     "em_nonnull": 0.5437
+    },
+    "estado": {
+     "fuga": 0.02762,
+     "em_raw": 0.1406,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1406
+    }
+   },
+   "additive@0.05": {
+    "clave": {
+     "fuga": 0.00076,
+     "em_raw": 0.0281,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0281
+    },
+    "estado": {
+     "fuga": 0.00077,
+     "em_raw": 0.0281,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0281
+    }
+   },
+   "additive@0.15": {
+    "clave": {
+     "fuga": 0.00692,
+     "em_raw": 0.05,
+     "null_frac": 0.0,
+     "em_nonnull": 0.05
+    },
+    "estado": {
+     "fuga": 0.00706,
+     "em_raw": 0.0312,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0312
+    }
+   },
+   "additive@0.3": {
+    "clave": {
+     "fuga": 0.0321,
+     "em_raw": 0.5969,
+     "null_frac": 0.0,
+     "em_nonnull": 0.5969
+    },
+    "estado": {
+     "fuga": 0.0281,
+     "em_raw": 0.15,
+     "null_frac": 0.0,
+     "em_nonnull": 0.15
+    }
+   }
+  },
+  "wave_complex_s2": {
+   "global_phase@0.0": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0125,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0125,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "global_phase@0.3": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0125,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0125,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "coord_phase@0.1": {
+    "clave": {
+     "fuga": 0.00102,
+     "em_raw": 0.025,
+     "null_frac": 0.0,
+     "em_nonnull": 0.025
+    },
+    "estado": {
+     "fuga": 0.00103,
+     "em_raw": 0.025,
+     "null_frac": 0.0,
+     "em_nonnull": 0.025
+    }
+   },
+   "coord_phase@0.3": {
+    "clave": {
+     "fuga": 0.00978,
+     "em_raw": 0.1312,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1313
+    },
+    "estado": {
+     "fuga": 0.0094,
+     "em_raw": 0.0625,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0625
+    }
+   },
+   "coord_phase@0.5": {
+    "clave": {
+     "fuga": 0.03021,
+     "em_raw": 0.5312,
+     "null_frac": 0.0,
+     "em_nonnull": 0.5312
+    },
+    "estado": {
+     "fuga": 0.02713,
+     "em_raw": 0.1562,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1562
+    }
+   },
+   "additive@0.05": {
+    "clave": {
+     "fuga": 0.00076,
+     "em_raw": 0.0188,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0187
+    },
+    "estado": {
+     "fuga": 0.00077,
+     "em_raw": 0.0219,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0219
+    }
+   },
+   "additive@0.15": {
+    "clave": {
+     "fuga": 0.00716,
+     "em_raw": 0.1063,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1062
+    },
+    "estado": {
+     "fuga": 0.00699,
+     "em_raw": 0.0469,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0469
+    }
+   },
+   "additive@0.3": {
+    "clave": {
+     "fuga": 0.03148,
+     "em_raw": 0.5281,
+     "null_frac": 0.0,
+     "em_nonnull": 0.5281
+    },
+    "estado": {
+     "fuga": 0.02817,
+     "em_raw": 0.1625,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1625
+    }
+   }
+  },
+  "wave_complex_s3": {
+   "global_phase@0.0": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "global_phase@0.3": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "coord_phase@0.1": {
+    "clave": {
+     "fuga": 0.00103,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    },
+    "estado": {
+     "fuga": 0.00106,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    }
+   },
+   "coord_phase@0.3": {
+    "clave": {
+     "fuga": 0.00974,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    },
+    "estado": {
+     "fuga": 0.00938,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    }
+   },
+   "coord_phase@0.5": {
+    "clave": {
+     "fuga": 0.03075,
+     "em_raw": 0.2125,
+     "null_frac": 0.0,
+     "em_nonnull": 0.2125
+    },
+    "estado": {
+     "fuga": 0.02745,
+     "em_raw": 0.0406,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0406
+    }
+   },
+   "additive@0.05": {
+    "clave": {
+     "fuga": 0.00077,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    },
+    "estado": {
+     "fuga": 0.00077,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    }
+   },
+   "additive@0.15": {
+    "clave": {
+     "fuga": 0.00716,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    },
+    "estado": {
+     "fuga": 0.00684,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    }
+   },
+   "additive@0.3": {
+    "clave": {
+     "fuga": 0.03252,
+     "em_raw": 0.2469,
+     "null_frac": 0.0,
+     "em_nonnull": 0.2469
+    },
+    "estado": {
+     "fuga": 0.02749,
+     "em_raw": 0.0281,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0281
+    }
+   }
+  },
+  "wave_re_s1": {
+   "global_phase@0.0": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "global_phase@0.3": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0281,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "coord_phase@0.1": {
+    "clave": {
+     "fuga": 0.00051,
+     "em_raw": 0.0344,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0344
+    },
+    "estado": {
+     "fuga": 0.00051,
+     "em_raw": 0.0312,
+     "null_frac": 0.0031,
+     "em_nonnull": 0.0313
+    }
+   },
+   "coord_phase@0.3": {
+    "clave": {
+     "fuga": 0.00555,
+     "em_raw": 0.1406,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1406
+    },
+    "estado": {
+     "fuga": 0.00472,
+     "em_raw": 0.0531,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0531
+    }
+   },
+   "coord_phase@0.5": {
+    "clave": {
+     "fuga": 0.01896,
+     "em_raw": 0.7125,
+     "null_frac": 0.0,
+     "em_nonnull": 0.7125
+    },
+    "estado": {
+     "fuga": 0.01442,
+     "em_raw": 0.2125,
+     "null_frac": 0.0,
+     "em_nonnull": 0.2125
+    }
+   },
+   "additive@0.05": {
+    "clave": {
+     "fuga": 0.00039,
+     "em_raw": 0.0312,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0312
+    },
+    "estado": {
+     "fuga": 0.00038,
+     "em_raw": 0.0281,
+     "null_frac": 0.0031,
+     "em_nonnull": 0.0282
+    }
+   },
+   "additive@0.15": {
+    "clave": {
+     "fuga": 0.00375,
+     "em_raw": 0.0938,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0938
+    },
+    "estado": {
+     "fuga": 0.00345,
+     "em_raw": 0.05,
+     "null_frac": 0.0,
+     "em_nonnull": 0.05
+    }
+   },
+   "additive@0.3": {
+    "clave": {
+     "fuga": 0.01971,
+     "em_raw": 0.7156,
+     "null_frac": 0.0,
+     "em_nonnull": 0.7156
+    },
+    "estado": {
+     "fuga": 0.01449,
+     "em_raw": 0.1937,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1938
+    }
+   }
+  },
+  "wave_re_s2": {
+   "global_phase@0.0": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0219,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0219,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "global_phase@0.3": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0219,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0219,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "coord_phase@0.1": {
+    "clave": {
+     "fuga": 0.00051,
+     "em_raw": 0.0312,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0312
+    },
+    "estado": {
+     "fuga": 0.0005,
+     "em_raw": 0.0344,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0344
+    }
+   },
+   "coord_phase@0.3": {
+    "clave": {
+     "fuga": 0.00543,
+     "em_raw": 0.1469,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1469
+    },
+    "estado": {
+     "fuga": 0.00468,
+     "em_raw": 0.0656,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0656
+    }
+   },
+   "coord_phase@0.5": {
+    "clave": {
+     "fuga": 0.01925,
+     "em_raw": 0.525,
+     "null_frac": 0.0,
+     "em_nonnull": 0.525
+    },
+    "estado": {
+     "fuga": 0.01398,
+     "em_raw": 0.1562,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1562
+    }
+   },
+   "additive@0.05": {
+    "clave": {
+     "fuga": 0.00038,
+     "em_raw": 0.025,
+     "null_frac": 0.0,
+     "em_nonnull": 0.025
+    },
+    "estado": {
+     "fuga": 0.00039,
+     "em_raw": 0.025,
+     "null_frac": 0.0,
+     "em_nonnull": 0.025
+    }
+   },
+   "additive@0.15": {
+    "clave": {
+     "fuga": 0.00381,
+     "em_raw": 0.1031,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1031
+    },
+    "estado": {
+     "fuga": 0.00344,
+     "em_raw": 0.0625,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0625
+    }
+   },
+   "additive@0.3": {
+    "clave": {
+     "fuga": 0.01929,
+     "em_raw": 0.5312,
+     "null_frac": 0.0,
+     "em_nonnull": 0.5312
+    },
+    "estado": {
+     "fuga": 0.0144,
+     "em_raw": 0.1656,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1656
+    }
+   }
+  },
+  "wave_re_s3": {
+   "global_phase@0.0": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "global_phase@0.3": {
+    "clave": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    },
+    "estado": {
+     "fuga": 0.0,
+     "em_raw": 0.0094,
+     "null_frac": 1.0,
+     "em_nonnull": null
+    }
+   },
+   "coord_phase@0.1": {
+    "clave": {
+     "fuga": 0.00052,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    },
+    "estado": {
+     "fuga": 0.00051,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    }
+   },
+   "coord_phase@0.3": {
+    "clave": {
+     "fuga": 0.0052,
+     "em_raw": 0.0437,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0437
+    },
+    "estado": {
+     "fuga": 0.00472,
+     "em_raw": 0.0188,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0187
+    }
+   },
+   "coord_phase@0.5": {
+    "clave": {
+     "fuga": 0.01884,
+     "em_raw": 0.5219,
+     "null_frac": 0.0,
+     "em_nonnull": 0.5219
+    },
+    "estado": {
+     "fuga": 0.01384,
+     "em_raw": 0.1094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1094
+    }
+   },
+   "additive@0.05": {
+    "clave": {
+     "fuga": 0.00038,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    },
+    "estado": {
+     "fuga": 0.00038,
+     "em_raw": 0.0094,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0094
+    }
+   },
+   "additive@0.15": {
+    "clave": {
+     "fuga": 0.00384,
+     "em_raw": 0.025,
+     "null_frac": 0.0,
+     "em_nonnull": 0.025
+    },
+    "estado": {
+     "fuga": 0.00348,
+     "em_raw": 0.0125,
+     "null_frac": 0.0,
+     "em_nonnull": 0.0125
+    }
+   },
+   "additive@0.3": {
+    "clave": {
+     "fuga": 0.01935,
+     "em_raw": 0.5344,
+     "null_frac": 0.0,
+     "em_nonnull": 0.5344
+    },
+    "estado": {
+     "fuga": 0.01431,
+     "em_raw": 0.1125,
+     "null_frac": 0.0,
+     "em_nonnull": 0.1125
+    }
+   }
+  }
+ },
+ "summary": {
+  "wave_complex/global_phase@0.0": {
+   "clave_fuga_mean": 0.0,
+   "clave_em_mean": 0.0167,
+   "clave_null_frac_mean": 1.0
+  },
+  "wave_re/global_phase@0.0": {
+   "clave_fuga_mean": 0.0,
+   "clave_em_mean": 0.0198,
+   "clave_null_frac_mean": 1.0
+  },
+  "wave_complex/global_phase@0.3": {
+   "clave_fuga_mean": 0.0,
+   "clave_em_mean": 0.0167,
+   "clave_null_frac_mean": 1.0
+  },
+  "wave_re/global_phase@0.3": {
+   "clave_fuga_mean": 0.0,
+   "clave_em_mean": 0.0198,
+   "clave_null_frac_mean": 1.0
+  },
+  "wave_complex/coord_phase@0.1": {
+   "clave_fuga_mean": 0.00102,
+   "clave_em_mean": 0.0208,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_re/coord_phase@0.1": {
+   "clave_fuga_mean": 0.00051,
+   "clave_em_mean": 0.025,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_complex/coord_phase@0.3": {
+   "clave_fuga_mean": 0.00977,
+   "clave_em_mean": 0.0781,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_re/coord_phase@0.3": {
+   "clave_fuga_mean": 0.00539,
+   "clave_em_mean": 0.1104,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_complex/coord_phase@0.5": {
+   "clave_fuga_mean": 0.03045,
+   "clave_em_mean": 0.4291,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_re/coord_phase@0.5": {
+   "clave_fuga_mean": 0.01902,
+   "clave_em_mean": 0.5865,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_complex/additive@0.05": {
+   "clave_fuga_mean": 0.00076,
+   "clave_em_mean": 0.0188,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_re/additive@0.05": {
+   "clave_fuga_mean": 0.00038,
+   "clave_em_mean": 0.0219,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_complex/additive@0.15": {
+   "clave_fuga_mean": 0.00708,
+   "clave_em_mean": 0.0552,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_re/additive@0.15": {
+   "clave_fuga_mean": 0.0038,
+   "clave_em_mean": 0.074,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_complex/additive@0.3": {
+   "clave_fuga_mean": 0.03203,
+   "clave_em_mean": 0.4573,
+   "clave_null_frac_mean": 0.0
+  },
+  "wave_re/additive@0.3": {
+   "clave_fuga_mean": 0.01945,
+   "clave_em_mean": 0.5937,
+   "clave_null_frac_mean": 0.0
+  }
+ }
+}
