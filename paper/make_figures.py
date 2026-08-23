@@ -136,7 +136,7 @@ arrow(3.6, 2.4, 5.7, 1.2, label=r"Subtract", lx=-0.35, ly=-0.35)
 arrow(7.6, 2.3, 7.6, 1.7, color="#b07d2b", style="-|>", label=r"drift $\delta$", lx=0.5, ly=0.0)
 
 # Bottom note
-ax.text(5.0, -0.25, r"$\mathbf{State\ drift}$: stored item $\mathbf{v}_j e^{i\delta}$ at write;  $\mathbf{Key\ drift}$: erase key $\mathbf{w}_j e^{i\delta}$ only",
+ax.text(5.0, -0.25, r"$\mathbf{State\ drift}$: stored item keyed by $(e^{i\delta}\mathbf{w}_j)\mathbf{v}_j^\top$;  $\mathbf{Key\ drift}$: erase key $\mathbf{w}_j e^{i\delta}$ only",
         fontsize=8.5, color="#444", ha="center")
 
 savefig(fig, "fig1_memory_diagram")
@@ -184,13 +184,14 @@ for ax, (cell, chan, title) in zip(axes.flat, cells_info):
         xd128, meds, yerr=[[m - lo for m, lo in zip(meds, los)],
                         [hi - m for m, hi in zip(meds, his)]],
         fmt="o", ms=4.5, color="#1f4e79", capsize=2, lw=0.9,
-        label=r"$d=128$, 5 seeds", zorder=4)
+        label=r"$D=128$, 5 seeds", zorder=4)
     if cell != "clave" or chan != "complex":
         f64 = [statistics.median(o04b_fugas(arm, cell, dl)) for dl in DL]
         ax.plot(xd64, f64, "s", ms=4, mfc="none", mec="#b02a37", mew=1.2,
-                label=r"$d=64$, 3 seeds", zorder=4)
+                label=r"$D=64$, 3 seeds", zorder=4)
     if cell == "clave" and chan == "complex":
         ax.set_ylim(-0.0012, 0.0012)
+        ax.set_yticks([0])
         ax.annotate("consistent with zero\n(below $\\varepsilon_{null}$ in all runs)", xy=(0.25, 0.00045),
                     fontsize=8.5, color="#555", ha="center")
     ax.set_title(title, fontsize=10)
@@ -329,7 +330,7 @@ ax.set_ylim(10, 1e14)
 ax.set_xlim(-0.6, 4.6)
 ax.grid(alpha=0.25, lw=0.5, which="both")
 
-ax.annotate(r"Diverges ($\|\mathbf{S}\| \sim 10^{11}$--$10^{12}$)" + "\n" + r"$\mathrm{EM}\approx 0.03$--$0.05$",
+ax.annotate("Diverges ($\\|\\mathbf{S}\\| \\sim 10^{11}\\!-\\!10^{12}$)\nEM $\\approx$ 0.03--0.05",
             xy=(0.6, 2e8), fontsize=8.2, color="#b02a37", ha="center",
             bbox=dict(boxstyle="round,pad=0.25", fc="#fdf2f2", ec="#b02a37", lw=0.7))
 ax.annotate(r"Bounded ($\|\mathbf{S}\| \approx 55$)" + "\n" + r"$\mathrm{EM}=1.000$",

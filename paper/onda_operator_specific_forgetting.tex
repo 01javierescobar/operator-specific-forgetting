@@ -50,7 +50,7 @@ The primary contributions are:
   \item A protocol that treats forgetting as an operator-specific benchmark, separating pooled energy leakage from functional decodability.
   \item Four closed-form, fit-free residual laws for complex and real-truncated channels under key and state drift.
   \item Empirical verification of these laws in trained matrix-valued memories at $D=64$ and $D=128$ under approximately matched associative load.
-  \item An applied LMS reading of the corrective delta write: the classical stability condition $0 < \beta\|\mathbf{k}\|^2 < 2$ \citep{widrow1960adaptive,widrow1985adaptive} explains why an unnormalized corrective baseline diverges in practice, while open-loop superposition writes admit no feedback path and therefore cannot diverge.
+  \item An applied LMS reading of the corrective delta write: the classical stability condition $0 < \beta\|\mathbf{k}\|^2 < 2$ \citep{widrow1960adaptive,widrow1985adaptive} explains why an unnormalized corrective baseline diverges in practice, while open-loop superposition writes have no feedback path and therefore do not exhibit this feedback-induced divergence under the tested protocol.
 \end{enumerate}
 
 The memory construction is grounded in classical associative memory \citep{kohonen1972correlation,willshaw1969nonholographic,hopfield1982neural}, holographic reduced representations, vector-symbolic architectures, complex associative memories, and linear-attention/fast-weight architectures \citep{plate1995holographic,kanerva2009hyperdimensional,gayler2003vector,frady2018theory,frady2020resonator,noest1988phasor,katharopoulos2020transformers,schlag2021fastweight,yang2024deltanet}. Superposition, conjugate matched filtering, and subtractive unbinding are established ingredients. We formalize operator-specific forgetting, derive closed-form residual laws, and analyze write stability within this memory formulation.
@@ -141,7 +141,7 @@ s_t = \bigl(1 - \beta\|\mathbf{k}_t\|^2\bigr) s_{t-1} + \beta\, q_t,
 \end{equation}
 where $q_t$ represents crosstalk interference. The homogeneous dynamics are stable if and only if $|1 - \beta\|\mathbf{k}_t\|^2| < 1$, which requires $0 < \beta\|\mathbf{k}_t\|^2 < 2$.
 
-With $\beta=1$ and unnormalized key embeddings initialized such that $\|\mathbf{k}_t\|^2 \approx 8$, the directional feedback multiplier is approximately $1 - 8 = -7$. The task uses a finite key vocabulary that recurs across updates, so this per-direction multiplier is applied repeatedly along shared directions. Under the quasi-orthogonality approximation these directions evolve independently, and their error components compound: $\|\St\|$ grows to $10^{11}$--$10^{12}$ within the first epochs, and the unnormalized corrective baseline fails. Normalizing the keys ($\|\mathbf{k}_t\|_2^2=1$) yields a normalized-key delta update \citep{widrow1960adaptive,widrow1985adaptive}; for $0 < \beta < 2$, this ensures $|1-\beta|<1$ and keeps the directional homogeneous dynamics inside the unit disk, maintaining bounded state norm and achieving stable retrieval (Figure~\ref{fig:stability}).
+With $\beta=1$ and unnormalized key embeddings initialized such that $\|\mathbf{k}_t\|^2 \approx 8$, the directional feedback multiplier is approximately $1 - 8 = -7$. The task uses a finite key vocabulary that recurs across updates, so this per-direction multiplier is applied repeatedly along shared directions. Under the quasi-orthogonality approximation these directions evolve independently, and their error components compound. With unnormalized random-item writes the state norm reaches $10^{11}$--$10^{12}$; under gradient-clipped training the baseline stalls at $10^{5}$--$10^{7}$ with failed retrieval (Figure~\ref{fig:stability}). Normalizing the keys ($\|\mathbf{k}_t\|_2^2=1$) yields the normalized least-mean-squares (NLMS) delta update \citep{widrow1960adaptive,widrow1985adaptive}; for $0 < \beta < 2$, this ensures $|1-\beta|<1$ and keeps the directional homogeneous dynamics inside the unit disk, maintaining bounded state norm and achieving stable retrieval (Figure~\ref{fig:stability}).
 
 This stability derivation provides an explanatory mechanism for why unnormalized closed-loop delta writes diverge without key normalization. It does not imply that all contemporary delta-rule architectures are unstable, as modern implementations typically incorporate RMSNorm, LayerNorm, or decay gating \citep{yang2024deltanet,yang2025gateddelta}. In contrast, the open-loop superposition write possesses no corrective feedback loop and does not exhibit the corrective-feedback instability analyzed here.
 
@@ -170,7 +170,7 @@ At $D=128$, all 15 seed--arm combinations reached $\mathrm{EM}=1.000$; at $D=64$
 
 \section{Results}\label{sec:results}
 
-Table~\ref{tab:deviations} reports maximum absolute deviations between measured pooled residuals and the closed-form predictions across cells and dimensions, recomputed directly from the frozen JSON artifacts by \texttt{verify\_numbers.py}. At $D=64$, the maximum absolute deviation is $0.0094$; at $D=128$, it is $0.0049$. Both values remain below the pre-specified consistency tolerance of $0.02$ (Figure~\ref{fig:laws}); ensemble-calibrated standard deviations (Supp.~G) place these maxima at approximately one standard deviation of the random-key ensemble.
+Table~\ref{tab:deviations} reports maximum absolute deviations between measured pooled residuals and the closed-form predictions across cells and dimensions, recomputed directly from the frozen JSON artifacts by \texttt{verify\_numbers.py}. At $D=64$, the maximum absolute deviation is $0.0094$; at $D=128$, it is $0.0049$. Both values remain below the pre-specified consistency tolerance of $0.02$ (Figure~\ref{fig:laws}); ensemble-calibrated standard deviations (Supp.~G) place these maxima at approximately one ensemble standard deviation in magnitude---a scale consistency that the single-codebook design cannot test further.
 
 \begin{table}[t]
   \centering
@@ -216,7 +216,7 @@ The unnormalized $\beta=1$ corrective delta baseline failed to train because its
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.62\textwidth]{fig6_tost.pdf}
-  \caption{Two one-sided $t$-test (TOST at $\alpha=0.05$, $90\%$ CI) on retrieval selectivity between wave complex and normalized delta ($\varepsilon=0.02$, $n=5$ seeds). Mean difference: $-0.0031$; $90\%$ CI: $[-0.0206,\,0.0144]$. The confidence interval crosses $-\varepsilon$ by $0.0006$.}
+  \caption{Two one-sided $t$-tests (TOST; $\alpha=0.05$, $90\%$ CI) on retrieval selectivity between wave complex and normalized delta ($\varepsilon=0.02$, $n=5$ seeds). Mean difference: $-0.0031$; $90\%$ CI: $[-0.0206,\,0.0144]$. The confidence interval crosses $-\varepsilon$ by $0.0006$.}
   \label{fig:tost}
 \end{figure}
 
@@ -240,7 +240,7 @@ Selective forgetting in recurrent associative memory cannot be characterized ade
 
 \section*{Reproducibility}
 
-Code, configurations, checkpoints, raw JSON outputs, execution logs, and verification scripts are released in the open repository \url{https://github.com/01javierescobar/operator-specific-forgetting}, archived with DOI \href{https://doi.org/10.5281/zenodo.22051928}{10.5281/zenodo.22051928}. The frozen reference commit is \texttt{cec4ffe}, tagged \texttt{lab-radioactivo-v1}. All quantitative values in this manuscript are recomputed directly from the frozen JSON artifacts by \texttt{paper/verify\_numbers.py}; all figures are regenerated by \texttt{paper/make\_figures.py}. The primary trained-model gate (O05) was executed on two NVIDIA T4 GPUs (Kaggle kernel \texttt{javierezcobar/onda-o05}, 5.44~h, 15 runs).
+Code, configurations, checkpoints, raw JSON outputs, execution logs, and verification scripts are released in the open repository \url{https://github.com/01javierescobar/operator-specific-forgetting}, archived with DOI \href{https://doi.org/10.5281/zenodo.22051928}{10.5281/zenodo.22051928}; supplementary material with derivations, protocol details, and calibration results accompanies this manuscript (its Sections F and G are cited below). The frozen reference commit is \texttt{cec4ffe}, tagged \texttt{lab-radioactivo-v1}. All quantitative values in this manuscript are recomputed directly from the frozen JSON artifacts by \texttt{paper/verify\_numbers.py}; all figures are regenerated by \texttt{paper/make\_figures.py}. The primary trained-model gate (O05) was executed on two NVIDIA T4 GPUs (Kaggle kernel \texttt{javierezcobar/onda-o05}, 5.44~h, 15 runs).
 
 \section*{Use of AI tools}
 
