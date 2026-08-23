@@ -1,0 +1,14 @@
+{
+  "id": "javierezcobar/onda-tost-v2-pilot",
+  "title": "onda tost v2 pilot",
+  "code_file": "tostv2_pilot.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "javierezcobar/onda-paper-artifacts"
+  ],
+  "enable_gpu": true,
+  "machine_shape": "NvidiaTeslaT4"
+}

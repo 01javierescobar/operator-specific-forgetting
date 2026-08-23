@@ -248,7 +248,8 @@ def main():
                 ckpt = torch.load(ck, map_location=device)
                 model.load_state_dict(ckpt['model'])
                 model.to(device).eval()
-                if any(torch.isnan(p).any().item() for p in model.parameters()):
+                if any(torch.isnan(p.detach().cpu()).any().item()
+                       for p in model.parameters()):
                     print('  WARNING: NaN en ckpt', flush=True)
                     out['runs'][label] = {'train_em': train_em, 'status': 'nan'}
                     continue

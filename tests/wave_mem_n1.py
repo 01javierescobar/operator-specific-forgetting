@@ -323,7 +323,8 @@ def main():
 
             probe = {}
             fr_ok = True
-            if any(torch.isnan(p).any().item() for p in model.parameters()):
+            if any(torch.isnan(p.detach().cpu()).any().item()
+                   for p in model.parameters()):
                 print(f'  WARNING: ckpt {arm_name} seed {seed} NaN (FR no entrena '
                       f'- probable: regla delta no aprende FR a d=64)', flush=True)
                 fr_ok = False
