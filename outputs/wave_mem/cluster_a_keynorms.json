@@ -1,0 +1,73 @@
+{
+ "wave_codebook": {
+  "note": "unit-modulus entries; ||k||^2 = D",
+  "D": 128
+ },
+ "delta_nlms_prenorm": {
+  "s1": {
+   "block0": {
+    "mean_sq": 28.281,
+    "min_sq": 17.473,
+    "max_sq": 42.687
+   },
+   "block1": {
+    "mean_sq": 28.615,
+    "min_sq": 19.56,
+    "max_sq": 41.803
+   }
+  },
+  "s2": {
+   "block0": {
+    "mean_sq": 27.636,
+    "min_sq": 18.326,
+    "max_sq": 38.742
+   },
+   "block1": {
+    "mean_sq": 28.987,
+    "min_sq": 18.401,
+    "max_sq": 41.61
+   }
+  },
+  "s3": {
+   "block0": {
+    "mean_sq": 27.105,
+    "min_sq": 19.747,
+    "max_sq": 39.473
+   },
+   "block1": {
+    "mean_sq": 36.79,
+    "min_sq": 22.466,
+    "max_sq": 55.284
+   }
+  },
+  "s4": {
+   "block0": {
+    "mean_sq": 33.802,
+    "min_sq": 24.681,
+    "max_sq": 44.794
+   },
+   "block1": {
+    "mean_sq": 27.868,
+    "min_sq": 18.634,
+    "max_sq": 39.515
+   }
+  },
+  "s5": {
+   "block0": {
+    "mean_sq": 27.104,
+    "min_sq": 17.233,
+    "max_sq": 39.015
+   },
+   "block1": {
+    "mean_sq": 26.217,
+    "min_sq": 17.142,
+    "max_sq": 46.28
+   }
+  }
+ },
+ "delta_nlms_prenorm_block0_mean": 28.786,
+ "delta_nlms_prenorm_block1_mean": 29.695,
+ "wave_emb_key_mean_sq": 101.97,
+ "delta_forget_first_linear": "blocks.0.k_proj",
+ "delta_forget_init_key_sq": 31.814
+}

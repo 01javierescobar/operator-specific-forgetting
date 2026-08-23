@@ -1,0 +1,332 @@
+{
+ "variant": "cluster_a_permutation",
+ "P": 10000,
+ "note": "pred-permutation null pending; binomial vs nominal chance reported",
+ "results": {
+  "wave_complex_s1@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0281,
+   "C_failure": 0.0
+  },
+  "wave_complex_s1@d0.1": {
+   "status": "all-null",
+   "A_raw": 0.0281,
+   "C_failure": 0.0
+  },
+  "wave_complex_s1@d0.2": {
+   "status": "all-null",
+   "A_raw": 0.0281,
+   "C_failure": 0.0
+  },
+  "wave_complex_s1@d0.3": {
+   "status": "all-null",
+   "A_raw": 0.0281,
+   "C_failure": 0.0
+  },
+  "wave_complex_s1@d0.4": {
+   "status": "all-null",
+   "A_raw": 0.0281,
+   "C_failure": 0.0
+  },
+  "wave_complex_s1@d0.5": {
+   "status": "all-null",
+   "A_raw": 0.0281,
+   "C_failure": 0.0
+  },
+  "wave_complex_s2@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0125,
+   "C_failure": 0.0
+  },
+  "wave_complex_s2@d0.1": {
+   "status": "all-null",
+   "A_raw": 0.0125,
+   "C_failure": 0.0
+  },
+  "wave_complex_s2@d0.2": {
+   "status": "all-null",
+   "A_raw": 0.0125,
+   "C_failure": 0.0
+  },
+  "wave_complex_s2@d0.3": {
+   "status": "all-null",
+   "A_raw": 0.0125,
+   "C_failure": 0.0
+  },
+  "wave_complex_s2@d0.4": {
+   "status": "all-null",
+   "A_raw": 0.0125,
+   "C_failure": 0.0
+  },
+  "wave_complex_s2@d0.5": {
+   "status": "all-null",
+   "A_raw": 0.0125,
+   "C_failure": 0.0
+  },
+  "wave_complex_s3@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0094,
+   "C_failure": 0.0
+  },
+  "wave_complex_s3@d0.1": {
+   "status": "all-null",
+   "A_raw": 0.0094,
+   "C_failure": 0.0
+  },
+  "wave_complex_s3@d0.2": {
+   "status": "all-null",
+   "A_raw": 0.0094,
+   "C_failure": 0.0
+  },
+  "wave_complex_s3@d0.3": {
+   "status": "all-null",
+   "A_raw": 0.0094,
+   "C_failure": 0.0
+  },
+  "wave_complex_s3@d0.4": {
+   "status": "all-null",
+   "A_raw": 0.0094,
+   "C_failure": 0.0
+  },
+  "wave_complex_s3@d0.5": {
+   "status": "all-null",
+   "A_raw": 0.0094,
+   "C_failure": 0.0
+  },
+  "wave_complex_s4@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0187,
+   "C_failure": 0.0
+  },
+  "wave_complex_s4@d0.1": {
+   "status": "all-null",
+   "A_raw": 0.0187,
+   "C_failure": 0.0
+  },
+  "wave_complex_s4@d0.2": {
+   "status": "all-null",
+   "A_raw": 0.0187,
+   "C_failure": 0.0
+  },
+  "wave_complex_s4@d0.3": {
+   "status": "all-null",
+   "A_raw": 0.0187,
+   "C_failure": 0.0
+  },
+  "wave_complex_s4@d0.4": {
+   "status": "all-null",
+   "A_raw": 0.0187,
+   "C_failure": 0.0
+  },
+  "wave_complex_s4@d0.5": {
+   "status": "all-null",
+   "A_raw": 0.0187,
+   "C_failure": 0.0
+  },
+  "wave_complex_s5@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.025,
+   "C_failure": 0.0
+  },
+  "wave_complex_s5@d0.1": {
+   "status": "all-null",
+   "A_raw": 0.025,
+   "C_failure": 0.0
+  },
+  "wave_complex_s5@d0.2": {
+   "status": "all-null",
+   "A_raw": 0.025,
+   "C_failure": 0.0
+  },
+  "wave_complex_s5@d0.3": {
+   "status": "all-null",
+   "A_raw": 0.025,
+   "C_failure": 0.0
+  },
+  "wave_complex_s5@d0.4": {
+   "status": "all-null",
+   "A_raw": 0.025,
+   "C_failure": 0.0
+  },
+  "wave_complex_s5@d0.5": {
+   "status": "all-null",
+   "A_raw": 0.025,
+   "C_failure": 0.0
+  },
+  "wave_re_s1@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0281,
+   "C_failure": 0.0
+  },
+  "wave_re_s1@d0.1": {
+   "em_obs": 0.0563,
+   "hits": 18,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0002
+  },
+  "wave_re_s1@d0.2": {
+   "em_obs": 0.25,
+   "hits": 80,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s1@d0.3": {
+   "em_obs": 0.775,
+   "hits": 248,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s1@d0.4": {
+   "em_obs": 0.9906,
+   "hits": 317,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s1@d0.5": {
+   "em_obs": 1.0,
+   "hits": 320,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s2@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0219,
+   "C_failure": 0.0
+  },
+  "wave_re_s2@d0.1": {
+   "em_obs": 0.075,
+   "hits": 24,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s2@d0.2": {
+   "em_obs": 0.1969,
+   "hits": 63,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s2@d0.3": {
+   "em_obs": 0.5687,
+   "hits": 182,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s2@d0.4": {
+   "em_obs": 0.9187,
+   "hits": 294,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s2@d0.5": {
+   "em_obs": 0.975,
+   "hits": 312,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s3@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0094,
+   "C_failure": 0.0
+  },
+  "wave_re_s3@d0.1": {
+   "em_obs": 0.0125,
+   "hits": 4,
+   "n": 320,
+   "p_binomial_vs_chance": 0.9015
+  },
+  "wave_re_s3@d0.2": {
+   "em_obs": 0.0938,
+   "hits": 30,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s3@d0.3": {
+   "em_obs": 0.6062,
+   "hits": 194,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s3@d0.4": {
+   "em_obs": 0.9281,
+   "hits": 297,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s3@d0.5": {
+   "em_obs": 1.0,
+   "hits": 320,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s4@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.0219,
+   "C_failure": 0.0
+  },
+  "wave_re_s4@d0.1": {
+   "em_obs": 0.0469,
+   "hits": 15,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0033
+  },
+  "wave_re_s4@d0.2": {
+   "em_obs": 0.2125,
+   "hits": 68,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s4@d0.3": {
+   "em_obs": 0.7156,
+   "hits": 229,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s4@d0.4": {
+   "em_obs": 0.975,
+   "hits": 312,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s4@d0.5": {
+   "em_obs": 1.0,
+   "hits": 320,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s5@d0.0": {
+   "status": "all-null",
+   "A_raw": 0.025,
+   "C_failure": 0.0
+  },
+  "wave_re_s5@d0.1": {
+   "em_obs": 0.05,
+   "hits": 16,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0013
+  },
+  "wave_re_s5@d0.2": {
+   "em_obs": 0.1906,
+   "hits": 61,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s5@d0.3": {
+   "em_obs": 0.6344,
+   "hits": 203,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s5@d0.4": {
+   "em_obs": 0.9938,
+   "hits": 318,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  },
+  "wave_re_s5@d0.5": {
+   "em_obs": 1.0,
+   "hits": 320,
+   "n": 320,
+   "p_binomial_vs_chance": 0.0
+  }
+ }
+}
