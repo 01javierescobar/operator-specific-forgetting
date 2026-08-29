@@ -342,11 +342,12 @@ savefig(fig, "fig5_write_stability")
 
 # ---------------------------------------------------------------------------
 print("fig6: TOST")
-mean = o05["tost"]["mean_delta"]
-sd = o05["tost"]["sd"]
-n = o05["tost"]["n_seeds"]
-eps = o05["tost"]["eps"]
-ci = o05["tost"]["ci90"]
+t8 = load("outputs/wave_mem/tostv2.json")["tost_wave_complex_vs_delta_nlms"]
+mean = t8["mean_delta"]
+sd = t8["sd"]
+n = t8["n_seeds"]
+eps = t8["eps"]
+ci = t8["ci90"]
 df = n - 1
 se = sd / math.sqrt(n)
 x = [v / 1000 for v in range(-60, 61)]
@@ -368,15 +369,15 @@ ax.plot([ci[1]], [y_bar], "|", color="#b02a37", ms=10, mew=1.5)
 ax.annotate(f"Mean $\\Delta={mean:.4f}$", xy=(mean, max(y) * 1.05), ha="center", fontsize=8.5)
 ax.annotate(f"90% CI [{ci[0]:.4f}, {ci[1]:.4f}]", xy=(-0.003, y_bar + 2.5), fontsize=8.5,
             color="#b02a37", ha="center")
-ax.annotate("Crosses $-\\varepsilon$ by 0.0006", xy=(ci[0], y_bar), xytext=(-0.042, y_bar - 10),
-            arrowprops=dict(arrowstyle="->", color="#b02a37", lw=0.9),
-            fontsize=8, color="#b02a37", ha="center")
+ax.annotate("Inside $\\pm\\varepsilon$ band", xy=(ci[1], y_bar), xytext=(0.028, y_bar - 10),
+            arrowprops=dict(arrowstyle="->", color="#2d6a4f", lw=0.9),
+            fontsize=8, color="#2d6a4f", ha="center")
 
 ax.text(0.96, 0.94, r"Equivalence band $\pm\varepsilon=0.02$", transform=ax.transAxes,
         fontsize=8, ha="right", va="top", color="#2d6a4f",
         bbox=dict(boxstyle="round,pad=0.2", fc="#f0f7f4", ec="#2d6a4f", lw=0.6))
 ax.set_xlabel("Selectivity difference (wave complex $-$ NLMS)")
-ax.set_ylabel("Density ($t$-distribution, $\\mathrm{df}=4$)")
+ax.set_ylabel("Density ($t$-distribution, $\\mathrm{df}=7$)")
 ax.set_xlim(-0.06, 0.06)
 ax.set_ylim(0, 52)
 fig.tight_layout()

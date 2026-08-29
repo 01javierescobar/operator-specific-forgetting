@@ -30,6 +30,7 @@ o04b = load("outputs/wave_mem/o04b.json")
 autopsy = load("outputs/wave_mem/delta_autopsy.json")
 autopsy_beta = load("outputs/wave_mem/delta_autopsy_beta.json")
 bench = load("outputs/transformer/benchmark.json")
+tostv2 = load("outputs/wave_mem/tostv2.json")
 
 print("=" * 78)
 print("1. O05 header metadata")
@@ -134,6 +135,21 @@ print("=" * 78)
 t = o05["tost"]
 print(f"  mean={t['mean_delta']} sd={t['sd']} ci90={t['ci90']} eps={t['eps']} n_seeds={t['n_seeds']}")
 print(f"  equivalence_pass={t['equivalence_pass']}  (CI crosses margin by {max(abs(t['ci90'][0]) - t['eps'], abs(t['ci90'][1]) - t['eps']):.4f})")
+
+print()
+print("=" * 78)
+print("6b. TOST v2 wave_complex vs delta_nlms (selectividad, n=8, df=7)")
+print("=" * 78)
+for key in ("tost_wave_complex_vs_delta_nlms", "tost_wave_re_vs_delta_nlms"):
+    tv = tostv2[key]
+    print(f"  {key}: mean={tv['mean_delta']} sd={tv['sd']} ci90={tv['ci90']} "
+          f"n={tv['n_seeds']} df={tv['df']} pass={tv['equivalence_pass']}")
+    assert tv["n_seeds"] == 8
+    assert tv["equivalence_pass"] is True, f"{key} debe pasar equivalencia"
+t8 = tostv2["tost_wave_complex_vs_delta_nlms"]
+assert abs(t8["mean_delta"] - (-0.0039)) < 1e-4
+assert abs(t8["ci90"][0] - (-0.0135)) < 1e-4 and abs(t8["ci90"][1] - 0.0057) < 1e-4
+print("  gate TOST v2 n=8 PASSA (equivalencia dentro de eps=0.02)")
 
 print()
 print("=" * 78)

@@ -9,7 +9,7 @@ del round-3 (R1 generalista) se cierran acá.
 | # | Tarea | Qué cierra |
 |---|-------|-----------|
 | 1 | **TOST con presupuesto igualado** (re-entrenar un brazo con la receta del otro) | El confound operador+receta: hoy es comparación de composites |
-| 2 | **Rerun n=8 seeds** (brazos wave_complex + delta_nlms) | Cierra el TOST con ~90% potencia (SD observada ≈0.018) |
+| 2 | **Rerun n=8 seeds** (brazos wave_complex + delta_nlms) | **HECHO (Cluster B)** — n=8, df=7, mean −0.0039, IC90 [−0.0135, 0.0057], equivalencia ε=0.02 PASSA |
 | 3 | **Sweep de carga c a D fijo** (variar n en D=64/128, versión entrenada) | Convierte "consistente con c en 2 puntos" en ley de escalado demostrada |
 | 4 | **Multi-codebook entrenado** (K=3–4 codebooks × 3 seeds) | La crítica single-codebook a nivel entrenado |
 | 5 | **Controles del ridge probe**: held-out-key, shuffle de pares, baseline frozen-probe, test de permutación vs chance | Blindar la disociación energético-funcional contra fuga de vocabulario |

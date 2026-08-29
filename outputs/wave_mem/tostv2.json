@@ -1,0 +1,95 @@
+{
+  "note": "Cluster B TOST v2: 8 seeds x 3 arms (wave recipe 60x600; delta_nlms 150x1200). Replay externo, per-event, n=320 events/arm.",
+  "selectividad_by_seed": {
+    "1": {
+      "wave_complex": 0.9719,
+      "wave_re": 0.9719,
+      "delta_nlms": 0.9875
+    },
+    "2": {
+      "wave_complex": 0.9875,
+      "wave_re": 0.9781,
+      "delta_nlms": 0.9625
+    },
+    "3": {
+      "wave_complex": 0.9906,
+      "wave_re": 0.9906,
+      "delta_nlms": 0.9969
+    },
+    "4": {
+      "wave_complex": 0.9812,
+      "wave_re": 0.9781,
+      "delta_nlms": 0.9781
+    },
+    "5": {
+      "wave_complex": 0.975,
+      "wave_re": 0.975,
+      "delta_nlms": 0.9969
+    },
+    "6": {
+      "wave_complex": 0.9906,
+      "wave_re": 0.9812,
+      "delta_nlms": 0.9906
+    },
+    "7": {
+      "wave_complex": 0.9812,
+      "wave_re": 0.975,
+      "delta_nlms": 0.9937
+    },
+    "8": {
+      "wave_complex": 0.9844,
+      "wave_re": 0.9844,
+      "delta_nlms": 0.9875
+    }
+  },
+  "tost_wave_complex_vs_delta_nlms": {
+    "n_seeds": 8,
+    "mean_delta": -0.0039,
+    "sd": 0.0143,
+    "se": 0.0051,
+    "df": 7,
+    "ci90": [
+      -0.0135,
+      0.0057
+    ],
+    "equivalence_pass": true,
+    "margin_cross": -0.0065,
+    "eps": 0.02
+  },
+  "tost_wave_re_vs_delta_nlms": {
+    "n_seeds": 8,
+    "mean_delta": -0.0074,
+    "sd": 0.012,
+    "se": 0.0043,
+    "df": 7,
+    "ci90": [
+      -0.0155,
+      0.0006
+    ],
+    "equivalence_pass": true,
+    "margin_cross": -0.0045,
+    "eps": 0.02
+  },
+  "per_seed_diffs": {
+    "wave_complex_minus_delta_nlms": [
+      -0.0156,
+      0.025,
+      -0.0063,
+      0.0031,
+      -0.0219,
+      0.0,
+      -0.0125,
+      -0.0031
+    ],
+    "wave_re_minus_delta_nlms": [
+      -0.0156,
+      0.0156,
+      -0.0063,
+      0.0,
+      -0.0219,
+      -0.0094,
+      -0.0187,
+      -0.0031
+    ]
+  }
+}
