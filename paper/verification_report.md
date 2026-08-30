@@ -45,8 +45,8 @@ Superposition write = open loop, unconditionally stable. Corrective write = clos
 ### C-D. Conditional erasure guarantee — *theorem + functional measurement*
 Only one cell of the 2x2 has true erasure: **key/complex, residual exactly null** (6 delta x 5 seeds, null-residual guard applied). Under state drift, every channel leaves a structured copy of the value that the head decodes (fuga_power 0.05-0.32 but EM_erased 0.75-1.0): **power leakage underestimates functional leakage by more than an order of magnitude**. Exact forgetting requires write-to-erase clock coherence. Honesty note: in v1 (fixed codebook, non-oscillating state) neither drift occurs naturally — the 2x2 is a stress test that delimits the guarantee, not an operational failure mode.
 
-### C-E. Control TOST wave_complex vs delta_nlms — *almost-equivalent, reported unrounded*
-d=128, 5 seeds: mean -0.0031, IC90 [-0.0206, 0.0144] (crosses eps=0.02 by 0.0006). Reported as is. If review presses: 8-10 seeds close it (future appendix).
+### C-E. Control TOST wave_complex vs delta_nlms — *conclusive at n=8*
+d=128, 5 seeds: mean -0.0031, IC90 [-0.0206, 0.0144] (crosses eps=0.02 by 0.0006, reported unrounded). Eight-seed extension (Cluster B, `outputs/wave_mem/tostv2.json`): mean -0.0039, 90% CI [-0.0135, 0.0057] (df=7), fully within eps=0.02; secondary control wave_re vs. delta_nlms: mean -0.0074, 90% CI [-0.0155, 0.0006]. Equivalence is established for the operator-plus-recipe composites (training budgets differ).
 
 ### C-F. Consolidated negative result
 - Vector geometry C^D: SNR flat in D (~2/(n-1)); erase by re-read = total erasure. **Dead, archived as evidence.**

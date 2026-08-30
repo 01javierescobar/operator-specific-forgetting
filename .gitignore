@@ -10,6 +10,8 @@ __pycache__/
 *.out
 *.blg
 *.synctex.gz
+*.fls
+*.fdb_latexmk
 
 # OS
 Thumbs.db

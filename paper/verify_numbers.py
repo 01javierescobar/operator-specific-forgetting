@@ -196,6 +196,34 @@ print(f"  n_params={bench['n_params']} smoke={bench['smoke']}")
 
 print()
 print("=" * 78)
+print("11. Key perturbation robustness (clave cell, non-collinear)")
+print("=" * 78)
+kpr = load("outputs/wave_mem/key_perturbation_robustness.json")
+_kprs = kpr["summary"]
+def _pert_range(arm):
+    fs = [v["clave_fuga_mean"] for k, v in _kprs.items()
+          if k.startswith(arm + "/") and "global_phase" not in k]
+    es = [v["clave_em_mean"] for k, v in _kprs.items()
+          if k.startswith(arm + "/") and "global_phase" not in k]
+    return min(fs), max(fs), min(es), max(es)
+kpr_fuga_max = 0.0
+kpr_em_max_cx = None
+kpr_em_max_re = None
+for arm, name in (("wave_complex", "complex"), ("wave_re", "re")):
+    mnf, mxf, mne, mxe = _pert_range(arm)
+    kpr_fuga_max = max(kpr_fuga_max, mxf)
+    print(f"  {name:8s}: fuga_mean [{mnf:.4f}, {mxf:.4f}]  em_mean [{100*mne:.1f}%, {100*mxe:.1f}%]")
+    if arm == "wave_complex":
+        kpr_em_max_cx = mxe
+    else:
+        kpr_em_max_re = mxe
+# manuscript quotes: em_mean ceiling 46% (complex) / 59% (real); fuga up to 0.032
+assert abs(kpr_em_max_cx - 0.457) < 0.01, f"complex em ceiling {kpr_em_max_cx}"
+assert abs(kpr_em_max_re - 0.594) < 0.01, f"real em ceiling {kpr_em_max_re}"
+assert abs(kpr_fuga_max - 0.032) < 0.005, f"fuga ceiling {kpr_fuga_max}"
+
+print()
+print("=" * 78)
 print("GATES")
 print("=" * 78)
 ok = True

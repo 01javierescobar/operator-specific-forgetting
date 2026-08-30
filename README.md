@@ -64,15 +64,17 @@ load `c = (n-1)/D` fixed.
    (4/4 cells).
 5. **LMS stability of the corrective write**: superposition write is open-loop
    (unconditionally stable); corrective write is stable iff beta||k||^2 < 2.
-   beta=1 with ||k||^2=8 diverges (||S|| ~ 10^11); NLMS normalization
-   (||k||=1) trains forget_retrieval to EM 1.000.
+   beta=1 with ||k||^2≈21 at init diverges (||S|| ~ 10^11--10^12); NLMS
+   normalization (||k||=1) trains forget_retrieval to EM 1.000.
 6. **Erase selectivity does not discriminate operators at this scale**: TOST
    (two one-sided equivalence test) on selectivity (wave_complex vs.
-   delta_nlms, d=128, 5 seeds) gives mean
-   -0.0031, IC90 [-0.0206, 0.0144] -- *almost-equivalent*, crossing eps=0.02 by
-   0.0006, reported unrounded (8-10 seeds would likely close the margin; no
-   power analysis was run). The claim lives in the *shape of the leakage*
-   (the four laws), not in erase EM.
+   delta_nlms, d=128) is conclusive at n=8 paired seeds: mean
+   -0.0039, 90% CI [-0.0135, 0.0057], fully inside the pre-specified margin
+   eps=0.02 (secondary control wave_re vs. delta_nlms: mean -0.0074, 90% CI
+   [-0.0155, 0.0006], also inside). The five-seed precursor was
+   *almost-equivalent* (mean -0.0031, IC90 [-0.0206, 0.0144], crossing eps by
+   0.0006). The claim lives in the *shape of the leakage* (the four laws),
+   not in erase EM.
 7. **Lineage theorem**: complex re-read erase `M - w(w^H M)/D` is exactly the
    delta-rule projection with beta=1 (diff 0.0). The equivalence is a theorem,
    reported as lineage, not superiority.
@@ -97,8 +99,9 @@ guarantee lives, not an operational failure mode.
 - No TinyStories / language scaling (out of budget; claims are scoped to
   d=64/d=128 on the lab harness).
 - No hardware throughput/energy claims (CPU/GPU kernels were not benchmarked).
-- The TOST is *almost*-equivalent: its 90% CI crosses the 0.02 margin by
-  0.0006. 8-10 seeds would close it.
+- Operator-vs-recipe confound: the equivalence results concern the operators'
+  *deployed composites* (different training budgets); isolating the write
+  operators alone would require budget-matched retraining.
 - Learned-key regime (v2) is deferred; EM is saturated (1.000 x 15 combos) and
   is used as sanity only -- the probes carry the evidence.
 
